@@ -2,6 +2,23 @@
 
 本階段的核心目標是**消除學員之間的環境差異**，讓所有人站在同一條起跑線上。對於需要進行 AUV 開發，硬體驅動的正確安裝與容器隔離尤為重要。
 
+### 📋 Table of contents
+
+* [🌐 【分類一】 作業系統與硬體連結 (Ubuntu 24.04 LTS)](#ubuntu-2404-lts)
+    * [1. 作業系統安裝：Ubuntu 24.04 LTS](#1-ubuntu-2404-lts)
+* [🛠️ 【分類二】 開發工具整合 (VS Code & AI 助手)](#vs-code-ai)
+    * [2. IDE 安裝：VS Code 及必裝擴充套件](#2-ide-vs-code)
+    * [3. AI 輔助開發工具與平台](#3-ai)
+        * [🐙 步驟 A：註冊 GitHub 帳號](#a-github)
+        * [🚀 步驟 B：下載與熟悉 Antigravity](#b-antigravity-google-deepmind-ai)
+        * [💻 步驟 C：下載與熟悉 Codex](#c-codex-ai)
+* [🐙 【分類三】 版本控制與代碼管理 (Git & GitHub)](#git-github)
+    * [4. 版本控制工具：Git 基本設定](#4-git)
+    * [5. 關鍵認證設定：建立 GitHub SSH 金鑰](#5-github-ssh)
+* [🐳 【分類四】 Docker & NVIDIA](#docker-nvidia)
+    * [6. 容器化引擎：Docker & Docker Compose](#6-docker-docker-compose)
+    * [7. GPU 支援：NVIDIA Driver & NVIDIA Container Toolkit](#7-gpu-nvidia-driver-nvidia-container-toolkit)
+
 ---
 
 # 💻 軟體安裝清單與安裝指引

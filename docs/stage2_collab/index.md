@@ -2,6 +2,22 @@
 
 在進入正式的 AUV 程式編寫之前，學員必須先學會「如何存活在 Linux 終端機」以及「如何與團隊、AI 協作」。
 
+### 📋 Table of contents
+
+* [🌐 【分類一】 Linux 終端機生存指南](#linux)
+    * [1. 開啟終端機 (Terminal) 的方式](#1-terminal)
+    * [2. 初學者必備 Linux 指令對照表](#2-linux)
+* [🤖 【分類二】 AI Agent 協作心法 (Prompting)](#ai-agent-prompting)
+    * [1. 終端機報錯排除](#1)
+    * [2. 程式優化與 Code Review](#2-code-review)
+    * [3. Git / Docker 疑難解答](#3-git-docker)
+* [🐙 【分類三】 Git & GitHub 團隊協作與版本管理概念](#git-github)
+    * [1. Git 檔案流動圖 (工作流)](#1-git)
+    * [2. Git 分支與 Pull Request (PR) 協作概念](#2-git-pull-request-pr)
+    * [3. Git 常用指令對照表](#3-git)
+* [🏆 【分類四】 實作任務：【AUV 團隊簽到板】](#auv)
+    * [📋 任務步驟](#_2)
+
 ---
 
 # 💻 學習清單與實作指引
