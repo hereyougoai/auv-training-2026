@@ -33,3 +33,11 @@ nav:
   - 階段五：載具之眼 (視覺辨識): stage5_vision/index.md
   - 階段六：終極試煉 (整合專案): stage6_integration/index.md
 
+markdown_extensions:
+  - tables
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+

@@ -1,4 +1,4 @@
-# 階段二：生存法則與協作基礎 (Linux、Git 與 AI 協作) 🤝
+# 階段二：Linux、Git 與 AI 協作 🤝
 
 在進入正式的 AUV 程式編寫之前，學員必須先學會「如何存活在 Linux 終端機」以及「如何與團隊、AI 協作」。
 
@@ -113,13 +113,15 @@ gitGraph
 
 ### 3. Git 常用指令對照表
 
-*   **`git clone <倉庫網址>`**：將 GitHub 雲端的儲存庫完整複製一份到本地端電腦。
-*   **`git checkout -b <分支名稱>`**：切出一條新的分支（例如 `feat/camera_driver`）並切換過去，不影響主分支。
-*   **`git status`**：檢查當前工作區有哪些檔案被修改、哪些尚未提交。
-*   **`git add <檔案名稱>`**（或 `git add .`）：將修改後的檔案存入暫存區，標記為「準備提交」。
-*   **`git commit -m "本次修改說明"`**：為這次的變更做一個存檔紀錄（Commit），並寫下好懂的說明。
-*   **`git pull origin main`**：將雲端最新的主分支進度抓回自己電腦，避免代碼落後團隊。
-*   **`git push origin <分支名稱>`**：將本地端分支的 Commit 進度上傳到 GitHub 雲端上。
+| Git 指令 | 功能說明 | 常用實用場景範例 | 💡 備註 / 防呆小提示 |
+| :--- | :--- | :--- | :--- |
+| **`git clone <倉庫網址>`** | 下載遠端儲存庫到本地端 | `git clone git@github.com:...` | 首次下載專案時使用，會在本地建立專案同名資料夾。 |
+| **`git checkout -b <分支>`** | 建立並切換至新功能分支 | `git checkout -b feat/sign-in` | `-b` 代表 create branch，避免直接在 `main` 分支開發。 |
+| **`git status`** | 檢查目前工作區檔案的修改狀態 | `git status` | 隨時都可以執行，用來確認有哪些檔案被修改或準備提交。 |
+| **`git add <檔案>`** (或 `git add .`) | 將修改後的檔案加入暫存區 | `git add .` (暫存所有變更) | `.` 代表當前目錄。尚未 add 的檔案不會被 commit 紀錄。 |
+| **`git commit -m "說明"`** | 將暫存區變更紀錄到本地歷史中 | `git commit -m "feat: add tom"` | 說明訊息必須清晰，以便團隊成員理解本次修改。 |
+| **`git pull origin main`** | 從遠端主分支抓取並合併最新進度 | `git pull origin main` | 推送前建議先執行 pull，能有效防範/提早解決代碼衝突。 |
+| **`git push origin <分支>`** | 將本地分支進度推送上傳至 GitHub | `git push origin feat/sign-in` | 只有 push 後，其他人才能在 GitHub 網頁上看到你的修改。 |
 
 ---
 
