@@ -75,11 +75,11 @@ Git 是一個「分散式版本控制系統」，而 GitHub 則是存放 Git 歷
 
 ```mermaid
 graph TD
-    subgraph 本地端電腦 (Local PC)
+    subgraph Local_PC ["本地端電腦 (Local PC)"]
         A["工作區 (Workspace) <br>在編輯器修改檔案內容"] -- "git add" --> B["暫存區 (Staging Area) <br>準備要提交的檔案快照"]
         B -- "git commit" --> C["本地儲存庫 (Local Repository) <br>記錄在自己電腦的版本歷史"]
     end
-    subgraph 遠端雲端 (GitHub Cloud)
+    subgraph GitHub_Cloud ["遠端雲端 (GitHub Cloud)"]
         D["GitHub 遠端儲存庫 (Remote Repository) <br>團隊共享的雲端代碼庫"]
     end
     C -- "git push" --> D
