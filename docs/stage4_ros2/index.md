@@ -36,6 +36,45 @@ Topic 是 ROS 2 最常用的一對多單向非同步通訊方式（發布/訂閱
 
 ---
 
+### 4. 終極多容器部署：Docker Compose
+
+在 AUV 的真實開發中，我們可能需要同時啟動許多個服務，例如「推進控制節點」、「相機影像辨識節點」與「任務決策節點」。如果每次啟動都得手動開啟多個終端機、輸入長長的 `docker run` 指令，不僅容易打錯，也極難維護。
+
+Docker Compose 就是為了解決這個問題而誕生的工具。它允許我們使用一份 `docker-compose.yml`（YAML 格式的純文字檔）來定義整個 AUV 系統的所有服務，然後**一鍵啟動**所有容器。
+
+#### 📝 Docker Compose 與 docker run 的防呆對照表
+
+| 需求情境 | docker run (手動終端機指令) | docker-compose.yml (自動化設定) |
+| :--- | :--- | :--- |
+| **映像檔** | `auv-thruster-calc:v1.0` | `image: auv-thruster-calc:v1.0` |
+| **網路設定** | `--network host` | `network_mode: "host"` |
+| **硬體掛載** | `--device /dev/ttyUSB0` | `devices:`<br>&nbsp;&nbsp;`- "/dev/ttyUSB0:/dev/ttyUSB0"` |
+| **目錄掛載** | `-v $(pwd):/app` | `volumes:`<br>&nbsp;&nbsp;`- ./:/app` |
+
+#### 🚀 Docker Compose 核心起手式指令
+
+寫好設定檔後，所有的繁瑣啟動指令都化繁為簡：
+* **一鍵背景啟動所有服務**：
+  ```bash
+  docker compose up -d
+  ```
+  > 💡 **提示**：`-d` 代表在背景執行（Detached mode），您的終端機不會被卡住，可以繼續輸入其他指令。
+* **查看所有服務的運行狀態**：
+  ```bash
+  docker compose ps
+  ```
+* **即時查看特定服務的輸出日誌 (Log)**：
+  ```bash
+  # 即時查看影像辨識節點的輸出情況
+  docker compose logs -f vision_node
+  ```
+* **一鍵停止並刪除所有服務**：
+  ```bash
+  docker compose down
+  ```
+
+---
+
 ## 🛠️ 實作小專案：【深度監控警報系統】
 
 編寫兩個 ROS 2 節點：**Node A** 負責模擬深度計發送數據，**Node B** 負責接收數據並在水深過深時發出警告。
@@ -118,15 +157,70 @@ def main(args=None):
 
 ---
 
-### 步驟三：測試與驗證
+### 步驟三：撰寫專案的 Dockerfile
 
-1. 在 `setup.py` 中設定 Entry Points，以便可以使用 `ros2 run` 啟動節點。
-2. 開啟第一個終端機，啟動 **Sensor Mock** 節點：
+為了將我們的 ROS 2 程式包裝為可移植的映像檔，我們需要在工作空間根目錄下建立一個 `Dockerfile`：
+
+```dockerfile
+# 1. 使用官方 ROS 2 Jazzy 基礎映像檔
+FROM osrf/ros:jazzy-desktop
+
+# 2. 設定容器內的工作目錄
+WORKDIR /auv_ws
+
+# 3. 將本地的 src 原始碼目錄複製到容器中
+COPY ./src ./src
+
+# 4. 編譯 ROS 2 工作空間
+RUN . /opt/ros/jazzy/setup.sh && colcon build
+
+# 5. 設定 Entrypoint，啟動時自動加載環境變數
+ENTRYPOINT ["/bin/bash", "-c", "source /opt/ros/jazzy/setup.bash && source /auv_ws/install/setup.bash && exec \"$@\""]
+```
+
+---
+
+### 步驟四：撰寫 docker-compose.yml 啟動檔
+
+使用 Docker Compose 來一鍵啟動這兩個相互通訊的節點。在工作空間根目錄下建立一個名為 `docker-compose.yml` 的檔案：
+
+```yaml
+services:
+  # 服務一：模擬深度發布節點
+  sensor_mock:
+    image: auv-monitor:v1.0
+    build: .
+    container_name: auv_sensor_mock
+    network_mode: "host" # 使用 host 網路模式，確保 ROS 2 DDS 能與其他節點正常通訊
+    command: ros2 run auv_monitor sensor_mock
+
+  # 服務二：安全監控接收節點
+  safety_monitor:
+    image: auv-monitor:v1.0
+    build: .
+    container_name: auv_safety_monitor
+    network_mode: "host"
+    command: ros2 run auv_monitor safety_monitor
+```
+
+---
+
+### 步驟五：一鍵啟動與驗證
+
+1. 請在終端機中確認路徑在專案目錄下，執行以下指令建立並啟動服務：
    ```bash
-   ros2 run auv_monitor sensor_mock
+   docker compose up -d
    ```
-3. 開啟第二個終端機，啟動 **Safety Monitor** 節點：
+2. 查看服務是否已經成功啟動並在背景運行：
    ```bash
-   ros2 run auv_monitor safety_monitor
+   docker compose ps
    ```
-4. 觀察當第一個終端機發送的值超過 `3.0` 時，第二個終端機是否會噴出警告訊息！這就完成了 AUV 內部最基礎的通訊與安全保護機制。
+3. 即時監看 **Safety Monitor** 節點的輸出日誌，確認是否有收到深度數據：
+   ```bash
+   docker compose logs -f safety_monitor
+   ```
+   *(當深度計模擬的值超過 `3.0` 時，您應該會看到畫面上噴出黃色的 `⚠️ [🚨 警報] 偵測到危險水深...` 訊息)*
+4. 驗證完成後，一鍵停止並清理所有的容器：
+   ```bash
+   docker compose down
+   ```
