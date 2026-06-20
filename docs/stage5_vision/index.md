@@ -21,19 +21,33 @@
 ### 1. 資料集 (Dataset) 與標註 (Annotation)
 * **垃圾進，垃圾出 (Garbage in, Garbage out)**：高品質的影像資料集是訓練成功的關鍵。
 * **資料標註**：透過框選圖片中的目標物並標註類別（例如 `gate`, `buoy`）。
-* **常用標註工具**：[CVAT](https://www.cvat.ai/) 或 [Roboflow](https://roboflow.com/)。我們通常導出為 **YOLO 格式**（包含圖片與對應的 `.txt` 座標標籤檔案）。
+* **常用標註工具**：[CVAT](https://www.cvat.ai/) 或 [Roboflow](https://roboflow.com/)。
+* **標籤座標格式**：YOLO 格式的標籤檔案（每個圖片對應一個 `.txt` 檔）採用**歸一化 (Normalized)** 座標，格式為 `[class_id, x_center, y_center, width, height]`。所有座標數值均介於 `0` 到 `1` 之間（相對於整張圖片的寬高），而非傳統的絕對像素座標。這是初學者在進行座標轉換或繪圖時最常踩的坑。
+* **資料擴增 (Data Augmentation)**：水下環境光線變化劇烈、水質混濁且顏色失真（紅光在水下衰減最快）。透過在訓練前人為地改變圖片（例如：調整對比、亮度、隨機旋轉、加入噪點，或模擬水下色偏與混濁度），可以大幅提升模型在不同水質下的**強健性 (Robustness)**。
 
 ---
 
-### 2. 物件偵測模型（以 YOLOv8 為例）與遷移學習
-* **YOLO (You Only Look Once)**：目前最主流、速度最快的實時物件偵測模型，非常適合運算資源有限的 AUV 樹莓派端。
-* **遷移學習 (Transfer Learning)**：我們不需要從頭訓練一個模型。我們可以使用 NVIDIA/COCO 資料集預訓練好的權重（Weight），只需餵入少量水下圖片，即可微調 (Fine-tune) 出能辨識水下物件的模型。
+### 2. 物件偵測模型與遷移學習
+* **YOLO (You Only Look Once)**：目前最主流、速度最快的實時物件偵測模型，非常適合資源受限的**邊緣運算裝置 (Edge Devices)**。
+  > ⚠️ **硬體現實防呆：** 若直接在純樹莓派 (Raspberry Pi) 的 CPU 上執行 YOLOv8n 推論，其 FPS 通常僅有低個位數，無法滿足 AUV 即時控制需求。實務上我們通常會選用具備 GPU 的 **NVIDIA Jetson** 系列，或者為樹莓派外接硬體加速器（如 Google Coral Edge TPU）。
+* **遷移學習 (Transfer Learning)**：我們不需要從頭訓練一個能辨識萬物的巨大模型。我們可以使用在大型公開資料集（如 COCO）上預訓練好的權重（Weight）作為起點，並透過**數百至數千張**特定水下場景的圖片進行微調 (Fine-tune)，即可快速獲得專屬 AUV 的辨識模型。
 
 ---
 
 ### 3. 模型推論 (Inference) 與效能評估
 * **Inference**：指模型讀取未見過的圖片並預測其邊界框 (Bounding Box) 的過程。
+* **信心分數 (Confidence Score)**：模型對預測結果的把握度（介於 `0 ~ 1` 之間，例如 0.85 代表有 85% 信心）。實務上會設定**門檻值 (Threshold)**，低於此分數的預測會被直接濾除，以防載具因背景雜訊而誤判。
+* **交併比 (IoU, Intersection over Union)**：用來評估預測框與真實標註框的重疊程度，公式為 $\text{IoU} = \frac{\text{交集面積}}{\text{聯集面積}}$。這也是計算 mAP 指標的核心基礎。
 * **評估指標**：
-  * **mAP (Mean Average Precision)**：辨識精準度。
-  * **FPS (Frames Per Second)**：每秒處理影格數。水下即時控制要求 FPS 至少要達到 `15 ~ 30` 以上，以免決策產生嚴重延遲。
+  * **mAP (Mean Average Precision)**：辨識精準度的綜合指標。
+  * **FPS (Frames Per Second)**：每秒處理影格數。水下即時控制要求 FPS 至少要達到 `15 ~ 30` 以上，以免控制系統產生嚴重決策延遲。
+  > 💡 **效能優化：** 為了在邊緣運算裝置上實現高 FPS，我們通常會將模型進行**量化 (Quantization)**（例如將 FP32 轉為 FP16 或 INT8），並使用如 **NVIDIA TensorRT** 或 **Intel OpenVINO** 等專門的加速引擎進行部署。
+
+---
+
+### 4. 訓練常見問題：過擬合與欠擬合
+在模型訓練過程中，我們必須時刻監控並平衡以下兩種狀態：
+* **過擬合 (Overfitting)**：模型「死記硬背」了訓練資料集中的圖片細節，導致在訓練集上準確度極高，但一遇到沒看過的新水下環境（如光線改變）就完全認不出來。
+* **欠擬合 (Underfitting)**：模型學得不夠好，甚至連訓練資料集中的物件都無法正確辨識。這通常是因為訓練輪數 (Epochs) 太少，或是模型太小而資料特徵太過複雜。
+
 
