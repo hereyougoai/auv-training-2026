@@ -26,12 +26,12 @@ theme:
 
 nav:
   - 首頁: index.md
-  - 階段一：開發者武裝 (環境建置): stage1_env/index.md
-  - 階段二：生存法則與協作 (Linux & Git): stage2_collab/index.md
-  - 階段三：載具溝通與沙盒 (Python & Docker): stage3_sandbox/index.md
-  - 階段四：系統神經網路 (ROS 2): stage4_ros2/index.md
-  - 階段五：載具之眼 (視覺辨識): stage5_vision/index.md
-  - 階段六：終極試煉 (整合專案): stage6_integration/index.md
+  - 階段一：環境建置: stage1_env/index.md
+  - 階段二：Linux & Git: stage2_collab/index.md
+  - 階段三：Python & Docker: stage3_sandbox/index.md
+  - 階段四：ROS 2: stage4_ros2/index.md
+  - 階段五：視覺辨識: stage5_vision/index.md
+  - 階段六：整合專案: stage6_integration/index.md
 
 markdown_extensions:
   - tables

@@ -6,18 +6,12 @@
 
 ## 📚 培訓章節導覽
 
-### 1. 基礎與工具準備
-* **環境架設**：Ubuntu 24.04 雙系統與 Docker 環境配置。
-* **Git 版本控制**：GitHub 團隊協作與分支管理規範。
-* **MkDocs**：如何編輯本手冊並發布至 GitHub Pages。
-
-### 2. 系統核心架構
-* **SAUVC-STM32**：底層電機控制、IMU 感測器讀取、PID 控制與電力管理。
-* **orca_auv_rpi_ros2_ws**：樹莓派上運行的 ROS2 核心節點與導航模組。
-
-### 3. 進階算法與控制
-* **路徑規劃**：水下定深、定向與自主航行控制。
-* **水下視覺**：利用 OpenCV/YOLO 進行水下目標物偵測與避障。
+- [階段一：環境建置](stage1_env/index.md)
+- [階段二：Linux & Git](stage2_collab/index.md)
+- [階段三：Python & Docker](stage3_sandbox/index.md)
+- [階段四：ROS 2](stage4_ros2/index.md)
+- [階段五：視覺辨識](stage5_vision/index.md)
+- [階段六：整合專案](stage6_integration/index.md)
 
 ---
 
