@@ -1,0 +1,2502 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../stage2_collab/">
+      
+      
+        <link rel="next" href="../stage4_ros2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>階段三：Python & Docker - AUV 培訓手冊 (2026)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-docker" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AUV 培訓手冊 (2026)" class="md-header__button md-logo" aria-label="AUV 培訓手冊 (2026)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AUV 培訓手冊 (2026)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              階段三：Python & Docker
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage1_env/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段一：環境建置
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage2_collab/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段二：Linux & Git
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段三：Python & Docker
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage4_ros2/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段四：ROS 2
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage5_vision/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段五：視覺辨識
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage6_integration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段六：整合專案
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AUV 培訓手冊 (2026)" class="md-nav__button md-logo" aria-label="AUV 培訓手冊 (2026)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AUV 培訓手冊 (2026)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage1_env/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段一：環境建置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage2_collab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段二：Linux & Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段三：Python & Docker
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段三：Python & Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#python-venv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 Python 開發環境與虛擬環境 (venv) 建立指南
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 Python 開發環境與虛擬環境 (venv) 建立指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        階段零：準備工作（只需做一次）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="階段零：準備工作（只需做一次）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 檢查是否已經安裝 Python
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-python-31210" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 安裝 Python 3.12.10 (若尚未安裝或版本不符)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        階段一：建立專案與虛擬環境（每次開新專案都要做）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="階段一：建立專案與虛擬環境（每次開新專案都要做）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 建立專案資料夾
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 建立虛擬環境 (便當盒)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        階段二：啟動與開發（每次寫程式前都要做）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="階段二：啟動與開發（每次寫程式前都要做）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 啟動虛擬環境
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 安裝需要的套件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 開始寫程式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        階段三：收尾與備份（專案告一段落時做）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="階段三：收尾與備份（專案告一段落時做）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 記錄套件清單（產生菜單）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 關閉虛擬環境
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 核心學習內容
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📖 核心學習內容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-oop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、 Python 與物件導向 (OOP)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、 Python 與物件導向 (OOP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python 基礎語法核心
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Python 基礎語法核心">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心一：輸出與輸入變數
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心二：條件判斷
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心三：迴圈
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心四：List 與 Dict
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心五：函式 Function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-if-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Python 簡短與高效語法 (If / For 篇)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        物件導向程式設計 (OOP)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="物件導向程式設計 (OOP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-oop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 為什麼需要物件導向 (OOP)？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-class-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 核心一：模具 (Class) 與 實體 (Object)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-constructor-__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 核心二：什麼是建構子 (Constructor)？為什麼要有 __init__？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        那個無所不在的 self 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程式碼實戰：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 核心三：開始量產！(使用模具)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 繼承 (Inheritance)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        為什麼需要「繼承」？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 核心一：父類別 (爸爸) 與 子類別 (兒子)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-super" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 核心二：那個神秘的 super() 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程式碼實戰：打造魔王專屬模具
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 核心三：測試繼承的威力
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、 Docker 基礎與沙盒隔離
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、 Docker 基礎與沙盒隔離">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🐳 Docker 核心指令防呆對照表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ 實作小專案：【水下推進器推力計算機（容器版）】
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ 實作小專案：【水下推進器推力計算機（容器版）】">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟一：撰寫 Python 程式碼
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟二：撰寫 Dockerfile
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="步驟二：撰寫 Dockerfile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📝 Dockerfile 語法詳細拆解
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟三：打包與運行 Docker 映像檔
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-hot-reload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚡ 進階技巧：使用 Volume 實現即時開發 (Hot-reload)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auv-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚡ AUV 實戰必學：Docker 進階執行參數
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ AUV 實戰必學：Docker 進階執行參數">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 實體硬體裝置掛載 (--device)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-gpu-gpus-all" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. GPU 運算資源穿透 (--gpus all)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-network-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 網路模式配置 (--network host)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage4_ros2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段四：ROS 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage5_vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段五：視覺辨識
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage6_integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段六：整合專案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#python-venv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 Python 開發環境與虛擬環境 (venv) 建立指南
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 Python 開發環境與虛擬環境 (venv) 建立指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        階段零：準備工作（只需做一次）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="階段零：準備工作（只需做一次）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 檢查是否已經安裝 Python
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-python-31210" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 安裝 Python 3.12.10 (若尚未安裝或版本不符)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        階段一：建立專案與虛擬環境（每次開新專案都要做）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="階段一：建立專案與虛擬環境（每次開新專案都要做）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 建立專案資料夾
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 建立虛擬環境 (便當盒)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        階段二：啟動與開發（每次寫程式前都要做）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="階段二：啟動與開發（每次寫程式前都要做）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 啟動虛擬環境
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 安裝需要的套件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 開始寫程式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        階段三：收尾與備份（專案告一段落時做）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="階段三：收尾與備份（專案告一段落時做）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 記錄套件清單（產生菜單）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 關閉虛擬環境
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 核心學習內容
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📖 核心學習內容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-oop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、 Python 與物件導向 (OOP)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、 Python 與物件導向 (OOP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python 基礎語法核心
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Python 基礎語法核心">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心一：輸出與輸入變數
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心二：條件判斷
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心三：迴圈
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心四：List 與 Dict
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心五：函式 Function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-if-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Python 簡短與高效語法 (If / For 篇)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        物件導向程式設計 (OOP)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="物件導向程式設計 (OOP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-oop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 為什麼需要物件導向 (OOP)？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-class-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 核心一：模具 (Class) 與 實體 (Object)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-constructor-__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 核心二：什麼是建構子 (Constructor)？為什麼要有 __init__？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        那個無所不在的 self 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程式碼實戰：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 核心三：開始量產！(使用模具)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 繼承 (Inheritance)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        為什麼需要「繼承」？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 核心一：父類別 (爸爸) 與 子類別 (兒子)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-super" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 核心二：那個神秘的 super() 是什麼？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程式碼實戰：打造魔王專屬模具
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 核心三：測試繼承的威力
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、 Docker 基礎與沙盒隔離
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、 Docker 基礎與沙盒隔離">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🐳 Docker 核心指令防呆對照表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ 實作小專案：【水下推進器推力計算機（容器版）】
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ 實作小專案：【水下推進器推力計算機（容器版）】">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟一：撰寫 Python 程式碼
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟二：撰寫 Dockerfile
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="步驟二：撰寫 Dockerfile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📝 Dockerfile 語法詳細拆解
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟三：打包與運行 Docker 映像檔
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-hot-reload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚡ 進階技巧：使用 Volume 實現即時開發 (Hot-reload)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auv-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚡ AUV 實戰必學：Docker 進階執行參數
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ AUV 實戰必學：Docker 進階執行參數">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 實體硬體裝置掛載 (--device)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-gpu-gpus-all" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. GPU 運算資源穿透 (--gpus all)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-network-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 網路模式配置 (--network host)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="python-docker">階段三：Python 與 Docker</h1>
+<p>結合 Python 基礎語法與 Docker 的隔離環境，讓學員理解如何避免開發過程中常遇到的「在我電腦上可以跑，但在別人的電腦/實機上就爆炸」的環境配置問題。</p>
+<hr />
+<h2 id="python-venv">📦 Python 開發環境與虛擬環境 (venv) 建立指南</h2>
+<p>以下是從零開始的完整流程，我將它分為<strong>準備期</strong>與<strong>實戰期</strong>，只要照著順序做，就能順利建立標準的 Python 開發環境。</p>
+<h3 id="_1">階段零：準備工作（只需做一次）</h3>
+<p>要使用 <code>venv</code>（Python 內建的虛擬環境模組），你唯一需要安裝的就是 <strong>Python 本身</strong>。</p>
+<h4 id="1-python">1. 檢查是否已經安裝 Python</h4>
+<p>打開你的終端機（Windows 的命令提示字元 CMD / Mac 的 Terminal），輸入以下指令：</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>--version
+</code></pre></div>
+<p><em>(Mac 或 Linux 用戶如果出現錯誤，請改輸入 <code>python3 --version</code>)</em></p>
+<ul>
+<li><strong>如果有跑出版本號且為 Python 3.12.10（或相容的 3.12.x 版本）：</strong> 恭喜你，廚房已經蓋好了，請直接跳到「階段一」。</li>
+<li><strong>如果不符合版本、顯示「找不到指令」或錯誤：</strong> 代表你需要安裝指定版本的 Python。</li>
+</ul>
+<h4 id="2-python-31210">2. 安裝 Python 3.12.10 (若尚未安裝或版本不符)</h4>
+<ul>
+<li>請至 <a href="https://www.python.org/downloads/release/python-31210/">Python 3.12.10 官方下載頁面</a>，依據您的作業系統下載對應的安裝程式（例如 Windows 用戶下載 <code>Windows installer (64-bit)</code>）。</li>
+<li><strong>⚠️ Windows 用戶的生死關鍵：</strong> 點開安裝檔後，在第一個畫面<strong>務必勾選「Add Python to PATH」</strong>（將 Python 加入環境變數），然後才點擊 Install Now。如果沒勾這個，你的電腦會找不到 Python，後續指令都會失敗！</li>
+</ul>
+<hr />
+<h3 id="_2">階段一：建立專案與虛擬環境（每次開新專案都要做）</h3>
+<p>準備好 Python 後，我們就可以開始建立獨立的專案了。</p>
+<h4 id="1">1. 建立專案資料夾</h4>
+<p>在你的電腦裡開一個新的資料夾，用來放這次專案的所有程式碼。在終端機中，切換到那個資料夾裡面：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 建立資料夾（假設叫做 my_project）</span>
+mkdir<span class="w"> </span>my_project
+
+<span class="c1"># 進入該資料夾</span>
+<span class="nb">cd</span><span class="w"> </span>my_project
+</code></pre></div>
+<h4 id="2">2. 建立虛擬環境 (便當盒)</h4>
+<p>在專案資料夾內，輸入以下指令來建立虛擬環境。我們習慣將這個環境資料夾命名為 <code>venv</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Windows</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+
+<span class="c1"># Mac / Linux</span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+</code></pre></div>
+<p><em>(執行後，你會看到資料夾裡多了一個叫 <code>venv</code> 的子資料夾，裡面裝了獨立的 Python 執行檔和套件庫。)</em></p>
+<hr />
+<h3 id="_3">階段二：啟動與開發（每次寫程式前都要做）</h3>
+<h4 id="1_1">1. 啟動虛擬環境</h4>
+<p>這是新手最常忘記的步驟。不啟動的話，你安裝的套件還是會跑到全域環境（大鍋子）裡。</p>
+<ul>
+<li>
+<p><strong>Windows (CMD):</strong>
+<div class="highlight"><pre><span></span><code>venv\Scripts\activate.bat
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Mac / Linux:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+</code></pre></div></p>
+</li>
+</ul>
+<p><strong>💡 成功標誌：</strong> 啟動後，你終端機輸入指令的地方，最前面會多出一個 <code>(venv)</code>，代表你已經成功進入隔離空間！</p>
+<h4 id="2_1">2. 安裝需要的套件</h4>
+<p>現在你可以盡情安裝專案需要的工具，它們都只會存在這個 <code>venv</code> 裡面。例如：</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>requests<span class="w"> </span>pandas
+</code></pre></div>
+<h4 id="3">3. 開始寫程式</h4>
+<p>你可以打開 VS Code、PyCharm 或任何編輯器，開始撰寫你的 <code>.py</code> 檔案並執行。</p>
+<hr />
+<h3 id="_4">階段三：收尾與備份（專案告一段落時做）</h3>
+<h4 id="1_2">1. 記錄套件清單（產生菜單）</h4>
+<p>當你的程式寫得差不多，準備傳給別人或推送到 GitHub 前，請匯出你這個環境裝了哪些套件：</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt
+</code></pre></div>
+<p><em>(這會在資料夾產生一個 <code>requirements.txt</code> 文字檔，裡面記錄了所有套件與精確的版本號。)</em></p>
+<h4 id="2_2">2. 關閉虛擬環境</h4>
+<p>今天工作結束，或者你要切換到其他專案時，只要下達這個指令就能退出隔離環境：</p>
+<div class="highlight"><pre><span></span><code>deactivate
+</code></pre></div>
+<p><em>(前面的 <code>(venv)</code> 會消失，你又回到了電腦的正常狀態。)</em></p>
+<hr />
+<p><strong>總結日常開發的循環：</strong>
+進入資料夾 -&gt; <code>啟動虛擬環境</code> -&gt; 寫程式/裝套件 -&gt; <code>deactivate 離開</code>。</p>
+<hr />
+<h2 id="_5">📖 核心學習內容</h2>
+<h3 id="python-oop">一、 Python 與物件導向 (OOP)</h3>
+<p>在 AUV 開發中，許多高階節點（如決策、狀態估測、視覺辨識）都是以 Python 編寫。學員須掌握以下核心基礎：</p>
+<h4 id="python">Python 基礎語法核心</h4>
+<h5 id="_6">核心一：輸出與輸入變數</h5>
+<p>寫程式的第一步，就是學會請電腦顯示文字，並讓電腦把資料「記下來」。</p>
+<ul>
+<li><strong><code>print()</code> (印出)</strong>：請電腦說話。</li>
+<li><strong>變數 (Variable)</strong>：就像是在箱子上貼標籤，把資料裝進去。</li>
+<li><strong><code>input()</code> (輸入)</strong>：讓電腦問問題，並等待使用者打字回答。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 把使用者輸入的名字，裝進叫做 name 的箱子裡</span>
+<span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;請問你叫什麼名字？ &quot;</span><span class="p">)</span>
+
+<span class="c1"># 使用 f-string (在字串前加 f)，可以輕鬆把箱子裡的東西拿出來用</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;你好，</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">！歡迎來到 Python 的世界。&quot;</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h5 id="_7">核心二：條件判斷</h5>
+<p>人生充滿選擇，程式也是。我們用 <code>if</code> (如果)、<code>elif</code> (不然如果)、<code>else</code> (否則) 來幫程式建立「岔路」。</p>
+<ul>
+<li><strong>關鍵概念</strong>：程式會從上往下檢查，只要條件符合（True），就會執行那條路裡的動作，後面的就不管了。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;你今年幾歲？ &quot;</span><span class="p">))</span>  <span class="c1"># int() 是把輸入的文字變成整數</span>
+
+<span class="k">if</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;你已經成年，可以考駕照了！&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">13</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;你是個青少年！&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;你還是個小學生呢！&quot;</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p><strong>排版魔法：</strong> 注意到了嗎？<code>if</code> 下方的程式碼有<strong>縮排（留白）</strong>。Python 是靠縮排來判斷這段動作是不是屬於這個條件的，按一下 <code>Tab</code> 鍵就能縮排。</p>
+</blockquote>
+<hr />
+<h5 id="_8">核心三：迴圈</h5>
+<p>電腦最擅長做重複的苦差事。當你想把同一件事做很多次，或是檢查一整排資料時，就需要用到迴圈。</p>
+<ul>
+<li><strong><code>for</code> 迴圈</strong>：明確知道要跑幾次時使用。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># range(3) 代表跑 3 次 (0, 1, 2)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;重要的事情說三遍！&quot;</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li><strong><code>while</code> 迴圈</strong>：只要條件成立，就會一直跑下去（適合用在不知道何時會結束的狀況，例如：猜密碼）。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">while</span> <span class="n">password</span> <span class="o">!=</span> <span class="s2">&quot;1234&quot;</span><span class="p">:</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;請輸入密碼解鎖：&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;解鎖成功！&quot;</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h5 id="list-dict">核心四：List 與 Dict</h5>
+<p>當資料變多時，我們不可能為每個東西都準備一個獨立的箱子（變數），我們需要更大的容器。</p>
+<ul>
+<li><strong>串列 <code>list</code></strong>：就像是一排連號的置物櫃，用 <code>[]</code> 把東西包起來，按照順序排好。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 電腦數數是從 0 開始的！</span>
+<span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;蘋果&quot;</span><span class="p">,</span> <span class="s2">&quot;香蕉&quot;</span><span class="p">,</span> <span class="s2">&quot;橘子&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># 會印出 &quot;蘋果&quot;</span>
+</code></pre></div>
+<ul>
+<li><strong>字典 <code>dict</code></strong>：就像是通訊錄，有「標籤（Key）」和「內容（Value）」，用 <code>{}</code> 包起來。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">player</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;勇者&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;hp&quot;</span><span class="p">:</span> <span class="mi">100</span>
+<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">player</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> 剩下 </span><span class="si">{</span><span class="n">player</span><span class="p">[</span><span class="s1">&#39;hp&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> 滴血&quot;</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h5 id="function">核心五：函式 Function</h5>
+<p>當某段程式碼會重複被使用，我們可以用 <code>def</code> 把牠包裝成一個「函式」，就像是一個魔術道具，丟進原料（參數），就會輸出成品（回傳值）。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 定義一個限制推進器安全 PWM 的函式</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">limit_pwm</span><span class="p">(</span><span class="n">pwm</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">pwm</span> <span class="o">&gt;</span> <span class="mi">1900</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1900</span>
+    <span class="k">elif</span> <span class="n">pwm</span> <span class="o">&lt;</span> <span class="mi">1100</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1100</span>
+    <span class="k">return</span> <span class="n">pwm</span>
+
+<span class="c1"># 使用它</span>
+<span class="n">safe_pwm</span> <span class="o">=</span> <span class="n">limit_pwm</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;安全限制後的 PWM 訊號為: </span><span class="si">{</span><span class="n">safe_pwm</span><span class="si">}</span><span class="s2"> us&quot;</span><span class="p">)</span> <span class="c1"># 會印出 1900</span>
+</code></pre></div>
+<hr />
+<h5 id="python-if-for">💡 Python 簡短與高效語法 (If / For 篇)</h5>
+<p>在實際的開發或軟體企業中，常用以下幾種簡短且高讀寫效率的寫法，來簡化控制流程（特別是 <code>if</code> 和 <code>for</code>）：</p>
+<ul>
+<li><strong>1. 三元運算子 (Ternary Operator) —— 單行 <code>if-else</code></strong></li>
+<li><strong>寫法</strong>：<code>值 = A if 條件 else B</code></li>
+<li><strong>範例</strong>：
+    <div class="highlight"><pre><span></span><code><span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;normal&quot;</span>
+<span class="c1"># 傳統寫法需要 4 行，簡短寫法只需 1 行：</span>
+<span class="n">pwm</span> <span class="o">=</span> <span class="mi">1500</span> <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;normal&quot;</span> <span class="k">else</span> <span class="mi">1100</span>
+</code></pre></div></li>
+<li>
+<p><strong>實務應用</strong>：常用於為感測器狀態快速設定「安全上限」或「預設回傳值」。</p>
+</li>
+<li>
+<p><strong>2. 列表生成式 (List Comprehension) —— 單行過濾與轉換</strong></p>
+</li>
+<li><strong>寫法</strong>：<code>新清單 = [對每個元素的操作 for 元素 in 舊清單 if 條件]</code></li>
+<li><strong>範例</strong>：
+    <div class="highlight"><pre><span></span><code><span class="c1"># 過濾出所有大於 0 的有效感測數據</span>
+<span class="n">raw_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.9</span><span class="p">]</span>
+<span class="n">valid_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">raw_data</span> <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># 得到 [1.2, 3.4]</span>
+</code></pre></div></li>
+<li>
+<p><strong>實務應用</strong>：在 AUV 的聲納或壓力數據處理中，快速過濾噪訊或錯誤數值。</p>
+</li>
+<li>
+<p><strong>3. <code>enumerate()</code> 函數 —— 同時遍歷索引與元素</strong></p>
+</li>
+<li><strong>範例</strong>：
+    <div class="highlight"><pre><span></span><code><span class="n">thrusters</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;左推進器&quot;</span><span class="p">,</span> <span class="s2">&quot;右推進器&quot;</span><span class="p">,</span> <span class="s2">&quot;垂直推進器&quot;</span><span class="p">]</span>
+<span class="c1"># i 會自動計數 (從 0 開始)，不需手動建立 i = i + 1</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">thrusters</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;推進器編號 </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> 號: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></li>
+<li>
+<p><strong>實務應用</strong>：需要同時知道感測器的「物理排列順序」與「感測器名稱」時必備。</p>
+</li>
+<li>
+<p><strong>4. <code>zip()</code> 函數 —— 同步遍歷多個清單</strong></p>
+</li>
+<li><strong>範例</strong>：
+    <div class="highlight"><pre><span></span><code><span class="n">sensors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;深度計&quot;</span><span class="p">,</span> <span class="s2">&quot;聲納&quot;</span><span class="p">,</span> <span class="s2">&quot;陀螺儀&quot;</span><span class="p">]</span>
+<span class="n">status</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;正常&quot;</span><span class="p">,</span> <span class="s2">&quot;異常&quot;</span><span class="p">,</span> <span class="s2">&quot;正常&quot;</span><span class="p">]</span>
+<span class="c1"># 同時配對兩個清單中對應位置的元素</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">stat</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sensors</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> 當前狀態: </span><span class="si">{</span><span class="n">stat</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></li>
+<li><strong>實務應用</strong>：將感測器的硬體清單與其實時檢測狀態配對輸出。</li>
+</ul>
+<hr />
+<h4 id="oop">物件導向程式設計 (OOP)</h4>
+<p>物件導向程式設計是專案規模變大時最關鍵的代碼管理方式。以下是為新手準備的核心觀念與實例：</p>
+<h5 id="1-oop">1. 為什麼需要物件導向 (OOP)？</h5>
+<p><strong>OOP 的功能在於「打包」</strong>：它允許我們把「資料（狀態）」和「功能（動作）」打包在一起，做成一個專屬的「模具」。</p>
+<hr />
+<h5 id="2-class-object">2. 核心一：模具 (Class) 與 實體 (Object)</h5>
+<ul>
+<li><strong>類別 <code>Class</code> (模具)</strong>：這是一張藍圖或模具，它定義了東西「應該長怎樣」，但它只是概念，不能直接拿來用。</li>
+<li><strong>物件 <code>Object</code> (實體)</strong>：透過藍圖實際打造出來的東西。</li>
+</ul>
+<blockquote>
+<p>💡 <strong>比喻：</strong> <code>Class</code> 是「汽車設計圖」，<code>Object</code> 是馬路上真正在跑的「Toyota」和「Honda」。</p>
+</blockquote>
+<hr />
+<h5 id="3-constructor-__init__">3. 核心二：什麼是建構子 (Constructor)？為什麼要有 <code>__init__</code>？</h5>
+<p>這是所有新手第一個面臨的大魔王！請把它想成是「出生證明與出廠設定」。</p>
+<p>當我們用模具把物件生出來的那一「瞬間」，電腦需要知道：這隻新怪物叫什麼名字？牠一出生有多少血量？
+在 Python 裡，負責處理「出生那一瞬間」的特殊機制，就叫做<strong>建構子 (Constructor)</strong>，寫法固定為 <code>__init__</code> (左右各兩條底線，是 initialization 初始化的縮寫)。</p>
+<h5 id="self">那個無所不在的 <code>self</code> 是什麼？</h5>
+<p><code>self</code> 的字面意思就是「我自己」。
+同一個模具會產出成千上萬個物件，當程式在執行時，它必須知道現在是在幫「哪一個」物件設定血量。<code>self</code> 就是用來指名道姓說：「把名字設定給<strong>現在正在出生的這個物件自己</strong>」。</p>
+<h5 id="_9">程式碼實戰：</h5>
+<p>讓我們直接看Code，請試著一行一行閱讀註解：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 建立一個叫做 Monster (怪物) 的模具</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Monster</span><span class="p">:</span>
+
+    <span class="c1"># 2. 建構子 (Constructor)：怪物出生的那一瞬間會自動執行這裡</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">given_name</span><span class="p">,</span> <span class="n">given_element</span><span class="p">):</span>
+        <span class="c1"># self.XXX 就是把資料綁定在「這隻怪物自己」身上</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">given_name</span>       <span class="c1"># 把傳進來的名字，綁定給自己</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="n">given_element</span> <span class="c1"># 把傳進來的屬性 (火、水等)，綁定給自己</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hp</span> <span class="o">=</span> <span class="mi">100</span>                <span class="c1"># 出廠預設值：每隻怪物剛出生都是 100 滴血</span>
+
+    <span class="c1"># 3. 方法 (Method)：這隻怪物可以做什麼動作 (動詞)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cry</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 使用自己的名字來打招呼</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;吼！我是 </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">，我是 </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="si">}</span><span class="s2"> 屬性的怪物！&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">take_damage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">damage</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hp</span> <span class="o">-</span> <span class="n">damage</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> 受到了 </span><span class="si">{</span><span class="n">damage</span><span class="si">}</span><span class="s2"> 點傷害，剩下 </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">hp</span><span class="si">}</span><span class="s2"> 滴血。&quot;</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h5 id="4">4. 核心三：開始量產！(使用模具)</h5>
+<p>模具寫好後，我們就可以在工廠裡製造怪物了。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 創造第一隻怪物 (這時會偷偷呼叫 __init__，把 &quot;小火龍&quot; 和 &quot;火&quot; 傳進去)</span>
+<span class="n">monster1</span> <span class="o">=</span> <span class="n">Monster</span><span class="p">(</span><span class="s2">&quot;小火龍&quot;</span><span class="p">,</span> <span class="s2">&quot;火&quot;</span><span class="p">)</span>
+
+<span class="c1"># 創造第二隻怪物</span>
+<span class="n">monster2</span> <span class="o">=</span> <span class="n">Monster</span><span class="p">(</span><span class="s2">&quot;傑尼龜&quot;</span><span class="p">,</span> <span class="s2">&quot;水&quot;</span><span class="p">)</span>
+
+<span class="c1"># 讓怪物做出動作 (呼叫方法)</span>
+<span class="n">monster1</span><span class="o">.</span><span class="n">cry</span><span class="p">()</span>
+<span class="c1"># 輸出: 吼！我是 小火龍，我是 火 屬性的怪物！</span>
+
+<span class="n">monster2</span><span class="o">.</span><span class="n">cry</span><span class="p">()</span>
+<span class="c1"># 輸出: 吼！我是 傑尼龜，我是 水 屬性的怪物！</span>
+
+<span class="c1"># 讓小火龍扣血</span>
+<span class="n">monster1</span><span class="o">.</span><span class="n">take_damage</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="c1"># 輸出: 小火龍 受到了 20 點傷害，剩下 80 滴血。</span>
+</code></pre></div>
+<blockquote>
+<p><strong>新手常見誤區釐清：</strong>
+你會發現，我們在呼叫 <code>monster1.cry()</code> 的時候，括號裡面是空的，<strong>不需要把 <code>self</code> 傳進去</strong>。因為 Python 非常聰明，當你寫 <code>monster1.cry()</code> 時，它會自動把 <code>monster1</code> 當作 <code>self</code> 偷偷塞進去執行！</p>
+</blockquote>
+<hr />
+<h5 id="5-inheritance">5. 繼承 (Inheritance)</h5>
+<p>當新手理解了「模具（Class）」的概念後，很快就會遇到一個問題：<strong>如果我想做一個「進階版」的模具，難道要把基礎模具的程式碼全部重抄一遍嗎？</strong> 這時就要用到「繼承」了！</p>
+<h5 id="_10">為什麼需要「繼承」？</h5>
+<p>工程師最大的美德就是「懶惰」—— 我們不喜歡寫重複的程式碼。</p>
+<p>想像一下，在我們的怪獸工廠裡，除了普通怪獸，我們現在要生產一隻「魔王 (Boss)」。
+魔王也是怪獸，所以牠也有名字、血量，也會受傷；但魔王有普通怪獸沒有的特權，例如牠有「護盾值」，還會放「大絕招」。</p>
+<p>與其從頭為魔王寫一個全新的模具，我們不如<strong>讓魔王「繼承」普通怪獸的所有設計，然後只加上牠專屬的特殊能力就好。</strong></p>
+<hr />
+<h5 id="6">6. 核心一：父類別 (爸爸) 與 子類別 (兒子)</h5>
+<ul>
+<li><strong>父類別 (Parent Class)</strong>：提供基礎設計的模具（例如：<code>Monster</code> 普通怪獸）。</li>
+<li><strong>子類別 (Child Class)</strong>：繼承了基礎設計，並加上自己新功能的進階模具（例如：<code>Boss</code> 魔王怪獸）。</li>
+</ul>
+<blockquote>
+<p>💡 <strong>語法秘訣：</strong> 在定義子類別時，只要在名字後面加上括號，把父類別寫進去 <code>class Boss(Monster):</code>，電腦就會知道：「喔！這個 Boss 是 Monster 的進階版！」</p>
+</blockquote>
+<hr />
+<h5 id="7-super">7. 核心二：那個神秘的 <code>super()</code> 是什麼？</h5>
+<p>在寫繼承時，新手常會遇到一個名叫 <code>super()</code> 的新朋友。
+<code>super()</code> 代表的就是「父類別 (老爸)」。</p>
+<p>當魔王出生（執行 <code>__init__</code>）的時候，我們不需要親自幫牠設定名字和基礎血量，我們可以直接大喊：<strong>「老爸！你當初怎麼幫普通怪物設定名字和血量的，幫我照做一次！」</strong> 這就是 <code>super().__init__(...)</code> 的功用。</p>
+<h5 id="_11">程式碼實戰：打造魔王專屬模具</h5>
+<p>請接著我們上一階段的 <code>Monster</code> 模具往下看：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 這是我們原本的「普通怪獸」模具 (父類別)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Monster</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">hp</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hp</span> <span class="o">=</span> <span class="n">hp</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">attack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> 發動了普通攻擊！&quot;</span><span class="p">)</span>
+
+<span class="c1"># ==========================================</span>
+
+<span class="c1"># 這是新的「魔王」模具 (子類別)，括號裡寫上 Monster 代表繼承</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Boss</span><span class="p">(</span><span class="n">Monster</span><span class="p">):</span>
+
+    <span class="c1"># 魔王出生的設定 (建構子)</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">hp</span><span class="p">,</span> <span class="n">shield</span><span class="p">):</span>
+        <span class="c1"># 1. 呼叫老爸 (super)，把名字 and 血量的設定交給老爸處理</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">hp</span><span class="p">)</span>
+
+        <span class="c1"># 2. 設定魔王自己專屬的新屬性：護盾值</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shield</span> <span class="o">=</span> <span class="n">shield</span>
+
+    <span class="c1"># 魔王專屬的新動作：大絕招！(普通怪獸不會這招)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ultimate_attack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ 警告！魔王 </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> 釋放了毀滅死光！&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 魔王專屬的扣血機制 (改寫覆蓋掉老爸原本的設定)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">take_damage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">damage</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shield</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shield</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shield</span> <span class="o">-</span> <span class="n">damage</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> 的護盾擋下了攻擊！剩下 </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">shield</span><span class="si">}</span><span class="s2"> 點護盾。&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hp</span> <span class="o">-</span> <span class="n">damage</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;護盾破裂！</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> 受到 </span><span class="si">{</span><span class="n">damage</span><span class="si">}</span><span class="s2"> 點傷害，剩下 </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">hp</span><span class="si">}</span><span class="s2"> 滴血。&quot;</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h5 id="8">8. 核心三：測試繼承的威力</h5>
+<p>我們來測試看看，子類別是不是真的繼承了父類別的能力，又擁有了自己的新招式：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 創造一隻普通怪獸</span>
+<span class="n">slime</span> <span class="o">=</span> <span class="n">Monster</span><span class="p">(</span><span class="s2">&quot;史萊姆&quot;</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">slime</span><span class="o">.</span><span class="n">attack</span><span class="p">()</span> 
+<span class="c1"># 輸出: 史萊姆 發動了普通攻擊！</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---&quot;</span><span class="p">)</span>
+
+<span class="c1"># 創造一隻魔王 (名字, 血量, 護盾值)</span>
+<span class="n">dragon</span> <span class="o">=</span> <span class="n">Boss</span><span class="p">(</span><span class="s2">&quot;黑龍王&quot;</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># 1. 魔王可以直接使用老爸的「普通攻擊」方法！(這就是繼承的好處，不用重寫)</span>
+<span class="n">dragon</span><span class="o">.</span><span class="n">attack</span><span class="p">()</span>
+<span class="c1"># 輸出: 黑龍王 發動了普通攻擊！</span>
+
+<span class="c1"># 2. 魔王可以使用自己專屬的「大絕招」</span>
+<span class="n">dragon</span><span class="o">.</span><span class="n">ultimate_attack</span><span class="p">()</span>
+<span class="c1"># 輸出: ⚠️ 警告！魔王 黑龍王 釋放了毀滅死光！</span>
+
+<span class="c1"># 3. 測試魔王專屬的護盾扣血機制</span>
+<span class="n">dragon</span><span class="o">.</span><span class="n">take_damage</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="c1"># 輸出: 黑龍王 的護盾擋下了攻擊！剩下 70 點護盾。</span>
+</code></pre></div>
+<p>到這裡，這位新手已經掌握了 Python 語法基礎，以及 OOP 最核心的「類別、物件、建構子、繼承」四大觀念了！</p>
+<hr />
+<h3 id="docker">二、 Docker 基礎與沙盒隔離</h3>
+<ul>
+<li><strong>為什麼 AUV 需要 Docker？</strong></li>
+<li>AUV 依賴的軟體庫極其複雜（如 ROS 2、OpenCV、NVIDIA CUDA、各式特規感測器驅動）。</li>
+<li>透過 Docker，我們能將所有依賴與執行環境打包進 <strong>Image (映像檔)</strong>，並在任意電腦（不論是開發主機還是 AUV 實機）上開啟 <strong>Container (容器)</strong> 運行，徹底解決「環境不一致」的問題。</li>
+<li><strong>核心術語</strong>：</li>
+<li><strong>Image (映像檔)</strong>：唯讀的範本，包含運行程式所需的所有檔案與設定。</li>
+<li><strong>Container (容器)</strong>：映像檔的運行實例，是一個相互隔離、可讀寫的安全沙盒。</li>
+<li><strong>Dockerfile</strong>：描述如何自動建立 Image 的文字配方表。</li>
+<li><strong>Volume (資料卷映射)</strong>：將本機的資料夾掛載到容器內部，方便直接修改代碼而不需重新打包。</li>
+</ul>
+<h4 id="docker_1">🐳 Docker 核心指令防呆對照表</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">指令</th>
+<th style="text-align: left;">功能描述</th>
+<th style="text-align: left;">常用範例</th>
+<th style="text-align: left;">💡 實用提示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>docker build</code></strong></td>
+<td style="text-align: left;">將 Dockerfile 打包成 Image</td>
+<td style="text-align: left;"><code>docker build -t auv-app:v1.0 .</code></td>
+<td style="text-align: left;"><code>-t</code> 用於指定名稱與版本標籤（tag），結尾的 <code>.</code> 代表以當前目錄為上下文環境。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>docker run</code></strong></td>
+<td style="text-align: left;">建立並啟動一個 Container</td>
+<td style="text-align: left;"><code>docker run -it --rm auv-app:v1.0</code></td>
+<td style="text-align: left;"><code>-it</code> 啟用互動式終端機，<code>--rm</code> 在容器退出後自動刪除容器以釋放硬碟空間。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>docker ps</code></strong></td>
+<td style="text-align: left;">列出當前<strong>正在運行</strong>的容器</td>
+<td style="text-align: left;"><code>docker ps -a</code></td>
+<td style="text-align: left;">加上 <code>-a</code> 可以列出包含已停止的所有歷史容器。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>docker images</code></strong></td>
+<td style="text-align: left;">列出本地所有的 Image</td>
+<td style="text-align: left;"><code>docker images</code></td>
+<td style="text-align: left;">可以看到映像檔名稱、Tag、ID 與佔用空間大小。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>docker rm [ID/Name]</code></strong></td>
+<td style="text-align: left;">刪除已停止的容器</td>
+<td style="text-align: left;"><code>docker rm my-container</code></td>
+<td style="text-align: left;">必須先停止運行的容器才能進行刪除。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>docker rmi [ID]</code></strong></td>
+<td style="text-align: left;">刪除映像檔</td>
+<td style="text-align: left;"><code>docker rmi auv-app:v1.0</code></td>
+<td style="text-align: left;">如果該 Image 有對應的容器存在（不論是否運行），須先刪除容器才能刪除 Image。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_12">🛠️ 實作小專案：【水下推進器推力計算機（容器版）】</h2>
+<p>編寫一個 Python 程式，模擬計算 AUV 推進器的 PWM 輸出值，並將其打包在 Docker 容器內運行。</p>
+<h3 id="python_1">步驟一：撰寫 Python 程式碼</h3>
+<p>建立一個 <code>thruster_calc.py</code> 檔案：
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ThrusterCalculator</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">efficiency</span><span class="o">=</span><span class="mf">0.85</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">efficiency</span> <span class="o">=</span> <span class="n">efficiency</span>
+        <span class="c1"># 假設 PWM 基準為 1500us (停止)，前進上限為 1900us，後退下限為 1100us</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">NEUTRAL_PWM</span> <span class="o">=</span> <span class="mi">1500</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">target_speed</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        簡易推力模擬公式：依據水深與目標速度計算推進器 PWM 訊號</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 隨深度增加，阻力變大，需要更多補償</span>
+        <span class="n">depth_drag_compensation</span> <span class="o">=</span> <span class="n">depth</span> <span class="o">*</span> <span class="mf">1.5</span>
+
+        <span class="c1"># 推力與速度成正比</span>
+        <span class="n">raw_force</span> <span class="o">=</span> <span class="p">(</span><span class="n">target_speed</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="n">depth_drag_compensation</span>
+        <span class="n">pwm_offset</span> <span class="o">=</span> <span class="n">raw_force</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">efficiency</span>
+
+        <span class="n">target_pwm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">NEUTRAL_PWM</span> <span class="o">+</span> <span class="n">pwm_offset</span>
+        <span class="c1"># 限制 PWM 的物理安全區間</span>
+        <span class="n">target_pwm</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1100</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">1900</span><span class="p">,</span> <span class="n">target_pwm</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">target_pwm</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- AUV 推進器推力計算系統 ---&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">depth</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;請輸入當前水深 (meters): &quot;</span><span class="p">))</span>
+        <span class="n">speed</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;請輸入目標前進速度 (m/s): &quot;</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;錯誤：請輸入有效的數字！&quot;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">calc</span> <span class="o">=</span> <span class="n">ThrusterCalculator</span><span class="p">()</span>
+    <span class="n">pwm</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">calculate_pwm</span><span class="p">(</span><span class="n">depth</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;=&gt; 輸出至推進器的模擬 PWM 訊號值為: </span><span class="si">{</span><span class="n">pwm</span><span class="si">}</span><span class="s2"> us&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<hr />
+<h3 id="dockerfile">步驟二：撰寫 Dockerfile</h3>
+<p>在與 <code>thruster_calc.py</code> 同一目錄下建立一個名為 <code>Dockerfile</code> 的檔案（注意：<strong>無副檔名</strong>）：
+<div class="highlight"><pre><span></span><code><span class="c"># 1. 使用輕量級的 Python 官方映像檔作為基礎環境</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim</span>
+
+<span class="c"># 2. 設定容器內的工作目錄為 /app (後續指令都會在此執行)</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+
+<span class="c"># 3. 將本機目前的原始碼複製到容器的 /app 目錄中</span>
+<span class="k">COPY</span><span class="w"> </span>thruster_calc.py<span class="w"> </span>.
+
+<span class="c"># 4. 設定容器啟動時的預設命令</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;thruster_calc.py&quot;</span><span class="p">]</span>
+</code></pre></div></p>
+<h4 id="dockerfile_1">📝 Dockerfile 語法詳細拆解</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">指令</th>
+<th style="text-align: left;">作用說明</th>
+<th style="text-align: left;">💡 防呆小提示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>FROM</code></strong></td>
+<td style="text-align: left;">載入基礎環境映像檔</td>
+<td style="text-align: left;">AUV 開發中多採用官方輕量版（如 <code>-slim</code>、<code>-alpine</code>）或 ROS 官方映像檔，可大幅減少打包後體積。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>WORKDIR</code></strong></td>
+<td style="text-align: left;">設定容器內部的預設目錄</td>
+<td style="text-align: left;">相當於 Linux 的 <code>cd</code> 指令，後續的 <code>COPY</code>、<code>CMD</code> 都會在該目錄下進行。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>COPY</code></strong></td>
+<td style="text-align: left;">複製檔案至容器內</td>
+<td style="text-align: left;">格式為 <code>COPY &lt;本地來源路徑&gt; &lt;容器目的路徑&gt;</code>。推薦使用相對路徑。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>CMD</code></strong></td>
+<td style="text-align: left;">容器啟動時執行的命令</td>
+<td style="text-align: left;">格式通常為 JSON 陣列，例如 <code>["python", "script.py"]</code>。一個 Dockerfile 中只有最後一條 <code>CMD</code> 會生效。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="docker_2">步驟三：打包與運行 Docker 映像檔</h3>
+<p>開啟終端機，執行以下指令：</p>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># 1. 打包 Docker Image (注意後面的句點 &quot;.&quot; 不能漏掉，代表當前目錄)</span>
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>auv-thruster-calc:v1.0<span class="w"> </span>.
+
+<span class="c1"># 2. 啟動並運行 Container (加上 -it 才能進行互動式輸入，--rm 則是在結束時自動刪除容器)</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>auv-thruster-calc:v1.0
+</code></pre></div>
+成功執行後，您會看到程式要求您輸入水深與速度，並給出計算結果。這代表您的 Python 程式已經在與外面系統完全隔離的「沙盒」中成功運作了！</p>
+<hr />
+<h3 id="volume-hot-reload">⚡ 進階技巧：使用 Volume 實現即時開發 (Hot-reload)</h3>
+<p>在實務開發 AUV 程式時，如果每次修改了代碼（例如調整 <code>thruster_calc.py</code> 的計算公式），都需要重新執行 <code>docker build</code> 打包映像檔，那開發效率會非常低下。</p>
+<p>這時，我們可以使用 <strong>Volume（資料卷映射）</strong> 功能，將本機的資料夾直接掛載到容器中。這樣一來，我們在編輯器中修改代碼並儲存，容器內部的代碼也會隨之即時更新，省去重複 build 的時間！</p>
+<p>請確保終端機路徑在專案目錄下，並執行以下命令：</p>
+<p><strong>Windows (PowerShell) 系統：</strong>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">run</span> <span class="n">-it</span> <span class="p">-</span><span class="n">-rm</span> <span class="n">-v</span> <span class="p">${</span><span class="n">PWD</span><span class="p">}:/</span><span class="n">app</span> <span class="n">auv-thruster-calc</span><span class="p">:</span><span class="n">v1</span><span class="p">.</span><span class="n">0</span>
+</code></pre></div></p>
+<p><strong>Linux / macOS 系統：</strong>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/app<span class="w"> </span>auv-thruster-calc:v1.0
+</code></pre></div></p>
+<blockquote>
+<p><strong>🔍 指令解析：</strong>
+* <code>-v ${PWD}:/app</code>：代表將本機的當前路徑映射到容器內的 <code>/app</code> 目錄。
+* 現在，您可以嘗試在編輯器中修改本機 <code>thruster_calc.py</code> 的文字輸出（例如將 <code>--- AUV 推進器推力計算系統 ---</code> 改成別的字眼）並存檔，接著再次直接運行上面的指令，您會發現容器輸出的文字已經同步改變，完全不需要重新打包！這就是 Volume 映射的強大之處。</p>
+</blockquote>
+<hr />
+<h3 id="auv-docker">⚡ AUV 實戰必學：Docker 進階執行參數</h3>
+<p>在開發真實的 AUV 系統時，容器不僅僅是隔離的沙盒，還必須與外部的實體硬體、GPU 加速卡以及主機網路通訊。以下是三個機器人與 AUV 開發中極為關鍵的進階 Docker 執行參數：</p>
+<h4 id="1-device">1. 實體硬體裝置掛載 (<code>--device</code>)</h4>
+<p>Docker 的沙盒機制預設會將硬體完全隔離。但 AUV 內部的微控制器（例如控制推進器的 Arduino、回傳姿態的 IMU 感測器）通常是透過 USB 或序列埠與主機連接的。我們必須顯式地為容器「開門」。</p>
+<ul>
+<li><strong>核心概念</strong>：使用 <code>--device</code> 參數，將主機端的硬體路徑映射到容器內。</li>
+<li><strong>實戰指令</strong>：
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--device<span class="w"> </span>/dev/ttyUSB0<span class="w"> </span>auv-thruster-calc:v1.0
+</code></pre></div></li>
+<li><strong>應用場景</strong>：讓容器內的程式碼能夠順利透過 <code>/dev/ttyUSB0</code> 發送 PWM 訊號給推進器驅動板，或讀取感測器資料。</li>
+</ul>
+<h4 id="2-gpu-gpus-all">2. GPU 運算資源穿透 (<code>--gpus all</code>)</h4>
+<p>水下影像辨識、物件追蹤（例如執行 SAM 3 等深度學習模型）或使用 NVIDIA Isaac ROS 框架時，極度依賴 GPU 加速。預設的容器是抓不到顯示卡的。</p>
+<ul>
+<li><strong>核心概念</strong>：在主機安裝好 NVIDIA Container Toolkit 後，透過 <code>--gpus all</code> 指令將主機的 GPU 運算能力「穿透」進容器。</li>
+<li><strong>實戰指令</strong>：
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>auv-vision-app:v1.0
+</code></pre></div></li>
+<li><strong>應用場景</strong>：讓配備硬體加速卡（例如筆電上的 RTX 4050）的設備，能夠在容器內部滿血運行 CUDA 程式，大幅提升幀率（FPS）並降低延遲。</li>
+</ul>
+<h4 id="3-network-host">3. 網路模式配置 (<code>--network host</code>)</h4>
+<p>機器人系統通常採用分散式架構（如 ROS 2）。Docker 預設的 <code>bridge</code> 網路會給予容器獨立的虛擬 IP，這會導致 ROS 2 節點之間（透過 DDS 協定）互相找不到對方，發生通訊中斷。</p>
+<ul>
+<li><strong>核心概念</strong>：將容器的網路模式設定為 <code>host</code>，讓容器直接與主機共用同一個網路介面，解除沙盒的網路隔離。</li>
+<li><strong>實戰指令</strong>：
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>auv-ros-node:v1.0
+</code></pre></div></li>
+<li><strong>應用場景</strong>：確保不同容器內的 ROS 2 節點，或是容器與主機本機端的節點，能夠無縫訂閱與發布（Publish/Subscribe）Topic 資料。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

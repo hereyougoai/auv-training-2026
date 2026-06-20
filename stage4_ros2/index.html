@@ -1,0 +1,1586 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../stage3_sandbox/">
+      
+      
+        <link rel="next" href="../stage5_vision/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>階段四：ROS 2 - AUV 培訓手冊 (2026)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ros-2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AUV 培訓手冊 (2026)" class="md-header__button md-logo" aria-label="AUV 培訓手冊 (2026)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AUV 培訓手冊 (2026)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              階段四：ROS 2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage1_env/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段一：環境建置
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage2_collab/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段二：Linux & Git
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage3_sandbox/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段三：Python & Docker
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段四：ROS 2
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage5_vision/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段五：視覺辨識
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage6_integration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段六：整合專案
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AUV 培訓手冊 (2026)" class="md-nav__button md-logo" aria-label="AUV 培訓手冊 (2026)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AUV 培訓手冊 (2026)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage1_env/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段一：環境建置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage2_collab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段二：Linux & Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage3_sandbox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段三：Python & Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段四：ROS 2
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段四：ROS 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ros-2-publisher-subscriber-topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ROS 2 核心通訊概念圖 (Publisher / Subscriber / Topic)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 核心學習內容
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📖 核心學習內容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ros-2-workspace-colcon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ROS 2 Workspace 與 Colcon 編譯系統
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. ROS 2 Workspace 與 Colcon 編譯系統">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建立工作空間的標準步驟：
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-package-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Package (套件) 與 Node (節點)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Package (套件) 與 Node (節點)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#packagenode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心觀念：Package、Node 與通訊架構的關係
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rclpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔌 什麼是 rclpy？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建立套件的標準步驟：
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Topic (主題) 通訊機制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Topic (主題) 通訊機制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#publisher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📢 Publisher (發布者) 的極簡語法結構：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscriber" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        👂 Subscriber (訂閱者) 的極簡語法結構：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mainrclpyspin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ 新手必問：為什麼在類別外要寫 main()？rclpy.spin() 又是做什麼的？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 終極多容器部署：Docker Compose
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 終極多容器部署：Docker Compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-docker-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Compose 與 docker run 的防呆對照表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Compose 核心起手式指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        實作小專案：【深度監控警報系統】
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="實作小專案：【深度監控警報系統】">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-a-sensor-mock-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟一：撰寫 Node A (Sensor Mock - 發布者)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node-b-safety-monitor-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟二：撰寫 Node B (Safety Monitor - 訂閱者)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟三：撰寫專案的 Dockerfile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟四：撰寫 docker-compose.yml 啟動檔
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟五：一鍵啟動與驗證
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage5_vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段五：視覺辨識
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage6_integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段六：整合專案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ros-2-publisher-subscriber-topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ROS 2 核心通訊概念圖 (Publisher / Subscriber / Topic)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 核心學習內容
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📖 核心學習內容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ros-2-workspace-colcon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ROS 2 Workspace 與 Colcon 編譯系統
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. ROS 2 Workspace 與 Colcon 編譯系統">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建立工作空間的標準步驟：
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-package-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Package (套件) 與 Node (節點)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Package (套件) 與 Node (節點)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#packagenode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心觀念：Package、Node 與通訊架構的關係
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rclpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔌 什麼是 rclpy？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建立套件的標準步驟：
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Topic (主題) 通訊機制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Topic (主題) 通訊機制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#publisher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📢 Publisher (發布者) 的極簡語法結構：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscriber" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        👂 Subscriber (訂閱者) 的極簡語法結構：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mainrclpyspin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ 新手必問：為什麼在類別外要寫 main()？rclpy.spin() 又是做什麼的？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 終極多容器部署：Docker Compose
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 終極多容器部署：Docker Compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-docker-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Compose 與 docker run 的防呆對照表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Compose 核心起手式指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        實作小專案：【深度監控警報系統】
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="實作小專案：【深度監控警報系統】">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-a-sensor-mock-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟一：撰寫 Node A (Sensor Mock - 發布者)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node-b-safety-monitor-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟二：撰寫 Node B (Safety Monitor - 訂閱者)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟三：撰寫專案的 Dockerfile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟四：撰寫 docker-compose.yml 啟動檔
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟五：一鍵啟動與驗證
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ros-2">階段四：ROS 2 架構與通訊</h1>
+<p>這是 AUV 開發的核心。Ubuntu 24.04 原生對應的是 <strong>ROS 2 Jazzy Jalisco</strong>。學員將在此階段學會如何建立載具的「神經系統」，讓不同的感測器（如 IMU、深度計）與大腦（決策節點）進行資料交換。</p>
+<hr />
+<h3 id="ros-2-publisher-subscriber-topic">ROS 2 核心通訊概念圖 (Publisher / Subscriber / Topic)</h3>
+<p>在進入代碼編寫前，請先理解 ROS 2 最基礎的「發布/訂閱」通訊邏輯。這就像是收音機廣播電台與聽眾的關係：</p>
+<pre class="mermaid"><code>graph LR
+    subgraph ROS2_Network [ROS 2 通訊網路]
+        A["📢 發布者節點 (Publisher Node)&lt;br&gt;例如：深度計模擬程式&lt;br&gt;(負責往主題發送數據)"] -- "發布 (Publish)&lt;br&gt;數據訊息" --&gt; B("💬 主題 (Topic)&lt;br&gt;例如：/auv/depth&lt;br&gt;(資料傳輸的管道)")
+        B -- "訂閱 (Subscribe)&lt;br&gt;接收數據" --&gt; C["👂 訂閱者節點 (Subscriber Node)&lt;br&gt;例如：安全監控器程式&lt;br&gt;(監聽管道並處理數據)"]
+    end
+    style A fill:#4CAF50,stroke:#388E3C,color:#fff
+    style B fill:#2196F3,stroke:#1976D2,color:#fff
+    style C fill:#FF9800,stroke:#F57C00,color:#fff</code></pre>
+<ul>
+<li><strong>Topic (主題)</strong>：是資料傳輸的虛擬管道。發布者與訂閱者只要「頻道（Topic 名稱）」對齊，就能順利收發資料，彼此不需要知道對方的存在。</li>
+</ul>
+<hr />
+<h2 id="_1">📖 核心學習內容</h2>
+<h3 id="1-ros-2-workspace-colcon">1. ROS 2 Workspace 與 Colcon 編譯系統</h3>
+<ul>
+<li><strong>Workspace (工作空間)</strong>：這是開發 ROS 2 專案的根目錄。我們所有的套件原始碼都必須放在名為 <code>src</code> 的子資料夾中。</li>
+<li><strong>Colcon</strong>：是 ROS 2 的專用編譯工具，它會掃描 <code>src</code> 目錄下的所有套件並自動進行編譯。</li>
+</ul>
+<h4 id="_2">建立工作空間的標準步驟：</h4>
+<p>打開終端機，依序輸入以下指令：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 建立工作空間目錄，並建立存放原始碼的 src 資料夾</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>~/auv_ws/src
+<span class="nb">cd</span><span class="w"> </span>~/auv_ws
+
+<span class="c1"># 2. 進行第一次編譯（此時 src 內還沒有程式碼，會自動生成 build, install, log 資料夾）</span>
+colcon<span class="w"> </span>build
+
+<span class="c1"># 3. 載入環境變數（這是最重要的一步！每次編譯完套件、或開啟新的終端機視窗，都必須執行此行，否則系統會找不到您的套件）</span>
+<span class="nb">source</span><span class="w"> </span>install/setup.bash
+</code></pre></div>
+<hr />
+<h3 id="2-package-node">2. Package (套件) 與 Node (節點)</h3>
+<ul>
+<li><strong>Package (套件)</strong>：是 ROS 2 程式碼的基本組織單位。您可以把套件想像成一個「功能抽屜」或「專案資料夾」，裡面包含設定檔（如 <code>package.xml</code>、<code>setup.py</code>）與多個執行檔。</li>
+<li><strong>Node (節點)</strong>：是真正運行的程式實體（進程）。一個節點就像是一個「負責特定工作的工人的程式」。例如：一個節點專門讀取 IMU 姿態，另一個節點專門輸出推進器 PWM 訊號。</li>
+</ul>
+<h4 id="packagenode">核心觀念：Package、Node 與通訊架構的關係</h4>
+<p>很多新手會混淆這些名詞。請記住這個關係鏈：</p>
+<ol>
+<li><strong>工作空間 (Workspace)</strong> 包含了多個 <strong>套件 (Package)</strong>。</li>
+<li>每個 <strong>套件 (Package)</strong> 底下，可以寫多個 Python 檔案，這些檔案被編譯執行後就是 <strong>節點 (Node)</strong>。</li>
+<li>這些 <strong>節點 (Node)</strong> 內部的程式碼，會宣告自己是 <strong>發布者 (Publisher)</strong> 還是 <strong>訂閱者 (Subscriber)</strong>。</li>
+<li>這些節點再透過 <strong>主題 (Topic)</strong> 這個資料管道進行資料收發。</li>
+</ol>
+<blockquote>
+<p>簡單來說：<strong>Package（程式工具箱 / 專案資料夾）</strong> 裝著 <strong>Nodes（節點程式）</strong>，而 <strong>Nodes（節點程式）</strong> 藉由宣告為 <strong>Publisher/Subscriber（通訊角色）</strong> 在 <strong>Topic（頻道）</strong> 上進行溝通！</p>
+</blockquote>
+<h4 id="rclpy">🔌 什麼是 <code>rclpy</code>？</h4>
+<p>在建立套件時，我們會宣告依賴 <code>rclpy</code>。
+<code>rclpy</code> 是 <strong>ROS 2 Client Library for Python</strong> 的縮寫。它是 ROS 2 官方為 Python 語言開發的 API 函式庫。所有我們在 Python 中呼叫的 ROS 2 功能（例如：建立節點、發布主題、計時器、日誌輸出等），都是透過 <code>import rclpy</code> 來調用的。</p>
+<h4 id="_3">建立套件的標準步驟：</h4>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># 1. 必須進入工作空間的 src 目錄下才能建立套件</span>
+<span class="nb">cd</span><span class="w"> </span>~/auv_ws/src
+
+<span class="c1"># 2. 建立一個 Python 類型的 ROS 2 套件，名為 auv_monitor，並宣告依賴 rclpy（Python API 庫）與 std_msgs（標準訊息格式）</span>
+ros2<span class="w"> </span>pkg<span class="w"> </span>create<span class="w"> </span>--build-type<span class="w"> </span>ament_python<span class="w"> </span>auv_monitor<span class="w"> </span>--dependencies<span class="w"> </span>rclpy<span class="w"> </span>std_msgs
+</code></pre></div>
+<em>(執行後，系統會自動在 <code>src</code> 底下生成一個 <code>auv_monitor</code> 資料夾，裡面有寫程式碼的目錄，以及告訴編譯器如何打包的 <code>setup.py</code> 與 <code>package.xml</code>)</em></p>
+<hr />
+<h3 id="3-topic">3. Topic (主題) 通訊機制</h3>
+<p>在 Python 中寫一個 ROS 2 節點時，我們通常會採用<strong>物件導向 (OOP)</strong> 的寫法，讓我們的節點類別繼承自 <code>rclpy.node.Node</code>。</p>
+<p>以下是新手必須掌握的 Publisher 與 Subscriber 最基本的程式碼結構範本：</p>
+<h4 id="publisher">📢 Publisher (發布者) 的極簡語法結構：</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">rclpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">String</span> <span class="c1"># 載入字串訊息格式</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SimplePublisher</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 初始化節點名稱為 &#39;simple_publisher&#39;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;simple_publisher&#39;</span><span class="p">)</span>
+
+        <span class="c1"># 1. 建立發布者物件 (訊息類型, 主題名稱, 佇列緩衝大小)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="s1">&#39;my_topic&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># 2. 設定一個定時器，每 1.0 秒自動執行一次 timer_callback 函式</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">timer_callback</span><span class="p">)</span>
+
+    <span class="c1"># 3. 定時器回呼函式 (Timer Callback)</span>
+    <span class="c1"># 這是一個「事件驅動」的方法。每當定時器設定的時間到 (此處為 1.0 秒)，</span>
+    <span class="c1"># ROS 2 系統就會在背景自動呼叫這個函式，執行我們想要定時做的事情（例如：發布感測器讀數）。</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">timer_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;Hello AUV!&quot;</span> <span class="c1"># 設定訊息內容</span>
+
+        <span class="c1"># 4. 發布訊息</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;發布訊息: &quot;</span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
+
+<span class="c1"># 💡 真正啟動並執行這個類別的進入點</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>            <span class="c1"># A. 初始化 ROS 2 的通訊系統</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">SimplePublisher</span><span class="p">()</span>         <span class="c1"># B. 宣告與實例化節點物件 (從設計圖模具生出實體)</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>                 <span class="c1"># C. 卡住程式進行無限事件監聽循環 (執行 timer_callback)</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>              <span class="c1"># D. 按下 Ctrl+C 結束時清理資源</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>                 <span class="c1"># E. 關閉 ROS 2 通訊</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<h4 id="subscriber">👂 Subscriber (訂閱者) 的極簡語法結構：</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">rclpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">String</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SimpleSubscriber</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 初始化節點名稱為 &#39;simple_subscriber&#39;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;simple_subscriber&#39;</span><span class="p">)</span>
+
+        <span class="c1"># 1. 建立訂閱者物件 (訊息類型, 主題名稱, 收到訊息時觸發的 Callback 函式, 佇列緩衝大小)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span>
+            <span class="n">String</span><span class="p">,</span> 
+            <span class="s1">&#39;my_topic&#39;</span><span class="p">,</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">listener_callback</span><span class="p">,</span> 
+            <span class="mi">10</span>
+        <span class="p">)</span>
+
+    <span class="c1"># 2. 訂閱者回呼函式 (Listener Callback)</span>
+    <span class="c1"># 這也是一個「事件驅動」的方法。我們不需要用 while 迴圈去持續監聽管道。</span>
+    <span class="c1"># 每當 &#39;my_topic&#39; 管道有新資料傳入時，ROS 2 系統就會自動捕獲該訊息，並將訊息傳入並執行此函式。</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">listener_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;成功接收到訊息: &quot;</span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
+
+<span class="c1"># 💡 真正啟動並執行這個類別的進入點</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>            <span class="c1"># A. 初始化 ROS 2 的通訊系統</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">SimpleSubscriber</span><span class="p">()</span>        <span class="c1"># B. 宣告與實例化節點物件</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>                 <span class="c1"># C. 卡住程式進行無限事件監聽循環 (監聽並執行 listener_callback)</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>              <span class="c1"># D. 按下 Ctrl+C 結束時清理資源</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>                 <span class="c1"># E. 關閉 ROS 2 通訊</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<hr />
+<h4 id="mainrclpyspin">❓ 新手必問：為什麼在類別外要寫 <code>main()</code>？<code>rclpy.spin()</code> 又是做什麼的？</h4>
+<p>您會發現上面的範例程式碼除了 Class（類別設計圖）之外，最下方都包含了 <code>main()</code> 進入點。這是因為 <strong>Class 只是設計藍圖</strong>，必須在外部透過程式指令來驅動它：</p>
+<ol>
+<li><strong>宣告與實例化物件</strong>：<code>node = SimplePublisher()</code> 這行程式碼正是用來<strong>宣告與建立節點實體</strong>的關鍵。沒有這一行，我們的設計圖就只是一行行靜態文字，不會真正被電腦分配記憶體並執行。</li>
+<li><strong><code>rclpy.spin(node)</code> 的作用</strong>：在一般 Python 程式中，如果我們想持續執行，可能需要自己寫 <code>while True:</code> 迴圈。但在 ROS 2 中，我們絕對不能自己寫死迴圈（那會卡死 CPU 且無法接收其他事件）！</li>
+<li><code>spin(node)</code> 會接管整個程式的控制權，進入一個<strong>高效的事件監聽與排程循環</strong>。</li>
+<li>它會在背景自動檢查：定時器時間到了嗎？有的話就去執行 <code>timer_callback</code>；訂閱的主題收到新資料了嗎？有的話就去執行 <code>listener_callback</code>。</li>
+<li>這就是為什麼我們的節點程式完全不需要自己寫 <code>while</code> 迴圈，也能不間斷、高效率地收發訊息的背後祕密。</li>
+<li><strong><code>if __name__ == '__main__':</code> 的含意</strong>：這是 Python 的標準啟動防護罩。</li>
+<li>當我們<strong>直接在終端機執行</strong>這個檔案時（例如執行 <code>python3 my_node.py</code>），Python 會自動把該檔案的內建隱藏變數 <code>__name__</code> 設定為 <code>'__main__'</code>，進而觸發執行下方的 <code>main()</code> 進入點。</li>
+<li>相反地，如果這個檔案是被其他程式用 <code>import</code> 載入作為模組引用時，它的 <code>__name__</code> 就會是它的檔案名稱（如 <code>simple_publisher</code>）而不會等於 <code>'__main__'</code>。此時，下方的 <code>main()</code> 就不會自動被執行，這能有效防止節點在被載入時誤啟動。</li>
+</ol>
+<p>這就是為什麼在後面實作小專案的 Python 檔案中，最下面都有 <code>def main():</code> 的原因。當我們執行該節點時，系統會先呼叫 <code>main()</code> 宣告出物件，再用 <code>spin()</code> 開始監聽。</p>
+<hr />
+<h3 id="4-docker-compose">4. 終極多容器部署：Docker Compose</h3>
+<p>在 AUV 的真實開發中，我們可能需要同時啟動許多個服務，例如「推進控制節點」、「相機影像辨識節點」與「任務決策節點」。如果每次啟動都得手動開啟多個終端機、輸入長長的 <code>docker run</code> 指令，不僅容易打錯，也極難維護。</p>
+<p>Docker Compose 就是為了解決這個問題而誕生的工具。它允許我們使用一份 <code>docker-compose.yml</code>（YAML 格式的純文字檔）來定義整個 AUV 系統的所有服務，然後<strong>一鍵啟動</strong>所有容器。</p>
+<h4 id="docker-compose-docker-run">Docker Compose 與 docker run 的防呆對照表</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">需求情境</th>
+<th style="text-align: left;">docker run (手動終端機指令)</th>
+<th style="text-align: left;">docker-compose.yml (自動化設定)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>映像檔</strong></td>
+<td style="text-align: left;"><code>auv-thruster-calc:v1.0</code></td>
+<td style="text-align: left;"><code>image: auv-thruster-calc:v1.0</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>網路設定</strong></td>
+<td style="text-align: left;"><code>--network host</code></td>
+<td style="text-align: left;"><code>network_mode: "host"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>硬體掛載</strong></td>
+<td style="text-align: left;"><code>--device /dev/ttyUSB0</code></td>
+<td style="text-align: left;"><code>devices:</code><br>&nbsp;&nbsp;<code>- "/dev/ttyUSB0:/dev/ttyUSB0"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>目錄掛載</strong></td>
+<td style="text-align: left;"><code>-v $(pwd):/app</code></td>
+<td style="text-align: left;"><code>volumes:</code><br>&nbsp;&nbsp;<code>- ./:/app</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="docker-compose">Docker Compose 核心起手式指令</h4>
+<p>寫好設定檔後，所有的繁瑣啟動指令都化繁為簡：
+* <strong>一鍵背景啟動所有服務</strong>：
+  <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div></p>
+<blockquote>
+<p>💡 <strong>提示</strong>：<code>-d</code> 代表在背景執行（Detached mode），您的終端機不會被卡住，可以繼續輸入其他指令。
+* <strong>查看所有服務的運行狀態</strong>：
+  <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>ps
+</code></pre></div>
+* <strong>即時查看特定服務的輸出日誌 (Log)</strong>：
+  <div class="highlight"><pre><span></span><code><span class="c1"># 即時查看影像辨識節點的輸出情況</span>
+docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>vision_node
+</code></pre></div>
+* <strong>一鍵停止並刪除所有服務</strong>：
+  <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+</code></pre></div></p>
+</blockquote>
+<hr />
+<h2 id="_4">實作小專案：【深度監控警報系統】</h2>
+<p>編寫兩個 ROS 2 節點：<strong>Node A</strong> 負責模擬深度計發送數據，<strong>Node B</strong> 負責接收數據並在水深過深時發出警告。</p>
+<h3 id="node-a-sensor-mock-">步驟一：撰寫 Node A (Sensor Mock - 發布者)</h3>
+<p>在 <code>auv_monitor/auv_monitor/sensor_mock.py</code> 寫入：
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">rclpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Float32</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SensorMockNode</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;sensor_mock&#39;</span><span class="p">)</span>
+        <span class="c1"># 建立一個發布者，發布至 /auv/depth 主題，訊息類型為 Float32，佇列大小為 10</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">publisher_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span><span class="n">Float32</span><span class="p">,</span> <span class="s1">&#39;/auv/depth&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># 每秒觸發一次定時器發布數據</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_timer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">publish_depth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_depth</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">publish_depth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">Float32</span><span class="p">()</span>
+        <span class="c1"># 模擬深度在 0.5 ~ 4.0 米之間隨機波動與遞增</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_depth</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_depth</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">publisher_</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;發布當前深度數據: </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">data</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> m&#39;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">SensorMockNode</span><span class="p">()</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</code></pre></div></p>
+<hr />
+<h3 id="node-b-safety-monitor-">步驟二：撰寫 Node B (Safety Monitor - 訂閱者)</h3>
+<p>在 <code>auv_monitor/auv_monitor/safety_monitor.py</code> 寫入：
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">rclpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Float32</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SafetyMonitorNode</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;safety_monitor&#39;</span><span class="p">)</span>
+        <span class="c1"># 建立訂閱者，監聽 /auv/depth 主題</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subscription</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span>
+            <span class="n">Float32</span><span class="p">,</span>
+            <span class="s1">&#39;/auv/depth&#39;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">depth_callback</span><span class="p">,</span>
+            <span class="mi">10</span>
+        <span class="p">)</span>
+        <span class="c1"># 設定安全警戒深度為 3.0 米</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SAFE_LIMIT</span> <span class="o">=</span> <span class="mf">3.0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">depth_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="n">current_depth</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">if</span> <span class="n">current_depth</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">SAFE_LIMIT</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;⚠️ [🚨 警報] 偵測到危險水深: </span><span class="si">{</span><span class="n">current_depth</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> m (安全上限: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">SAFE_LIMIT</span><span class="si">}</span><span class="s1"> m)！&#39;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;正常運作中。深度: </span><span class="si">{</span><span class="n">current_depth</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> m&#39;</span>
+            <span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">SafetyMonitorNode</span><span class="p">()</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="n">node</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</code></pre></div></p>
+<hr />
+<h3 id="dockerfile">步驟三：撰寫專案的 Dockerfile</h3>
+<p>為了將我們的 ROS 2 程式包裝為可移植的映像檔，我們需要在工作空間根目錄下建立一個 <code>Dockerfile</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="c"># 1. 使用官方 ROS 2 Jazzy 基礎映像檔</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">osrf/ros:jazzy-desktop</span>
+
+<span class="c"># 2. 設定容器內的工作目錄</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/auv_ws</span>
+
+<span class="c"># 3. 將本地的 src 原始碼目錄複製到容器中</span>
+<span class="k">COPY</span><span class="w"> </span>./src<span class="w"> </span>./src
+
+<span class="c"># 4. 編譯 ROS 2 工作空間</span>
+<span class="k">RUN</span><span class="w"> </span>.<span class="w"> </span>/opt/ros/jazzy/setup.sh<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>colcon<span class="w"> </span>build
+
+<span class="c"># 5. 設定 Entrypoint，啟動時自動加載環境變數</span>
+<span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/bin/bash&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;source /opt/ros/jazzy/setup.bash &amp;&amp; source /auv_ws/install/setup.bash &amp;&amp; exec \&quot;$@\&quot;&quot;</span><span class="p">]</span>
+</code></pre></div>
+<hr />
+<h3 id="docker-composeyml">步驟四：撰寫 docker-compose.yml 啟動檔</h3>
+<p>使用 Docker Compose 來一鍵啟動這兩個相互通訊的節點。在工作空間根目錄下建立一個名為 <code>docker-compose.yml</code> 的檔案：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># 服務一：模擬深度發布節點</span>
+<span class="w">  </span><span class="nt">sensor_mock</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auv-monitor:v1.0</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auv_sensor_mock</span>
+<span class="w">    </span><span class="nt">network_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;host&quot;</span><span class="w"> </span><span class="c1"># 使用 host 網路模式，確保 ROS 2 DDS 能與其他節點正常通訊</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ros2 run auv_monitor sensor_mock</span>
+
+<span class="w">  </span><span class="c1"># 服務二：安全監控接收節點</span>
+<span class="w">  </span><span class="nt">safety_monitor</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auv-monitor:v1.0</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auv_safety_monitor</span>
+<span class="w">    </span><span class="nt">network_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;host&quot;</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ros2 run auv_monitor safety_monitor</span>
+</code></pre></div>
+<hr />
+<h3 id="_5">步驟五：一鍵啟動與驗證</h3>
+<ol>
+<li>請在終端機中確認路徑在專案目錄下，執行以下指令建立並啟動服務：
+   <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div></li>
+<li>查看服務是否已經成功啟動並在背景運行：
+   <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>ps
+</code></pre></div></li>
+<li>即時監看 <strong>Safety Monitor</strong> 節點的輸出日誌，確認是否有收到深度數據：
+   <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>safety_monitor
+</code></pre></div>
+   <em>(當深度計模擬的值超過 <code>3.0</code> 時，您應該會看到畫面上噴出黃色的 <code>⚠️ [🚨 警報] 偵測到危險水深...</code> 訊息)</em></li>
+<li>驗證完成後，一鍵停止並清理所有的容器：
+   <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+</code></pre></div></li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

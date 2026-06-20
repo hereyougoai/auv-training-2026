@@ -1,0 +1,1637 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../stage2_collab/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>階段一：環境建置 - AUV 培訓手冊 (2026)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AUV 培訓手冊 (2026)" class="md-header__button md-logo" aria-label="AUV 培訓手冊 (2026)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AUV 培訓手冊 (2026)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              階段一：環境建置
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段一：環境建置
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage2_collab/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段二：Linux & Git
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage3_sandbox/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段三：Python & Docker
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage4_ros2/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段四：ROS 2
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage5_vision/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段五：視覺辨識
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage6_integration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段六：整合專案
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AUV 培訓手冊 (2026)" class="md-nav__button md-logo" aria-label="AUV 培訓手冊 (2026)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AUV 培訓手冊 (2026)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段一：環境建置
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段一：環境建置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💻 軟體安裝清單與安裝指引
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubuntu-2404-lts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【分類一】 作業系統與硬體連結 (Ubuntu 24.04 LTS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【分類一】 作業系統與硬體連結 (Ubuntu 24.04 LTS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wsl2-ubuntu-2404" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 WSL2 安裝 Ubuntu 24.04
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用 WSL2 安裝 Ubuntu 24.04">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 輸入指令的位置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 安裝指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 初始設定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-auv-usb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 關鍵附加設定：AUV 硬體連接 (USB/串口) 映射 ⚠️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 如何檢查安裝成功
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vs-code-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【分類二】 開發工具整合 (VS Code &amp; AI 助手)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【分類二】 開發工具整合 (VS Code &amp; AI 助手)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ide-vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. IDE 安裝：VS Code 及必裝擴充套件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. AI 輔助開發工具與平台
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. AI 輔助開發工具與平台">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 A：註冊 GitHub 帳號
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-antigravity-google-deepmind-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 B：下載與熟悉 Antigravity (Google DeepMind AI 協作開發平台)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="步驟 B：下載與熟悉 Antigravity (Google DeepMind AI 協作開發平台)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a. 下載與安裝
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-antigravity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b. 熟悉 Antigravity 介面與功能
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-codex-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 C：下載與熟悉 Codex (AI 程式碼智慧補全)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="步驟 C：下載與熟悉 Codex (AI 程式碼智慧補全)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a. 下載與安裝
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b. 熟悉與使用技巧
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【分類三】 版本控制與代碼管理 (Git &amp; GitHub)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【分類三】 版本控制與代碼管理 (Git &amp; GitHub)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 版本控制工具：Git 基本設定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-github-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 關鍵認證設定：建立 GitHub SSH 金鑰
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-nvidia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【分類四】 Docker &amp; NVIDIA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【分類四】 Docker &amp; NVIDIA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-docker-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 容器化引擎：Docker &amp; Docker Compose
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-gpu-nvidia-driver-nvidia-container-toolkit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. GPU 支援：NVIDIA Driver &amp; NVIDIA Container Toolkit (重要 ⚠️)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. GPU 支援：NVIDIA Driver &amp; NVIDIA Container Toolkit (重要 ⚠️)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-nvidia-wsl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 A：設定 NVIDIA 驅動程式 (WSL2 用戶)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-nvidia-container-toolkit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 B：安裝 NVIDIA Container Toolkit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-gpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        驗證 Docker 是否成功調用 GPU
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage2_collab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段二：Linux & Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage3_sandbox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段三：Python & Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage4_ros2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段四：ROS 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage5_vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段五：視覺辨識
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage6_integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段六：整合專案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💻 軟體安裝清單與安裝指引
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ubuntu-2404-lts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【分類一】 作業系統與硬體連結 (Ubuntu 24.04 LTS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【分類一】 作業系統與硬體連結 (Ubuntu 24.04 LTS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wsl2-ubuntu-2404" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 WSL2 安裝 Ubuntu 24.04
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用 WSL2 安裝 Ubuntu 24.04">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 輸入指令的位置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 安裝指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 初始設定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-auv-usb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 關鍵附加設定：AUV 硬體連接 (USB/串口) 映射 ⚠️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 如何檢查安裝成功
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vs-code-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【分類二】 開發工具整合 (VS Code &amp; AI 助手)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【分類二】 開發工具整合 (VS Code &amp; AI 助手)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ide-vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. IDE 安裝：VS Code 及必裝擴充套件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. AI 輔助開發工具與平台
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. AI 輔助開發工具與平台">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 A：註冊 GitHub 帳號
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-antigravity-google-deepmind-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 B：下載與熟悉 Antigravity (Google DeepMind AI 協作開發平台)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="步驟 B：下載與熟悉 Antigravity (Google DeepMind AI 協作開發平台)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a. 下載與安裝
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-antigravity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b. 熟悉 Antigravity 介面與功能
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-codex-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 C：下載與熟悉 Codex (AI 程式碼智慧補全)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="步驟 C：下載與熟悉 Codex (AI 程式碼智慧補全)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a. 下載與安裝
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b. 熟悉與使用技巧
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【分類三】 版本控制與代碼管理 (Git &amp; GitHub)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【分類三】 版本控制與代碼管理 (Git &amp; GitHub)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 版本控制工具：Git 基本設定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-github-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 關鍵認證設定：建立 GitHub SSH 金鑰
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-nvidia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【分類四】 Docker &amp; NVIDIA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【分類四】 Docker &amp; NVIDIA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-docker-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 容器化引擎：Docker &amp; Docker Compose
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-gpu-nvidia-driver-nvidia-container-toolkit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. GPU 支援：NVIDIA Driver &amp; NVIDIA Container Toolkit (重要 ⚠️)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. GPU 支援：NVIDIA Driver &amp; NVIDIA Container Toolkit (重要 ⚠️)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-nvidia-wsl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 A：設定 NVIDIA 驅動程式 (WSL2 用戶)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-nvidia-container-toolkit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步驟 B：安裝 NVIDIA Container Toolkit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-gpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        驗證 Docker 是否成功調用 GPU
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">階段一：環境建置</h1>
+<p>本階段的核心目標是<strong>消除學員之間的環境差異</strong>，讓所有人站在同一條起跑線上。對於需要進行 AUV 開發，硬體驅動的正確安裝與容器隔離尤為重要。</p>
+<hr />
+<h2 id="_2">💻 軟體安裝清單與安裝指引</h2>
+<hr />
+<h2 id="ubuntu-2404-lts">【分類一】 作業系統與硬體連結 (Ubuntu 24.04 LTS)</h2>
+<h4 id="wsl2-ubuntu-2404">使用 WSL2 安裝 Ubuntu 24.04</h4>
+<p>WSL2 是 Windows 內建的 Linux 子系統，適合不想重新分割硬碟且無獨立顯卡的學員。</p>
+<h5 id="1">1. 輸入指令的位置</h5>
+<p>在 Windows 系統中，按下 <code>Win + Q</code> 搜尋 <strong>「PowerShell」</strong>，對著它點選右鍵，選擇 <strong>「以系統管理員身分執行 (Run as Administrator)」</strong>。</p>
+<h5 id="2">2. 安裝指令</h5>
+<p>請在開啟的 PowerShell 視窗中輸入以下指令並按下 Enter：
+<div class="highlight"><pre><span></span><code><span class="n">wsl</span> <span class="p">-</span><span class="n">-install</span> <span class="n">-d</span> <span class="n">Ubuntu</span><span class="p">-</span><span class="n">24</span><span class="p">.</span><span class="n">04</span>
+</code></pre></div></p>
+<blockquote>
+<p>[!NOTE]
+如果系統提示您需要重新啟動電腦，請重新啟動。重啟後 Windows 會自動開啟一個新的 Ubuntu 命令提示字元視窗，繼續安裝程序。</p>
+</blockquote>
+<h5 id="3">3. 初始設定</h5>
+<p>安裝完成後，Ubuntu 視窗會要求您設定<strong>使用者名稱與密碼</strong>：
+1. <strong>Enter new UNIX username</strong>: 請輸入您自訂的帳號名稱 (請使用小寫英文字母，如 <code>auvuser</code>，不可有空格)。
+2. <strong>New password</strong>: 輸入您自訂的密碼 (輸入時畫面<strong>不會顯示任何字元或星號</strong>，這是 Linux 的安全保護機制，請盲打後按 Enter)。
+3. <strong>Retype new password</strong>: 再次輸入相同密碼並按 Enter。</p>
+<p>密碼設定完成後，請在 <strong>Ubuntu 終端機</strong> 內執行以下指令更新系統套件：
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w"> </span>-y
+</code></pre></div>
+<em>(執行 <code>sudo</code> 指令時會要求您輸入剛剛設定的密碼。)</em></p>
+<h5 id="4-auv-usb">4. 關鍵附加設定：AUV 硬體連接 (USB/串口) 映射 ⚠️</h5>
+<p>WSL2 預設無法存取主機的 USB 實體裝置（例如 USB 轉 TTL 模組、IMU、壓力感測器等）。我們必須安裝 <strong>usbipd-win</strong> 工具：
+1. <strong>安裝 usbipd-win</strong>：在 Windows <strong>PowerShell (以系統管理員身分執行)</strong> 輸入以下指令：
+   <div class="highlight"><pre><span></span><code><span class="n">winget</span> <span class="n">install</span> <span class="n">usbipd-win</span>
+</code></pre></div>
+   <em>安裝完成後，請重新啟動電腦以生效。</em>
+2. <strong>基本操作指引 (後續連接硬體時使用)</strong>：
+   * 在 Windows PowerShell 中執行 <code>usbipd list</code> 查找連接的 USB 裝置（例如記下其 Bus ID，如 <code>2-1</code>）。
+   * 將裝置共享綁定（首次需執行一次）：<code>usbipd bind --busid &lt;BUSID&gt;</code>。
+   * 將裝置掛載進 Ubuntu：<code>usbipd attach --wsl --busid &lt;BUSID&gt;</code>。
+   * 在 Ubuntu 終端機中輸入 <code>lsusb</code>，即可看到該 USB 裝置，代表已成功導進 Linux！</p>
+<h5 id="5">5. 如何檢查安裝成功</h5>
+<ul>
+<li><strong>檢查 WSL 狀態 (在 Windows PowerShell 中)</strong>：
+  <div class="highlight"><pre><span></span><code><span class="n">wsl</span> <span class="n">-l</span> <span class="n">-v</span>
+</code></pre></div>
+  若顯示中 <code>NAME</code> 為 <code>Ubuntu-24.04</code>、<code>VERSION</code> 為 <code>2</code>，即代表成功安裝。</li>
+<li><strong>檢查 Ubuntu 版本 (在 Ubuntu 終端機中)</strong>：
+  <div class="highlight"><pre><span></span><code>lsb_release<span class="w"> </span>-a
+</code></pre></div>
+  應顯示 <code>Description: Ubuntu 24.04 LTS</code>。</li>
+</ul>
+<hr />
+<h2 id="vs-code-ai">【分類二】 開發工具整合 (VS Code &amp; AI 助手)</h2>
+<h3 id="1-ide-vs-code">1. IDE 安裝：VS Code 及必裝擴充套件</h3>
+<ul>
+<li><strong>Python</strong>：提供語法高亮、格式化與 Debug 支援。</li>
+<li><strong>C/C++</strong>：用於編譯與開發底層 C++ 節點。</li>
+<li><strong>Dev Containers</strong>：方便管理容器、映像檔與 Volume 映射開發。</li>
+<li><strong>WSL</strong> ⚠️ (WSL2 用戶必裝)：讓您可以直接在 Windows 的 VS Code 視窗中，無縫連接並開發 WSL2 內的專案。</li>
+<li><strong>Docker</strong> ⚠️：用來直覺地在左側邊欄檢視 Container 狀態、Log 畫面與 Volume 檔案，對初學者非常友善。</li>
+</ul>
+<p>Windows 與 Mac 環境之 C/C++ 工具鏈基礎安裝指南可參閱：</p>
+<ul>
+<li><strong>Windows C 環境與 VS Code 基本設定</strong>：<a href="https://drive.google.com/file/d/1bcwUeHuFPzFiuwqt9WiwahagIiMyr13K/view?usp=sharing">安裝指引影片/文件 1</a>、<a href="https://drive.google.com/file/d/1nGTVGBeMm6VnJw8juysmK-tyy3qVV2_L/view?usp=sharing">額外設定讓輸出在 Terminal 顯示</a></li>
+<li><strong>MacBook C 環境與 VS Code 基本設定</strong>：<a href="https://drive.google.com/file/d/1_RzE2PpczKwdKkK3NbJ51VkOPTK7QKyK/view?usp=sharing">安裝指引影片/文件 2</a></li>
+</ul>
+<hr />
+<h3 id="2-ai">2. AI 輔助開發工具與平台</h3>
+<p>在開始撰寫程式碼之前，讓 AI 成為您的常駐助教。本培訓將使用 <strong>Antigravity (Google DeepMind 研發的 AI 代理 IDE)</strong> 與 <strong>Codex (AI 輔助程式補全套件)</strong>。</p>
+<h4 id="a-github">步驟 A：註冊 GitHub 帳號</h4>
+<p>GitHub 是全球最大的程式碼託管與協作平台，也是後續交作業與團隊專案的核心工具。</p>
+<ol>
+<li><strong>造訪註冊頁面</strong>：開啟瀏覽器進入 <a href="https://github.com/">GitHub 官網 (github.com)</a>。</li>
+<li><strong>填寫資料</strong>：點選網頁右上角的 <strong>「Sign up」</strong>。</li>
+<li>輸入您的常用 <strong>Email 信箱</strong>。</li>
+<li>設定您的 <strong>密碼 (Password)</strong>。</li>
+<li>輸入您的 <strong>使用者名稱 (Username)</strong> (這將會是您的公開識別名稱，如 <code>tom-auv-2026</code>)。</li>
+<li>選擇是否接受電子報（輸入 <code>y</code> 或 <code>n</code>），並完成簡單的「人機驗證（拼圖或旋轉圖案）」。</li>
+<li><strong>驗證信箱</strong>：到您的 Email 收取驗證碼並輸入，即可完成註冊。</li>
+<li><strong>準備完成</strong>：請記住您的帳號與密碼，我們在第二階段的 Git 協作中會頻繁使用！</li>
+</ol>
+<hr />
+<h4 id="b-antigravity-google-deepmind-ai">步驟 B：下載與熟悉 Antigravity (Google DeepMind AI 協作開發平台)</h4>
+<p>Antigravity 是 Google DeepMind 打造的 AI-first 開發環境 (基於 VS Code 分支開發)，它不只是編輯器，還能讓多個 AI 代理（Agents）在後台幫您規劃、執行和測試程式。</p>
+<h5 id="a">a. 下載與安裝</h5>
+<ul>
+<li><strong>下載位置</strong>：開啟瀏覽器造訪 <strong><a href="https://antigravity.google">antigravity.google</a></strong>。</li>
+<li><strong>安裝步驟</strong>：</li>
+<li><strong>WSL2 / Linux 用戶</strong>：下載 <code>.deb</code> 安裝包，在終端機執行 <code>sudo dpkg -i &lt;filename&gt;.deb</code>，或直接下載軟體包進行安裝。</li>
+<li><strong>Windows / macOS 用戶</strong>：下載對應的安裝檔，按預設選項直接雙擊安裝。</li>
+<li><strong>登入帳號</strong>：啟動 Antigravity 後，點選左下角登入您的 Google 帳號以啟用 AI 核心功能。</li>
+</ul>
+<h5 id="b-antigravity">b. 熟悉 Antigravity 介面與功能</h5>
+<ul>
+<li><strong>載入工作區</strong>：點選 <code>File -&gt; Open Folder</code>，選擇我們的 <code>auv-training-2026</code> 專案資料夾。</li>
+<li><strong>Agent Manager (代理管理器)</strong> 🤖：</li>
+<li>在右側面板中，您可以看到 Agent 控制台。</li>
+<li>您可以發起一個任務（Task），例如：<code>幫我寫一個計算推進器 PWM 的 Python 類別</code>。</li>
+<li><strong>Artifacts (產出產物)</strong> 📄：</li>
+<li>當 AI Agent 收到您的指令後，它不會只在聊天室噴程式碼，而是會主動在工作區建立諸如 <code>implementation_plan.md</code> (實作規劃案) 或 <code>task.md</code> (待辦清單)。</li>
+<li>您只需點選 <strong>「Proceed」</strong> 批准，AI 代理就會自動在後台幫您編輯程式、建立檔案甚至執行測試！</li>
+</ul>
+<hr />
+<h4 id="c-codex-ai">步驟 C：下載與熟悉 Codex (AI 程式碼智慧補全)</h4>
+<p>Codex 是功能強大的 AI 程式碼編寫與即時補全套件，可直接嵌入在您的編輯器中，提供流暢的「即時自動完成」體驗。</p>
+<h5 id="a_1">a. 下載與安裝</h5>
+<ol>
+<li>開啟 <strong>Antigravity</strong> 或 <strong>VS Code</strong>。</li>
+<li>點擊左側邊欄的 <strong>Extensions (擴充套件，快捷鍵 <code>Ctrl + Shift + X</code>)</strong>。</li>
+<li>在上方搜尋欄輸入 <strong><code>Codex</code></strong>（或視課程引導安裝 GitHub Copilot / Codeium 等相容套件）。</li>
+<li>點選 <strong>「Install」</strong> 按鈕完成安裝，並依畫面提示完成帳號授權連結。</li>
+</ol>
+<h5 id="b">b. 熟悉與使用技巧</h5>
+<ul>
+<li><strong>單行/多行程式碼自動補全 (Inline Completion)</strong>：</li>
+<li>當您開始在程式檔案中打字時，Codex 會自動在游標後方以 <strong>「淡灰色文字」</strong> 預測您可能想寫的內容。</li>
+<li>如果預測正確，按下 <strong><code>Tab</code> 鍵</strong> 即可一鍵採用；若不需要，直接繼續打字即可。</li>
+<li><strong>透過註解生成程式碼 (Comment-to-Code)</strong>：</li>
+<li>在程式碼中寫下一行中文註解，例如：
+    <div class="highlight"><pre><span></span><code><span class="c1"># 計算推進器 PWM 的物理安全區間限制，限制在 1100 到 1900 之間</span>
+</code></pre></div></li>
+<li>按下 Enter 換行，Codex 將會自動生成對應的實作程式碼，同樣按下 <strong><code>Tab</code></strong> 即可採用。</li>
+<li><strong>快捷視窗 (Chat &amp; Inline Edit)</strong>：</li>
+<li>選取某段程式碼，按下 <strong><code>Ctrl + I</code></strong>，即可開啟小視窗直接向 AI 說「幫我重構這段程式」或「幫我這段加上防呆機制」。</li>
+</ul>
+<hr />
+<h2 id="git-github">【分類三】 版本控制與代碼管理 (Git &amp; GitHub)</h2>
+<h3 id="1-git">1. 版本控制工具：Git 基本設定</h3>
+<p>在終端機執行以下指令完成安裝與設定：
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>-y
+
+<span class="c1"># 設定全域使用者資訊（請改為您自己的資訊）</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;YourName&quot;</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;your_email@example.com&quot;</span>
+</code></pre></div></p>
+<hr />
+<h3 id="2-github-ssh">2. 關鍵認證設定：建立 GitHub SSH 金鑰</h3>
+<p>GitHub 已停止支援密碼驗證。為了之後能夠順利將作業與程式碼 push 到 GitHub，必須設定 SSH 金鑰：
+1. <strong>生成金鑰對</strong> (在 Ubuntu 終端機執行)：
+   <div class="highlight"><pre><span></span><code>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;your_email@example.com&quot;</span>
+</code></pre></div>
+   <em>出現提示時，直接連按三下 Enter 鍵（使用預設檔案路徑且不設定額外密碼）。</em>
+2. <strong>複製公鑰內容</strong>：
+   <div class="highlight"><pre><span></span><code>cat<span class="w"> </span>~/.ssh/id_ed25519.pub
+</code></pre></div>
+   <em>請將終端機輸出的這一整串文字（以 <code>ssh-ed25519</code> 開頭）全部複製起來。</em>
+3. <strong>新增至 GitHub 網頁</strong>：
+   * 登入 GitHub，點選右上角個人頭像 -&gt; <strong>Settings</strong>。
+   * 點選左側選單的 <strong>SSH and GPG keys</strong>。
+   * 點選右上角 <strong>New SSH key</strong>。
+   * <strong>Title</strong> 輸入您筆電的識別稱（例如 <code>my-laptop</code>），<strong>Key</strong> 的欄位中貼上剛才複製的公鑰內容，並點選 <strong>Add SSH key</strong>。
+4. <strong>測試連線</strong> (在 Ubuntu 終端機執行)：
+   <div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
+</code></pre></div>
+   <em>若看見 <code>Hi [您的使用者名稱]! You've successfully authenticated...</code>，代表設定成功！</em></p>
+<hr />
+<h2 id="docker-nvidia">【分類四】 Docker &amp; NVIDIA</h2>
+<h3 id="1-docker-docker-compose">1. 容器化引擎：Docker &amp; Docker Compose</h3>
+<p>使用以下指令安裝最新版 Docker Engine：
+<div class="highlight"><pre><span></span><code><span class="c1"># 解除安裝舊版本</span>
+<span class="k">for</span><span class="w"> </span>pkg<span class="w"> </span><span class="k">in</span><span class="w"> </span>docker.io<span class="w"> </span>docker-doc<span class="w"> </span>docker-compose<span class="w"> </span>docker-compose-v2<span class="w"> </span>podman-docker<span class="w"> </span>containerd<span class="w"> </span>runc<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>remove<span class="w"> </span><span class="nv">$pkg</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+
+<span class="c1"># 設定 Docker 儲存庫並安裝</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ca-certificates<span class="w"> </span>curl<span class="w"> </span>-y
+sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0755</span><span class="w"> </span>-d<span class="w"> </span>/etc/apt/keyrings
+sudo<span class="w"> </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://download.docker.com/linux/ubuntu/gpg<span class="w"> </span>-o<span class="w"> </span>/etc/apt/keyrings/docker.asc
+sudo<span class="w"> </span>chmod<span class="w"> </span>a+r<span class="w"> </span>/etc/apt/keyrings/docker.asc
+
+<span class="nb">echo</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg<span class="w"> </span>--print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \</span>
+<span class="s2">  </span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VERSION_CODENAME</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2"> stable&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/docker.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io<span class="w"> </span>docker-buildx-plugin<span class="w"> </span>docker-compose-plugin<span class="w"> </span>-y
+
+<span class="c1"># 免 sudo 執行 Docker 設定</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
+</code></pre></div></p>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>免 sudo 立即生效設定</strong> ⚠️
+上述 <code>usermod</code> 指令在一般情況下需要重新登入或重開機才會生效。請在同一個終端機視窗中執行以下指令，強迫更新群組權限，避免後續 Docker 指令因為權限不足 (Permission Denied) 而報錯：
+<div class="highlight"><pre><span></span><code>newgrp<span class="w"> </span>docker
+</code></pre></div></p>
+</blockquote>
+<hr />
+<h3 id="2-gpu-nvidia-driver-nvidia-container-toolkit">2. GPU 支援：NVIDIA Driver &amp; NVIDIA Container Toolkit (重要 ⚠️)</h3>
+<p>確保後續 Docker 容器能調用您電腦的實體 GPU 進行視覺辨識模型與 AUV 模擬訓練。</p>
+<h4 id="a-nvidia-wsl2">步驟 A：設定 NVIDIA 驅動程式 (WSL2 用戶)</h4>
+<ul>
+<li><strong>重要安全警告</strong> ⚠️：由於您使用的是 <strong>WSL2</strong>，<strong>絕對不要</strong>在 WSL2 的 Ubuntu 系統內執行 <code>sudo apt install nvidia-driver-...</code> 或任何 <code>ubuntu-drivers</code> 安裝指令！這會搞爛系統。</li>
+<li><strong>正確做法</strong>：您只需直接在 Windows 主機中下載並更新至最新的 <a href="https://www.nvidia.com/Download/index.aspx">NVIDIA 顯示卡官方驅動程式</a>。安裝完成後，WSL2 會自動共用 Windows 端的 GPU 驅動。</li>
+<li><strong>驗證驅動</strong>：請在 Ubuntu 終端機中輸入以下指令，若能看見您的實體顯示卡資訊，即代表設定成功：
+  <div class="highlight"><pre><span></span><code>nvidia-smi
+</code></pre></div></li>
+</ul>
+<hr />
+<h4 id="b-nvidia-container-toolkit">步驟 B：安裝 NVIDIA Container Toolkit</h4>
+<p>這是讓 Docker 容器內程式能夠調用實體 GPU 的關鍵橋樑：
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://nvidia.github.io/libnvidia-container/gpgkey<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>-L<span class="w"> </span>https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>sed<span class="w"> </span><span class="s1">&#39;s#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/nvidia-container-toolkit.list
+
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nvidia-container-toolkit
+
+<span class="c1"># 設定並重啟 Docker 服務</span>
+sudo<span class="w"> </span>nvidia-ctk<span class="w"> </span>runtime<span class="w"> </span>configure<span class="w"> </span>--runtime<span class="o">=</span>docker
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>docker
+</code></pre></div></p>
+<hr />
+<h4 id="docker-gpu">驗證 Docker 是否成功調用 GPU</h4>
+<p><strong>請注意</strong>：請確保 Windows 端的 NVIDIA 驅動已安裝完畢。</p>
+<p>接著請在 Ubuntu 終端機執行以下指令：
+<div class="highlight"><pre><span></span><code>newgrp<span class="w"> </span>docker<span class="w"> </span><span class="c1"># 確保免 sudo 權限立即生效</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>nvidia/cuda:12.5.0-base-ubuntu24.04<span class="w"> </span>nvidia-smi
+</code></pre></div>
+<em>(如果終端機能印出顯示卡的詳細表格，恭喜你，環境架設完成！)</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

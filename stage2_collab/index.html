@@ -1,0 +1,1320 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../stage1_env/">
+      
+      
+        <link rel="next" href="../stage3_sandbox/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>階段二：Linux & Git - AUV 培訓手冊 (2026)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linuxgit-ai" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AUV 培訓手冊 (2026)" class="md-header__button md-logo" aria-label="AUV 培訓手冊 (2026)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AUV 培訓手冊 (2026)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              階段二：Linux & Git
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage1_env/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段一：環境建置
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段二：Linux & Git
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage3_sandbox/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段三：Python & Docker
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage4_ros2/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段四：ROS 2
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage5_vision/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段五：視覺辨識
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../stage6_integration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段六：整合專案
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AUV 培訓手冊 (2026)" class="md-nav__button md-logo" aria-label="AUV 培訓手冊 (2026)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AUV 培訓手冊 (2026)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage1_env/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段一：環境建置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段二：Linux & Git
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段二：Linux & Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💻 學習清單與實作指引
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【分類一】 Linux 終端機生存指南
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【分類一】 Linux 終端機生存指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 開啟終端機 (Terminal) 的方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 初學者必備 Linux 指令對照表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-agent-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【分類二】 AI Agent 協作心法 (Prompting)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【分類二】 AI Agent 協作心法 (Prompting)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 終端機報錯排除
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-code-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 程式優化與 Code Review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-git-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Git / Docker 疑難解答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【分類三】 Git &amp; GitHub 團隊協作與版本管理概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【分類三】 Git &amp; GitHub 團隊協作與版本管理概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Git 檔案流動圖 (工作流)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-git-pull-request-pr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Git 分支與 Pull Request (PR) 協作概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Git 常用指令對照表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【分類四】 實作任務：【AUV 團隊簽到板】
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【分類四】 實作任務：【AUV 團隊簽到板】">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 任務步驟：
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage3_sandbox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段三：Python & Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage4_ros2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段四：ROS 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage5_vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段五：視覺辨識
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stage6_integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段六：整合專案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💻 學習清單與實作指引
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【分類一】 Linux 終端機生存指南
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【分類一】 Linux 終端機生存指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 開啟終端機 (Terminal) 的方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 初學者必備 Linux 指令對照表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-agent-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【分類二】 AI Agent 協作心法 (Prompting)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【分類二】 AI Agent 協作心法 (Prompting)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 終端機報錯排除
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-code-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 程式優化與 Code Review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-git-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Git / Docker 疑難解答
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【分類三】 Git &amp; GitHub 團隊協作與版本管理概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【分類三】 Git &amp; GitHub 團隊協作與版本管理概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Git 檔案流動圖 (工作流)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-git-pull-request-pr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Git 分支與 Pull Request (PR) 協作概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Git 常用指令對照表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【分類四】 實作任務：【AUV 團隊簽到板】
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="【分類四】 實作任務：【AUV 團隊簽到板】">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 任務步驟：
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="linuxgit-ai">階段二：Linux、Git 與 AI 協作</h1>
+<p>在進入正式的 AUV 程式編寫之前，學員必須先學會「如何存活在 Linux 終端機」以及「如何與團隊、AI 協作」。</p>
+<hr />
+<h2 id="_1">💻 學習清單與實作指引</h2>
+<hr />
+<h2 id="linux">【分類一】 Linux 終端機生存指南</h2>
+<p>在 AUV 開發中，絕大多數時間都不會使用 Windows 視窗，而是透過 SSH 連線至載具或在 Docker 容器內的終端機操作。學員必須熟練以下基礎 Linux 指令。</p>
+<h3 id="1-terminal">1. 開啟終端機 (Terminal) 的方式</h3>
+<ul>
+<li><strong>原生 Ubuntu</strong>：使用快捷鍵 <code>Ctrl + Alt + T</code> 可直接開啟一個新的終端機視窗。</li>
+<li><strong>WSL2 用戶</strong>：在 VS Code 中安裝好 <code>WSL</code> 擴充套件後，點選左下角「連線至 WSL」，或在 Windows 中直接執行 <code>wsl</code> 命令。</li>
+</ul>
+<h3 id="2-linux">2. 初學者必備 Linux 指令對照表</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">指令</th>
+<th style="text-align: left;">功能說明</th>
+<th style="text-align: left;">初學者立即可試的範例</th>
+<th style="text-align: left;">💡 防呆 / 實用小提示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>cd [目錄]</code></strong></td>
+<td style="text-align: left;">切換當前工作目錄</td>
+<td style="text-align: left;"><code>cd /etc/</code></td>
+<td style="text-align: left;"><code>cd ..</code> 可回到上一層，<code>cd ~</code> 可直接回到個人家目錄。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>ls -la</code></strong></td>
+<td style="text-align: left;">列出當前目錄下的檔案與詳細資訊</td>
+<td style="text-align: left;"><code>ls -la</code></td>
+<td style="text-align: left;"><code>-a</code> 會連同以 <code>.</code> 開頭的隱藏檔（如 <code>.git</code>、<code>.env</code>）一起顯示出來。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>pwd</code></strong></td>
+<td style="text-align: left;">顯示當前所在的絕對路徑</td>
+<td style="text-align: left;"><code>pwd</code></td>
+<td style="text-align: left;">當您在目錄深處迷失方向時，使用這行指令立刻查出您在哪裡。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>mkdir [目錄名]</code></strong></td>
+<td style="text-align: left;">建立新的資料夾</td>
+<td style="text-align: left;"><code>mkdir my_project</code></td>
+<td style="text-align: left;">資料夾名稱不可有空白，建議使用底線 <code>_</code> 連接多個字詞。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>touch [檔名]</code></strong></td>
+<td style="text-align: left;">建立空檔案或更新檔案時間</td>
+<td style="text-align: left;"><code>touch README.md</code></td>
+<td style="text-align: left;">常配合編輯器用來快速創檔。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>cp [來源] [目的地]</code></strong></td>
+<td style="text-align: left;">複製檔案或資料夾</td>
+<td style="text-align: left;"><code>cp conf.txt backup.txt</code></td>
+<td style="text-align: left;">若要複製整個資料夾與內容，必須加上 <code>-r</code> 參數（例如 <code>cp -r src/ backup/</code>）。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>mv [來源] [目的地]</code></strong></td>
+<td style="text-align: left;">移動檔案或將檔案改名</td>
+<td style="text-align: left;"><code>mv old.txt new.txt</code></td>
+<td style="text-align: left;">在 Linux 中，「移動檔案」與「重新命名檔案」使用的是同一個指令。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>rm [檔名]</code></strong></td>
+<td style="text-align: left;">刪除檔案</td>
+<td style="text-align: left;"><code>rm temp.txt</code></td>
+<td style="text-align: left;"><strong>極度危險 ⚠️</strong>：Linux 沒有資源回收桶！<code>rm -rf [路徑]</code> 會強制刪除，請再三確認。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>chmod [權限] [檔名]</code></strong></td>
+<td style="text-align: left;">修改檔案或資料夾的權限</td>
+<td style="text-align: left;"><code>chmod +x run.sh</code></td>
+<td style="text-align: left;"><code>+x</code> 代表賦予「執行」權限，讓該檔案可以像程式一樣直接執行。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>sudo [指令]</code></strong></td>
+<td style="text-align: left;">使用系統管理員（超級使用者）權限執行</td>
+<td style="text-align: left;"><code>sudo apt update</code></td>
+<td style="text-align: left;">執行系統設定、軟體安裝等敏感操作時必須加上，會要求輸入您的密碼。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>htop</code></strong></td>
+<td style="text-align: left;">視覺化系統資源與進度監控</td>
+<td style="text-align: left;"><code>htop</code></td>
+<td style="text-align: left;">類似 Windows 的工作管理員，可以看 CPU/記憶體 佔用。按 <code>q</code> 鍵即可退出。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>df -h</code></strong></td>
+<td style="text-align: left;">顯示磁碟空間使用量</td>
+<td style="text-align: left;"><code>df -h</code></td>
+<td style="text-align: left;"><code>-h</code> 代表以 GB, MB 等人眼好讀格式顯示，可用來檢查硬碟是否被 Log 塞滿。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ai-agent-prompting">【分類二】 AI Agent 協作心法 (Prompting)</h2>
+<p>不要把 AI 當成作弊工具，而是將其視為您的一對一程式助教。以下是 AUV 開發中，學員最常向 AI 發問的三大場景與提問範本。</p>
+<h3 id="1">1. 終端機報錯排除</h3>
+<p>當終端機噴出紅色錯誤訊息時，不要慌張，直接複製並對 AI 這樣問：</p>
+<blockquote>
+<p>🙋 <strong>提問範本</strong>：
+「我在 Ubuntu 24.04 環境中執行 <code>[貼上您執行的指令]</code> 時遇到以下錯誤，請幫我分析原因並給予逐步修復方案：
+<code>[貼上完整的終端機紅字報錯訊息]</code>」</p>
+</blockquote>
+<h3 id="2-code-review">2. 程式優化與 Code Review</h3>
+<p>當您寫完控制 AUV 的程式碼後，可以請 AI 扮演資深軟體工程師幫您檢視：</p>
+<blockquote>
+<p>🙋 <strong>提問範本</strong>：
+「這是我寫的 AUV <code>[描述功能，例如：推進器推力計算]</code> 控制程式碼，請幫我檢查是否有邏輯漏洞、記憶體洩漏或邊界條件錯誤，並在不改變功能的前提下進行效能優化與加入中文註解：
+<code>python
+[貼上您的 Python 程式碼]</code>」</p>
+</blockquote>
+<h3 id="3-git-docker">3. Git / Docker 疑難解答</h3>
+<p>當您在使用版本控制或容器時遇到不熟的指令或冲突：</p>
+<blockquote>
+<p>🙋 <strong>提問範本</strong>：
+「我正在使用 Git 協作，遇到了 <code>[描述問題，例如：合併衝突 merge conflict]</code>，以下是當前的狀態，請一步步指引我如何排解：
+<code>bash
+[貼上您打 git status 看到的狀態]</code>」</p>
+</blockquote>
+<hr />
+<h2 id="git-github">【分類三】 Git &amp; GitHub 團隊協作與版本管理概念</h2>
+<p>Git 是一個「分散式版本控制系統」，而 GitHub 則是存放 Git 歷史記錄的雲端平台。理解 Git 的核心，首先要理解檔案在「本地端」與「遠端」之間的流動。</p>
+<h3 id="1-git">1. Git 檔案流動圖 (工作流)</h3>
+<p>以下的 Mermaid 流程圖展示了您寫的程式碼如何從本地的「工作區」一步步推送到「GitHub 雲端」：</p>
+<pre class="mermaid"><code>graph TD
+    subgraph Local_PC ["本地端電腦 (Local PC)"]
+        A["工作區 (Workspace) &lt;br&gt;在編輯器修改檔案內容"] -- "git add" --&gt; B["暫存區 (Staging Area) &lt;br&gt;準備要提交的檔案快照"]
+        B -- "git commit" --&gt; C["本地儲存庫 (Local Repository) &lt;br&gt;記錄在自己電腦的版本歷史"]
+    end
+    subgraph GitHub_Cloud ["遠端雲端 (GitHub Cloud)"]
+        D["GitHub 遠端儲存庫 (Remote Repository) &lt;br&gt;團隊共享的雲端代碼庫"]
+    end
+    C -- "git push" --&gt; D
+    D -- "git clone / git pull" --&gt; A
+    style A fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px;
+    style B fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
+    style C fill:#c8e6c9,stroke:#4caf50,stroke-width:2px;
+    style D fill:#f8bbd0,stroke:#e91e63,stroke-width:2px;</code></pre>
+<hr />
+<h3 id="2-git-pull-request-pr">2. Git 分支與 Pull Request (PR) 協作概念</h3>
+<p>在團隊中，多個成員會同時修改代碼。為了避免互相覆蓋，我們會從主要分支（<code>main</code>）切出各自的「功能分支（feature branch）」，開發完成後再透過 <strong>Pull Request (PR)</strong> 審核機制合併回主分支：</p>
+<pre class="mermaid"><code>gitGraph
+    commit id: "Initial Commit"
+    commit id: "Add thruster script"
+    branch feat/sign-in
+    checkout feat/sign-in
+    commit id: "Add Tom's README"
+    commit id: "Fix Tom's typo"
+    checkout main
+    merge feat/sign-in id: "Merge PR (GitHub)"
+    commit id: "New release v1.0"</code></pre>
+<hr />
+<h3 id="3-git">3. Git 常用指令對照表</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Git 指令</th>
+<th style="text-align: left;">功能說明</th>
+<th style="text-align: left;">常用實用場景範例</th>
+<th style="text-align: left;">💡 備註 / 防呆小提示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>git clone &lt;倉庫網址&gt;</code></strong></td>
+<td style="text-align: left;">下載遠端儲存庫到本地端</td>
+<td style="text-align: left;"><code>git clone git@github.com:...</code></td>
+<td style="text-align: left;">首次下載專案時使用，會在本地建立專案同名資料夾。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>git checkout -b &lt;分支&gt;</code></strong></td>
+<td style="text-align: left;">建立並切換至新功能分支</td>
+<td style="text-align: left;"><code>git checkout -b feat/sign-in</code></td>
+<td style="text-align: left;"><code>-b</code> 代表 create branch，避免直接在 <code>main</code> 分支開發。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>git status</code></strong></td>
+<td style="text-align: left;">檢查目前工作區檔案的修改狀態</td>
+<td style="text-align: left;"><code>git status</code></td>
+<td style="text-align: left;">隨時都可以執行，用來確認有哪些檔案被修改或準備提交。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>git add &lt;檔案&gt;</code></strong> (或 <code>git add .</code>)</td>
+<td style="text-align: left;">將修改後的檔案加入暫存區</td>
+<td style="text-align: left;"><code>git add .</code> (暫存所有變更)</td>
+<td style="text-align: left;"><code>.</code> 代表當前目錄。尚未 add 的檔案不會被 commit 紀錄。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>git commit -m "說明"</code></strong></td>
+<td style="text-align: left;">將暫存區變更紀錄到本地歷史中</td>
+<td style="text-align: left;"><code>git commit -m "feat: add tom"</code></td>
+<td style="text-align: left;">說明訊息必須清晰，以便團隊成員理解本次修改。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>git pull origin main</code></strong></td>
+<td style="text-align: left;">從遠端主分支抓取並合併最新進度</td>
+<td style="text-align: left;"><code>git pull origin main</code></td>
+<td style="text-align: left;">推送前建議先執行 pull，能有效防範/提早解決代碼衝突。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>git push origin &lt;分支&gt;</code></strong></td>
+<td style="text-align: left;">將本地分支進度推送上傳至 GitHub</td>
+<td style="text-align: left;"><code>git push origin feat/sign-in</code></td>
+<td style="text-align: left;">只有 push 後，其他人才能在 GitHub 網頁上看到你的修改。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="auv">【分類四】 實作任務：【AUV 團隊簽到板】</h2>
+<p>透過實際發起 Pull Request (PR) 流程，讓學員體驗真實團隊的協作模式。</p>
+<h3 id="_2">📋 任務步驟：</h3>
+<ol>
+<li><strong>造訪團隊 GitHub 儲存庫</strong>：點擊進入我們 Orca AUV 團隊的 GitHub 專案網頁。</li>
+<li><strong>複製專案到本地端</strong> (在 Ubuntu 終端機執行)：
+   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:your-organization/auv-training-2026.git
+<span class="nb">cd</span><span class="w"> </span>auv-training-2026
+</code></pre></div></li>
+<li><strong>建立並切換至您的功能分支</strong>：
+   <div class="highlight"><pre><span></span><code><span class="c1"># 分支命名規範：feat/sign-in-[您的名字]</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feat/sign-in-yourname
+</code></pre></div></li>
+<li><strong>建立您的簽到檔案</strong>：</li>
+<li>在專案的 <code>members/</code> 資料夾下，建立一個以您英文名字命名的資料夾（使用 <code>mkdir</code> 指令）。</li>
+<li>在該資料夾下建立一個 <code>README.md</code>（使用 <code>touch</code> 指令）。</li>
+<li>使用 VS Code 或編輯器打開此 <code>README.md</code>，寫下簡單的自我介紹、您在 AUV 團隊中負責的次系統（如：控制、視覺、機構等）以及對今年的學習期許。</li>
+<li><strong>本地端存檔提交</strong>：
+   <div class="highlight"><pre><span></span><code><span class="c1"># 1. 檢查目前修改的檔案狀態</span>
+git<span class="w"> </span>status
+
+<span class="c1"># 2. 將新增的資料夾與檔案加入暫存區</span>
+git<span class="w"> </span>add<span class="w"> </span>.
+
+<span class="c1"># 3. 提交存檔，附帶有意義的說明</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: add yourname to sign-in board&quot;</span>
+</code></pre></div></li>
+<li><strong>推送到 GitHub 遠端雲端</strong>：
+   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feat/sign-in-yourname
+</code></pre></div></li>
+<li><strong>發起 Pull Request (PR)</strong>：</li>
+<li>開啟瀏覽器回到 GitHub 專案網頁，您會看到一個黃色的提示框，顯示 <code>feat/sign-in-yourname had recent pushes...</code>。</li>
+<li>點選 <strong>「Compare &amp; pull request」</strong>。</li>
+<li>在 PR 的描述中說明您已完成簽到，並點選 <strong>「Create pull request」</strong>。</li>
+<li><strong>解決代碼衝突 (若有)</strong>：</li>
+<li>若與其他學員的代碼發生衝突（Conflict），不用驚慌！請點選 GitHub 網頁上的 <code>Resolve conflicts</code> 或使用 AI 助手詢問「How to resolve git merge conflicts in VS Code」，排解後再次 commit 與 push 即可。</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
