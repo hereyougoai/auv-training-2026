@@ -4,35 +4,176 @@
 
 ---
 
+### 🎨 ROS 2 核心通訊概念圖 (Publisher / Subscriber / Topic)
+
+在進入代碼編寫前，請先理解 ROS 2 最基礎的「發布/訂閱」通訊邏輯。這就像是收音機廣播電台與聽眾的關係：
+
+```mermaid
+graph LR
+    subgraph ROS2_Network [ROS 2 通訊網路]
+        A["📢 發布者節點 (Publisher Node)<br>例如：深度計模擬程式<br>(負責往主題發送數據)"] -- "發布 (Publish)<br>數據訊息" --> B("💬 主題 (Topic)<br>例如：/auv/depth<br>(資料傳輸的管道)")
+        B -- "訂閱 (Subscribe)<br>接收數據" --> C["👂 訂閱者節點 (Subscriber Node)<br>例如：安全監控器程式<br>(監聽管道並處理數據)"]
+    end
+    style A fill:#4CAF50,stroke:#388E3C,color:#fff
+    style B fill:#2196F3,stroke:#1976D2,color:#fff
+    style C fill:#FF9800,stroke:#F57C00,color:#fff
+```
+
+* **Topic (主題)**：是資料傳輸的虛擬管道。發布者與訂閱者只要「頻道（Topic 名稱）」對齊，就能順利收發資料，彼此不需要知道對方的存在。
+
+---
+
 ## 📖 核心學習內容
 
 ### 1. ROS 2 Workspace 與 Colcon 編譯系統
-* **Workspace (工作空間)**：開發 ROS 2 的目錄結構。通常包含 `src/`（原始碼放置處）。
-* **Colcon**：ROS 2 的專用編譯工具。
+
+* **Workspace (工作空間)**：這是開發 ROS 2 專案的根目錄。我們所有的套件原始碼都必須放在名為 `src` 的子資料夾中。
+* **Colcon**：是 ROS 2 的專用編譯工具，它會掃描 `src` 目錄下的所有套件並自動進行編譯。
+
+#### 🛠️ 建立工作空間的標準步驟：
+打開終端機，依序輸入以下指令：
+
 ```bash
-# 建立工作空間並編譯的標準動作
+# 1. 建立工作空間目錄，並建立存放原始碼的 src 資料夾
 mkdir -p ~/auv_ws/src
 cd ~/auv_ws
+
+# 2. 進行第一次編譯（此時 src 內還沒有程式碼，會自動生成 build, install, log 資料夾）
 colcon build
+
+# 3. 載入環境變數（這是最重要的一步！每次編譯完套件、或開啟新的終端機視窗，都必須執行此行，否則系統會找不到您的套件）
 source install/setup.bash
 ```
 
 ---
 
 ### 2. Package (套件) 與 Node (節點)
-* **Package**：ROS 2 程式碼的基本組織單位，可包含多個節點。
-* **Node**：一個獨立運行的執行檔（進程），負責單一功能（例如：讀取鏡頭、發送電機指令）。
+
+* **Package (套件)**：是 ROS 2 程式碼的基本組織單位。您可以把套件想像成一個「功能抽屜」或「專案資料夾」，裡面包含設定檔（如 `package.xml`、`setup.py`）與多個執行檔。
+* **Node (節點)**：是真正運行的程式實體（進程）。一個節點就像是一個「負責特定工作的工人的程式」。例如：一個節點專門讀取 IMU 姿態，另一個節點專門輸出推進器 PWM 訊號。
+
+#### 💡 核心觀念：Package、Node 與通訊架構的關係
+
+很多新手會混淆這些名詞。請記住這個關係鏈：
+1. **工作空間 (Workspace)** 包含了多個 **套件 (Package)**。
+2. 每個 **套件 (Package)** 底下，可以寫多個 Python 檔案，這些檔案被編譯執行後就是 **節點 (Node)**。
+3. 這些 **節點 (Node)** 內部的程式碼，會宣告自己是 **發布者 (Publisher)** 還是 **訂閱者 (Subscriber)**。
+4. 這些節點再透過 **主題 (Topic)** 這個資料管道進行資料收發。
+> 簡單來說：**Package（程式工具箱 / 專案資料夾）** 裝著 **Nodes（節點程式）**，而 **Nodes（節點程式）** 藉由宣告為 **Publisher/Subscriber（通訊角色）** 在 **Topic（頻道）** 上進行溝通！
+
+
+#### 🔌 什麼是 `rclpy`？
+在建立套件時，我們會宣告依賴 `rclpy`。
+`rclpy` 是 **ROS 2 Client Library for Python** 的縮寫。它是 ROS 2 官方為 Python 語言開發的 API 函式庫。所有我們在 Python 中呼叫的 ROS 2 功能（例如：建立節點、發布主題、計時器、日誌輸出等），都是透過 `import rclpy` 來調用的。
+
+#### 🛠️ 建立套件的標準步驟：
 ```bash
-# 建立一個 Python 類型的 ROS 2 套件
+# 1. 必須進入工作空間的 src 目錄下才能建立套件
+cd ~/auv_ws/src
+
+# 2. 建立一個 Python 類型的 ROS 2 套件，名為 auv_monitor，並宣告依賴 rclpy（Python API 庫）與 std_msgs（標準訊息格式）
 ros2 pkg create --build-type ament_python auv_monitor --dependencies rclpy std_msgs
 ```
+*(執行後，系統會自動在 `src` 底下生成一個 `auv_monitor` 資料夾，裡面有寫程式碼的目錄，以及告訴編譯器如何打包的 `setup.py` 與 `package.xml`)*
 
 ---
 
 ### 3. Topic (主題) 通訊機制
-Topic 是 ROS 2 最常用的一對多單向非同步通訊方式（發布/訂閱模式）：
-* **Publisher (發布者)**：往某個 Topic 管道不斷灌入資料。
-* **Subscriber (訂閱者)**：監聽該 Topic，一旦有新資料就觸發回呼函式 (Callback) 處理。
+
+在 Python 中寫一個 ROS 2 節點時，我們通常會採用**物件導向 (OOP)** 的寫法，讓我們的節點類別繼承自 `rclpy.node.Node`。
+
+以下是新手必須掌握的 Publisher 與 Subscriber 最基本的程式碼結構範本：
+
+#### 📢 Publisher (發布者) 的極簡語法結構：
+```python
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String # 載入字串訊息格式
+
+class SimplePublisher(Node):
+    def __init__(self):
+        # 初始化節點名稱為 'simple_publisher'
+        super().__init__('simple_publisher')
+        
+        # 1. 建立發布者物件 (訊息類型, 主題名稱, 佇列緩衝大小)
+        self.pub = self.create_publisher(String, 'my_topic', 10)
+        
+        # 2. 設定一個定時器，每 1.0 秒自動執行一次 timer_callback 函式
+        self.timer = self.create_timer(1.0, self.timer_callback)
+
+    # 3. 定時器回呼函式 (Timer Callback)
+    # 這是一個「事件驅動」的方法。每當定時器設定的時間到 (此處為 1.0 秒)，
+    # ROS 2 系統就會在背景自動呼叫這個函式，執行我們想要定時做的事情（例如：發布感測器讀數）。
+    def timer_callback(self):
+        msg = String()
+        msg.data = "Hello AUV!" # 設定訊息內容
+        
+        # 4. 發布訊息
+        self.pub.publish(msg)
+        self.get_logger().info(f'發布訊息: "{msg.data}"')
+
+# 💡 真正啟動並執行這個類別的進入點
+def main(args=None):
+    rclpy.init(args=args)            # A. 初始化 ROS 2 的通訊系統
+    node = SimplePublisher()         # B. 宣告與實例化節點物件 (從設計圖模具生出實體)
+    rclpy.spin(node)                 # C. 卡住程式進行無限事件監聽循環 (執行 timer_callback)
+    node.destroy_node()              # D. 按下 Ctrl+C 結束時清理資源
+    rclpy.shutdown()                 # E. 關閉 ROS 2 通訊
+
+if __name__ == '__main__':
+    main()
+```
+
+#### 👂 Subscriber (訂閱者) 的極簡語法結構：
+```python
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String
+
+class SimpleSubscriber(Node):
+    def __init__(self):
+        # 初始化節點名稱為 'simple_subscriber'
+        super().__init__('simple_subscriber')
+        
+        # 1. 建立訂閱者物件 (訊息類型, 主題名稱, 收到訊息時觸發的 Callback 函式, 佇列緩衝大小)
+        self.sub = self.create_subscription(
+            String, 
+            'my_topic', 
+            self.listener_callback, 
+            10
+        )
+
+    # 2. 訂閱者回呼函式 (Listener Callback)
+    # 這也是一個「事件驅動」的方法。我們不需要用 while 迴圈去持續監聽管道。
+    # 每當 'my_topic' 管道有新資料傳入時，ROS 2 系統就會自動捕獲該訊息，並將訊息傳入並執行此函式。
+    def listener_callback(self, msg):
+        self.get_logger().info(f'成功接收到訊息: "{msg.data}"')
+
+# 💡 真正啟動並執行這個類別的進入點
+def main(args=None):
+    rclpy.init(args=args)            # A. 初始化 ROS 2 的通訊系統
+    node = SimpleSubscriber()        # B. 宣告與實例化節點物件
+    rclpy.spin(node)                 # C. 卡住程式進行無限事件監聽循環 (監聽並執行 listener_callback)
+    node.destroy_node()              # D. 按下 Ctrl+C 結束時清理資源
+    rclpy.shutdown()                 # E. 關閉 ROS 2 通訊
+
+if __name__ == '__main__':
+    main()
+```
+
+---
+
+#### ❓ 新手必問：為什麼在類別外要寫 `main()`？`rclpy.spin()` 又是做什麼的？
+
+您會發現上面的範例程式碼除了 Class（類別設計圖）之外，最下方都包含了 `main()` 進入點。這是因為 **Class 只是設計藍圖**，必須在外部透過程式指令來驅動它：
+
+1. **宣告與實例化物件**：`node = SimplePublisher()` 這行程式碼正是用來**宣告與建立節點實體**的關鍵。沒有這一行，我們的設計圖就只是一行行靜態文字，不會真正被電腦分配記憶體並執行。
+2. **`rclpy.spin(node)` 的作用**：在一般 Python 程式中，如果我們想持續執行，可能需要自己寫 `while True:` 迴圈。但在 ROS 2 中，我們絕對不能自己寫死迴圈（那會卡死 CPU 且無法接收其他事件）！
+   - `spin(node)` 會接管整個程式的控制權，進入一個**高效的事件監聽與排程循環**。
+   - 它會在背景自動檢查：定時器時間到了嗎？有的話就去執行 `timer_callback`；訂閱的主題收到新資料了嗎？有的話就去執行 `listener_callback`。
+   - 這就是為什麼我們的節點程式完全不需要自己寫 `while` 迴圈，也能不間斷、高效率地收發訊息的背後祕密。
+
+這就是為什麼在後面實作小專案的 Python 檔案中，最下面都有 `def main():` 的原因。當我們執行該節點時，系統會先呼叫 `main()` 宣告出物件，再用 `spin()` 開始監聽。
 
 ---
 
