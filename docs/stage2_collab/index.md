@@ -142,12 +142,12 @@ gitGraph
    git checkout -b feat/sign-in-yourname
    ```
 4. **建立您的簽到檔案**：
-   * 在專案根目錄中執行以下指令，建立 `members/` 下以您英文名字命名的資料夾與 `README.md` 檔案：
-     ```bash
-     mkdir -p members/yourname
-     touch members/yourname/README.md
-     ```
-   * 使用 VS Code 或編輯器打開此 `README.md`，寫下簡單的自我介紹、您在 AUV 團隊中負責的次系統（如：控制、視覺、機構等）以及對今年的學習期許。
+    * 在專案根目錄中執行以下指令，建立 `members/` 下以您英文名字命名的資料夾與 `README.md` 檔案：
+      ```bash
+      mkdir -p members/yourname
+      touch members/yourname/README.md
+      ```
+    * 使用 VS Code 或編輯器打開此 `README.md`，寫下簡單的自我介紹、您在 AUV 團隊中負責的次系統（如：控制、視覺、機構等）以及對今年的學習期許。
 5. **本地端存檔提交**：
    ```bash
    # 1. 檢查目前修改的檔案狀態
@@ -164,8 +164,8 @@ gitGraph
    git push origin feat/sign-in-yourname
    ```
 7. **發起 Pull Request (PR)**：
-   * 開啟瀏覽器回到 GitHub 專案網頁，您會看到一個黃色的提示框，顯示 `feat/sign-in-yourname had recent pushes...`。
-   * 點選 **「Compare & pull request」**。
-   * 在 PR 的描述中說明您已完成簽到，並點選 **「Create pull request」**。
+    * 開啟瀏覽器回到 GitHub 專案網頁，您會看到一個黃色的提示框，顯示 `feat/sign-in-yourname had recent pushes...`。
+    * 點選 **「Compare & pull request」**。
+    * 在 PR 的描述中說明您已完成簽到，並點選 **「Create pull request」**。
 8. **解決代碼衝突 (若有)**：
-   * 若與其他學員的代碼發生衝突（Conflict），不用驚慌！請點選 GitHub 網頁上的 `Resolve conflicts` 或使用 AI 助手詢問「How to resolve git merge conflicts in VS Code」，排解後再次 commit 與 push 即可。
+    * 若與其他學員的代碼發生衝突（Conflict），不用驚慌！請點選 GitHub 網頁上的 `Resolve conflicts` 或使用 AI 助手詢問「How to resolve git merge conflicts in VS Code」，排解後再次 commit 與 push 即可。

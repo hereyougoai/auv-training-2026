@@ -51,10 +51,10 @@ WSL2 預設無法存取主機的 USB 實體裝置（例如 USB 轉 TTL 模組、
    ```
    *安裝完成後，請重新啟動電腦以生效。*
 2. **基本操作指引 (後續連接硬體時使用)**：
-   * 在 Windows PowerShell 中執行 `usbipd list` 查找連接的 USB 裝置（例如記下其 Bus ID，如 `2-1`）。
-   * 將裝置共享綁定（首次需執行一次）：`usbipd bind --busid <BUSID>`。
-   * 將裝置掛載進 Ubuntu：`usbipd attach --wsl --busid <BUSID>`。
-   * 在 Ubuntu 終端機中輸入 `lsusb`，即可看到該 USB 裝置，代表已成功導進 Linux！
+    * 在 Windows PowerShell 中執行 `usbipd list` 查找連接的 USB 裝置（例如記下其 Bus ID，如 `2-1`）。
+    * 將裝置共享綁定（首次需執行一次）：`usbipd bind --busid <BUSID>`。
+    * 將裝置掛載進 Ubuntu：`usbipd attach --wsl --busid <BUSID>`。
+    * 在 Ubuntu 終端機中輸入 `lsusb`，即可看到該 USB 裝置，代表已成功導進 Linux！
 
 ##### 5. 如何檢查安裝成功
 * **檢查 WSL 狀態 (在 Windows PowerShell 中)**：
@@ -94,10 +94,10 @@ GitHub 是全球最大的程式碼託管與協作平台，也是後續交作業�
 
 1. **造訪註冊頁面**：開啟瀏覽器進入 [GitHub 官網 (github.com)](https://github.com/)。
 2. **填寫資料**：點選網頁右上角的 **「Sign up」**。
-   * 輸入您的常用 **Email 信箱**。
-   * 設定您的 **密碼 (Password)**。
-   * 輸入您的 **使用者名稱 (Username)** (這將會是您的公開識別名稱，如 `tom-auv-2026`)。
-   * 選擇是否接受電子報（輸入 `y` 或 `n`），並完成簡單的「人機驗證（拼圖或旋轉圖案）」。
+    * 輸入您的常用 **Email 信箱**。
+    * 設定您的 **密碼 (Password)**。
+    * 輸入您的 **使用者名稱 (Username)** (這將會是您的公開識別名稱，如 `tom-auv-2026`)。
+    * 選擇是否接受電子報（輸入 `y` 或 `n`），並完成簡單的「人機驗證（拼圖或旋轉圖案）」。
 3. **驗證信箱**：到您的 Email 收取驗證碼並輸入，即可完成註冊。
 4. **準備完成**：請記住您的帳號與密碼，我們在第二階段的 Git 協作中會頻繁使用！
 
@@ -144,10 +144,10 @@ GitHub 已停止支援密碼驗證。為了之後能夠順利將作業與程式�
    ```
    *請將終端機輸出的這一整串文字（以 `ssh-ed25519` 開頭）全部複製起來。*
 3. **新增至 GitHub 網頁**：
-   * 登入 GitHub，點選右上角個人頭像 -> **Settings**。
-   * 點選左側選單的 **SSH and GPG keys**。
-   * 點選右上角 **New SSH key**。
-   * **Title** 輸入您筆電的識別稱（例如 `my-laptop`），**Key** 的欄位中貼上剛才複製的公鑰內容，並點選 **Add SSH key**。
+    * 登入 GitHub，點選右上角個人頭像 -> **Settings**。
+    * 點選左側選單的 **SSH and GPG keys**。
+    * 點選右上角 **New SSH key**。
+    * **Title** 輸入您筆電的識別稱（例如 `my-laptop`），**Key** 的欄位中貼上剛才複製的公鑰內容，並點選 **Add SSH key**。
 4. **測試連線** (在 Ubuntu 終端機執行)：
    ```bash
    ssh -T git@github.com
