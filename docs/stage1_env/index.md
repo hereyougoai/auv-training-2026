@@ -47,7 +47,7 @@ WSL2 預設無法存取主機的 USB 實體裝置（例如 USB 轉 TTL 模組、
 
 1. **安裝 usbipd-win**：在 Windows **PowerShell (以系統管理員身分執行)** 輸入以下指令：
    ```powershell
-   winget install usbipd-win
+   winget install dorssel.usbipd-win
    ```
    *安裝完成後，請重新啟動電腦以生效。*
 2. **基本操作指引 (後續連接硬體時使用)**：
@@ -87,7 +87,7 @@ Windows 與 Mac 環境之 C/C++ 工具鏈基礎安裝指南可參閱：
 ---
 
 ### 2. AI 輔助開發工具與平台
-在開始撰寫程式碼之前，讓 AI 成為您的常駐助教。本培訓將使用 **Antigravity (Google DeepMind 研發的 AI 代理 IDE)** 與 **Codex (AI 輔助程式補全套件)**。
+在開始撰寫程式碼之前，讓 AI 成為您的常駐助教。本培訓鼓勵學員善用多種 AI 工具輔助開發：**[Antigravity](https://antigravity.google)**（Google 推出的 AI-first 開發環境，基於 VS Code 分支，支援多個 AI 代理在後台自動規劃、執行並測試程式）、**ChatGPT** 以及 **Claude Code** 等皆是實用的 AI 助手。無論是解釋錯誤訊息、生成程式片段、協助重構，還是進行代碼審查，這些工具都能大幅縮短您的除錯時間，讓您更聚焦在系統設計與問題解決本身。請依課程引導或個人習慣選擇順手的工具，並學會如何用清晰的中文描述問題、提供必要的上下文（如程式碼片段、錯誤訊息），以獲得最準確的回答。
 
 #### 步驟 A：註冊 GitHub 帳號
 GitHub 是全球最大的程式碼託管與協作平台，也是後續交作業與團隊專案的核心工具。
@@ -103,48 +103,14 @@ GitHub 是全球最大的程式碼託管與協作平台，也是後續交作業�
 
 ---
 
-#### 步驟 B：下載與熟悉 Antigravity (Google DeepMind AI 協作開發平台)
-Antigravity 是 Google DeepMind 打造的 AI-first 開發環境 (基於 VS Code 分支開發)，它不只是編輯器，還能讓多個 AI 代理（Agents）在後台幫您規劃、執行和測試程式。
+#### 步驟 B：下載與安裝 Antigravity
+Antigravity 是一款以 VS Code 為基礎分支開發的 AI-first 整合開發環境，內建多 Agent 協作功能，能在後台自動規劃、撰寫並測試程式碼。
 
-##### a. 下載與安裝
 * **下載位置**：開啟瀏覽器造訪 **[antigravity.google](https://antigravity.google)**。
 * **安裝步驟**：
   * **WSL2 / Linux 用戶**：下載 `.deb` 安裝包，在終端機執行 `sudo dpkg -i <filename>.deb`，或直接下載軟體包進行安裝。
   * **Windows / macOS 用戶**：下載對應的安裝檔，按預設選項直接雙擊安裝。
 * **登入帳號**：啟動 Antigravity 後，點選左下角登入您的 Google 帳號以啟用 AI 核心功能。
-
-##### b. 熟悉 Antigravity 介面與功能
-* **載入工作區**：點選 `File -> Open Folder`，選擇我們的 `auv-training-2026` 專案資料夾。
-* **Agent Manager (代理管理器)** 🤖：
-  * 在右側面板中，您可以看到 Agent 控制台。
-  * 您可以發起一個任務（Task），例如：`幫我寫一個計算推進器 PWM 的 Python 類別`。
-* **Artifacts (產出產物)** 📄：
-  * 當 AI Agent 收到您的指令後，它不會只在聊天室噴程式碼，而是會主動在工作區建立諸如 `implementation_plan.md` (實作規劃案) 或 `task.md` (待辦清單)。
-  * 您只需點選 **「Proceed」** 批准，AI 代理就會自動在後台幫您編輯程式、建立檔案甚至執行測試！
-
----
-
-#### 步驟 C：下載與熟悉 Codex (AI 程式碼智慧補全)
-Codex 是功能強大的 AI 程式碼編寫與即時補全套件，可直接嵌入在您的編輯器中，提供流暢的「即時自動完成」體驗。
-
-##### a. 下載與安裝
-1. 開啟 **Antigravity** 或 **VS Code**。
-2. 點擊左側邊欄的 **Extensions (擴充套件，快捷鍵 `Ctrl + Shift + X`)**。
-3. 在上方搜尋欄輸入 **`Codex`**（或視課程引導安裝 GitHub Copilot / Codeium 等相容套件）。
-4. 點選 **「Install」** 按鈕完成安裝，並依畫面提示完成帳號授權連結。
-
-##### b. 熟悉與使用技巧
-* **單行/多行程式碼自動補全 (Inline Completion)**：
-  * 當您開始在程式檔案中打字時，Codex 會自動在游標後方以 **「淡灰色文字」** 預測您可能想寫的內容。
-  * 如果預測正確，按下 **`Tab` 鍵** 即可一鍵採用；若不需要，直接繼續打字即可。
-* **透過註解生成程式碼 (Comment-to-Code)**：
-  * 在程式碼中寫下一行中文註解，例如：
-    ```python
-    # 計算推進器 PWM 的物理安全區間限制，限制在 1100 到 1900 之間
-    ```
-  * 按下 Enter 換行，Codex 將會自動生成對應的實作程式碼，同樣按下 **`Tab`** 即可採用。
-* **快捷視窗 (Chat & Inline Edit)**：
-  * 選取某段程式碼，按下 **`Ctrl + I`**，即可開啟小視窗直接向 AI 說「幫我重構這段程式」或「幫我這段加上防呆機制」。
 
 ---
 
@@ -268,7 +234,7 @@ sudo systemctl restart docker
 
 ```bash
 newgrp docker # 確保免 sudo 權限立即生效
-docker run --rm --gpus all nvidia/cuda:12.5.0-base-ubuntu24.04 nvidia-smi
+docker run --rm --gpus all nvidia/cuda:12.6.3-base-ubuntu22.04 nvidia-smi
 ```
 
 *(如果終端機能印出顯示卡的詳細表格，恭喜你，環境架設完成！)*

@@ -133,7 +133,7 @@ gitGraph
 1. **造訪團隊 GitHub 儲存庫**：點擊進入我們 Orca AUV 團隊的 GitHub 專案網頁。
 2. **複製專案到本地端** (在 Ubuntu 終端機執行)：
    ```bash
-   git clone git@github.com:your-organization/auv-training-2026.git
+   git clone git@github.com:hereyougoai/auv-training-2026.git
    cd auv-training-2026
    ```
 3. **建立並切換至您的功能分支**：

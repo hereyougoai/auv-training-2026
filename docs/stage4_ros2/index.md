@@ -34,12 +34,16 @@ graph LR
 打開終端機，依序輸入以下指令：
 
 ```bash
-# 1. 建立工作空間目錄，並建立存放原始碼的 src 資料夾
+# 0. 載入 ROS 2 Jazzy 核心環境變數（每次開新終端機時必須執行，建議加入 ~/.bashrc）
+source /opt/ros/jazzy/setup.bash
+
+# 1. 建立工作區目錄，並建立存放原始碼的 src 資料夾
 mkdir -p ~/auv_ws/src
 cd ~/auv_ws
 
 # 2. 進行第一次編譯（此時 src 內還沒有程式碼，會自動生成 build, install, log 資料夾）
-colcon build
+# --symlink-install 讓 Python 程式碼修改後不需重新 build 即可生效
+colcon build --symlink-install
 
 # 3. 載入環境變數（這是最重要的一步！每次編譯完套件、或開啟新的終端機視窗，都必須執行此行，否則系統會找不到您的套件）
 source install/setup.bash
@@ -285,7 +289,7 @@ class SafetyMonitorNode(Node):
     def depth_callback(self, msg):
         current_depth = msg.data
         if current_depth > self.SAFE_LIMIT:
-            self.get_logger().warn(
+            self.get_logger().warning(
                 f'⚠️ [🚨 警報] 偵測到危險水深: {current_depth:.2f} m (安全上限: {self.SAFE_LIMIT} m)！'
             )
         else:
@@ -322,6 +326,9 @@ RUN . /opt/ros/jazzy/setup.sh && colcon build
 
 # 5. 設定 Entrypoint，啟動時自動加載環境變數
 ENTRYPOINT ["/bin/bash", "-c", "source /opt/ros/jazzy/setup.bash && source /auv_ws/install/setup.bash && exec \"$@\""]
+
+# 6. 預設執行指令（可被 docker-compose.yml 的 command: 欄位覆寫）
+CMD ["/bin/bash"]
 ```
 
 ---

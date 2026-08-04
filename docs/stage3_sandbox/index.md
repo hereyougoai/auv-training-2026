@@ -75,6 +75,12 @@ python3 -m venv venv
 venv\Scripts\activate.bat
 ```
 
+* **Windows (PowerShell):**
+```powershell
+venv\Scripts\Activate.ps1
+```
+*(若 PowerShell 提示執行原則限制，請先執行：`Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`)*
+
 * **Mac / Linux:**
 ```bash
 source venv/bin/activate
@@ -614,7 +620,7 @@ docker run -it --rm --device /dev/ttyUSB0 auv-thruster-calc:v1.0
 
 #### 2. GPU 運算資源穿透 (`--gpus all`)
 
-水下影像辨識、物件追蹤（例如執行 SAM 3 等深度學習模型）或使用 NVIDIA Isaac ROS 框架時，極度依賴 GPU 加速。預設的容器是抓不到顯示卡的。
+水下影像辨識、物件追蹤（例如執行 SAM 2 等深度學習模型）或使用 NVIDIA Isaac ROS 框架時，極度依賴 GPU 加速。預設的容器是抓不到顯示卡的。
 
 * **核心概念**：在主機安裝好 NVIDIA Container Toolkit 後，透過 `--gpus all` 指令將主機的 GPU 運算能力「穿透」進容器。
 * **實戰指令**：
