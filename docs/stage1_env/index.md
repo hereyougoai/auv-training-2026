@@ -81,8 +81,8 @@ WSL2 預設無法存取主機的 USB 實體裝置（例如 USB 轉 TTL 模組、
 
 Windows 與 Mac 環境之 C/C++ 工具鏈基礎安裝指南可參閱：
 
-* **Windows C 環境與 VS Code 基本設定**：[安裝指引影片/文件 1](https://drive.google.com/file/d/1bcwUeHuFPzFiuwqt9WiwahagIiMyr13K/view?usp=sharing)、[額外設定讓輸出在 Terminal 顯示](https://drive.google.com/file/d/1nGTVGBeMm6VnJw8juysmK-tyy3qVV2_L/view?usp=sharing)
-* **MacBook C 環境與 VS Code 基本設定**：[安裝指引影片/文件 2](https://drive.google.com/file/d/1_RzE2PpczKwdKkK3NbJ51VkOPTK7QKyK/view?usp=sharing)
+* **Windows C 環境與 VS Code 基本設定**：[安裝指引/文件 1](https://drive.google.com/file/d/1bcwUeHuFPzFiuwqt9WiwahagIiMyr13K/view?usp=sharing)、[額外設定讓輸出在 Terminal 顯示](https://drive.google.com/file/d/1nGTVGBeMm6VnJw8juysmK-tyy3qVV2_L/view?usp=sharing)
+* **MacBook C 環境與 VS Code 基本設定**：[安裝指引/文件 2](https://drive.google.com/file/d/1_RzE2PpczKwdKkK3NbJ51VkOPTK7QKyK/view?usp=sharing)
 
 ---
 
