@@ -1,4 +1,4 @@
-# 階段一：環境建置 
+# 階段一：環境建置
 
 本階段的核心目標是**消除學員之間的環境差異**，讓所有人站在同一條起跑線上。對於需要進行 AUV 開發，硬體驅動的正確安裝與容器隔離尤為重要。
 
@@ -10,7 +10,7 @@
 
 ## 【分類一】 作業系統與硬體連結 (Ubuntu 24.04 LTS)
 
-####  使用 WSL2 安裝 Ubuntu 24.04 
+#### 使用 WSL2 安裝 Ubuntu 24.04
 
 WSL2 是 Windows 內建的 Linux 子系統，適合不想重新分割硬碟且無獨立顯卡的學員。
 
@@ -19,26 +19,32 @@ WSL2 是 Windows 內建的 Linux 子系統，適合不想重新分割硬碟且�
 
 ##### 2. 安裝指令
 請在開啟的 PowerShell 視窗中輸入以下指令並按下 Enter：
+
 ```powershell
 wsl --install -d Ubuntu-24.04
 ```
+
 > [!NOTE]
 > 如果系統提示您需要重新啟動電腦，請重新啟動。重啟後 Windows 會自動開啟一個新的 Ubuntu 命令提示字元視窗，繼續安裝程序。
 
 ##### 3. 初始設定
 安裝完成後，Ubuntu 視窗會要求您設定**使用者名稱與密碼**：
+
 1. **Enter new UNIX username**: 請輸入您自訂的帳號名稱 (請使用小寫英文字母，如 `auvuser`，不可有空格)。
 2. **New password**: 輸入您自訂的密碼 (輸入時畫面**不會顯示任何字元或星號**，這是 Linux 的安全保護機制，請盲打後按 Enter)。
 3. **Retype new password**: 再次輸入相同密碼並按 Enter。
 
 密碼設定完成後，請在 **Ubuntu 終端機** 內執行以下指令更新系統套件：
+
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
+
 *(執行 `sudo` 指令時會要求您輸入剛剛設定的密碼。)*
 
 ##### 4. 關鍵附加設定：AUV 硬體連接 (USB/串口) 映射 ⚠️
 WSL2 預設無法存取主機的 USB 實體裝置（例如 USB 轉 TTL 模組、IMU、壓力感測器等）。我們必須安裝 **usbipd-win** 工具：
+
 1. **安裝 usbipd-win**：在 Windows **PowerShell (以系統管理員身分執行)** 輸入以下指令：
    ```powershell
    winget install usbipd-win
@@ -146,6 +152,7 @@ Codex 是功能強大的 AI 程式碼編寫與即時補全套件，可直接嵌�
 
 ### 1. 版本控制工具：Git 基本設定
 在終端機執行以下指令完成安裝與設定：
+
 ```bash
 sudo apt update
 sudo apt install git -y
@@ -159,6 +166,7 @@ git config --global user.email "your_email@example.com"
 
 ### 2. 關鍵認證設定：建立 GitHub SSH 金鑰
 GitHub 已停止支援密碼驗證。為了之後能夠順利將作業與程式碼 push 到 GitHub，必須設定 SSH 金鑰：
+
 1. **生成金鑰對** (在 Ubuntu 終端機執行)：
    ```bash
    ssh-keygen -t ed25519 -C "your_email@example.com"
@@ -186,6 +194,7 @@ GitHub 已停止支援密碼驗證。為了之後能夠順利將作業與程式�
 
 ### 1. 容器化引擎：Docker & Docker Compose
 使用以下指令安裝最新版 Docker Engine：
+
 ```bash
 # 解除安裝舊版本
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
@@ -212,6 +221,7 @@ sudo usermod -aG docker $USER
 > [!IMPORTANT]
 > **免 sudo 立即生效設定** ⚠️
 > 上述 `usermod` 指令在一般情況下需要重新登入或重開機才會生效。請在同一個終端機視窗中執行以下指令，強迫更新群組權限，避免後續 Docker 指令因為權限不足 (Permission Denied) 而報錯：
+>
 > ```bash
 > newgrp docker
 > ```
@@ -233,6 +243,7 @@ sudo usermod -aG docker $USER
 
 #### 步驟 B：安裝 NVIDIA Container Toolkit
 這是讓 Docker 容器內程式能夠調用實體 GPU 的關鍵橋樑：
+
 ```bash
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
   && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
@@ -254,8 +265,10 @@ sudo systemctl restart docker
 **請注意**：請確保 Windows 端的 NVIDIA 驅動已安裝完畢。
 
 接著請在 Ubuntu 終端機執行以下指令：
+
 ```bash
 newgrp docker # 確保免 sudo 權限立即生效
 docker run --rm --gpus all nvidia/cuda:12.5.0-base-ubuntu24.04 nvidia-smi
 ```
+
 *(如果終端機能印出顯示卡的詳細表格，恭喜你，環境架設完成！)*

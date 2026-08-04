@@ -1,4 +1,5 @@
 site_name: AUV 培訓手冊 (2026)
+site_url: https://hereyougoai.github.io/auv-training-2026/
 theme:
   name: material
   palette:
