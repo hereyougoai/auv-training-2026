@@ -142,8 +142,11 @@ gitGraph
    git checkout -b feat/sign-in-yourname
    ```
 4. **建立您的簽到檔案**：
-   * 在專案的 `members/` 資料夾下，建立一個以您英文名字命名的資料夾（使用 `mkdir` 指令）。
-   * 在該資料夾下建立一個 `README.md`（使用 `touch` 指令）。
+   * 在專案根目錄中執行以下指令，建立 `members/` 下以您英文名字命名的資料夾與 `README.md` 檔案：
+     ```bash
+     mkdir -p members/yourname
+     touch members/yourname/README.md
+     ```
    * 使用 VS Code 或編輯器打開此 `README.md`，寫下簡單的自我介紹、您在 AUV 團隊中負責的次系統（如：控制、視覺、機構等）以及對今年的學習期許。
 5. **本地端存檔提交**：
    ```bash
