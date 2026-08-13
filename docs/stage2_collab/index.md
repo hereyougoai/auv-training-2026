@@ -125,47 +125,27 @@ gitGraph
 
 ---
 
-## 【分類四】 實作任務：【AUV 團隊簽到板】
+## 【分類四】 實作任務：建立工作區與取得專案代碼
 
-透過實際發起 Pull Request (PR) 流程，讓學員體驗真實團隊的協作模式。
+透過實際操作終端機與 Git 指令，學員將學會如何在自己的電腦上建立專屬的工作資料夾，並將團隊的專案代碼下載到本地端。
 
 ### 📋 任務步驟：
-1. **造訪團隊 GitHub 儲存庫**：點擊進入我們 Orca AUV 團隊的 GitHub 專案網頁。
-2. **複製專案到本地端** (在 Ubuntu 終端機執行)：
+
+1. **開啟您的 Ubuntu 終端機**
+2. **建立並進入工作區資料夾**：
+   在終端機中執行以下指令，建立一個名為 `workplace` 的資料夾，並切換進去：
    ```bash
-   git clone git@github.com:hereyougoai/auv-training-2026.git
-   cd auv-training-2026
+   mkdir workplace
+   cd workplace
    ```
-3. **建立並切換至您的功能分支**：
+3. **複製 (Clone) 團隊專案到本地端**：
+   執行以下指令，將 SAUVC 的專案原始碼下載到您的工作區中：
    ```bash
-   # 分支命名規範：feat/sign-in-[您的名字]
-   git checkout -b feat/sign-in-yourname
+   git clone https://github.com/NCTU-AUV/SAUVC.git
    ```
-4. **建立您的簽到檔案**：
-    * 在專案根目錄中執行以下指令，建立 `members/` 下以您英文名字命名的資料夾與 `README.md` 檔案：
-      ```bash
-      mkdir -p members/yourname
-      touch members/yourname/README.md
-      ```
-    * 使用 VS Code 或編輯器打開此 `README.md`，寫下簡單的自我介紹、您在 AUV 團隊中負責的次系統（如：控制、視覺、機構等）以及對今年的學習期許。
-5. **本地端存檔提交**：
+4. **確認下載成功**：
    ```bash
-   # 1. 檢查目前修改的檔案狀態
-   git status
-   
-   # 2. 將新增的資料夾與檔案加入暫存區
-   git add .
-   
-   # 3. 提交存檔，附帶有意義的說明
-   git commit -m "feat: add yourname to sign-in board"
+   ls -la
+   cd SAUVC
    ```
-6. **推送到 GitHub 遠端雲端**：
-   ```bash
-   git push origin feat/sign-in-yourname
-   ```
-7. **發起 Pull Request (PR)**：
-    * 開啟瀏覽器回到 GitHub 專案網頁，您會看到一個黃色的提示框，顯示 `feat/sign-in-yourname had recent pushes...`。
-    * 點選 **「Compare & pull request」**。
-    * 在 PR 的描述中說明您已完成簽到，並點選 **「Create pull request」**。
-8. **解決代碼衝突 (若有)**：
-    * 若與其他學員的代碼發生衝突（Conflict），不用驚慌！請點選 GitHub 網頁上的 `Resolve conflicts` 或使用 AI 助手詢問「How to resolve git merge conflicts in VS Code」，排解後再次 commit 與 push 即可。
+   如果能看到 `SAUVC` 資料夾並成功進入，代表您已經順利取得團隊的專案代碼了！

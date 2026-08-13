@@ -234,7 +234,7 @@ sudo systemctl restart docker
 
 ```bash
 newgrp docker # 確保免 sudo 權限立即生效
-docker run --rm --gpus all nvidia/cuda:12.6.3-base-ubuntu22.04 nvidia-smi
+docker run --rm --gpus all nvidia/cuda:12.6.3-base-ubuntu24.04 nvidia-smi
 ```
 
 *(如果終端機能印出顯示卡的詳細表格，恭喜你，環境架設完成！)*
