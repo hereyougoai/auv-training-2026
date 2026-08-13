@@ -229,8 +229,65 @@ Docker Compose 就是為了解決這個問題而誕生的工具。它允許我�
 
 編寫兩個 ROS 2 節點：**Node A** 負責模擬深度計發送數據，**Node B** 負責接收數據並在水深過深時發出警告。
 
-### 步驟一：撰寫 Node A (Sensor Mock - 發布者)
-在 `auv_monitor/auv_monitor/sensor_mock.py` 寫入：
+### 步驟零：安裝 ROS 2 Jazzy (本機環境)
+
+由於您的本機尚未安裝 ROS 2 Jazzy，請先在 Ubuntu 終端機執行以下官方安裝指令（安裝過程大約需要 5-10 分鐘，系統可能會要求您輸入密碼）：
+
+```bash
+# 1. 確保系統支援 UTF-8
+sudo apt update && sudo apt install locales
+sudo locale-gen en_US en_US.UTF-8
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# 2. 啟用 Ubuntu Universe 儲存庫
+sudo apt install software-properties-common
+sudo add-apt-repository universe
+
+# 3. 添加 ROS 2 的 GPG 密鑰與儲存庫
+sudo apt update && sudo apt install curl -y
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+# 4. 安裝 ROS 2 Jazzy 桌面完整版
+sudo apt update
+sudo apt install ros-jazzy-desktop -y
+
+# 5. 安裝 Python 開發工具與 colcon 編譯器
+sudo apt install python3-colcon-common-extensions python3-rosdep -y
+
+# 6. 設定每次開機自動載入環境變數
+echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
+
+安裝完成後，請確保您的終端機已經重新開啟或載入了 `.bashrc`，接著再繼續後續的開發步驟！
+
+### 步驟一：建立工作區與套件架構
+
+在開始寫程式之前，我們需要先建立 ROS 2 的標準工作區與 Python 套件架構。請在終端機依序輸入以下指令：
+
+```bash
+# 1. 建立工作區的 src 資料夾並進入
+mkdir -p ~/auv_practice/src
+cd ~/auv_practice/src
+
+# 2. 自動生成 ROS 2 Python 套件標準架構
+ros2 pkg create --build-type ament_python auv_monitor --dependencies rclpy std_msgs
+```
+
+執行後，系統會為您建好 `auv_monitor/auv_monitor/` 這種專為 Python 模組設計的雙層目錄結構。外層管理編譯設定，內層則是我們實際放 `.py` 程式碼的地方。
+
+**指令拆解說明：**
+* `ros2 pkg create`：告訴 ROS 2 我要建立一個新套件。
+* `--build-type ament_python`：**這是最關鍵的參數！** 它告訴系統這是一個純 Python 的套件，系統就會自動幫你生出 `auv_monitor/auv_monitor/` 這種標準的雙層架構。
+* `auv_monitor`：您的套件名稱。
+* `--dependencies rclpy std_msgs`：(可選) 告訴系統這個套件會用到 ROS 2 的 Python 核心函式庫 (`rclpy`) 以及標準訊息格式庫 (`std_msgs`)，指令會自動將這些相依性寫進設定檔 `package.xml` 裡。
+
+---
+
+### 步驟二：撰寫 Node A (Sensor Mock - 發布者)
+在 `~/auv_ws/src/auv_monitor/auv_monitor/sensor_mock.py` 寫入：
 ```python
 import rclpy
 from rclpy.node import Node
@@ -249,9 +306,11 @@ class SensorMockNode(Node):
 
     def publish_depth(self):
         msg = Float32()
-        # 模擬深度在 0.5 ~ 4.0 米之間隨機波動與遞增
-        self.current_depth += random.uniform(-0.2, 0.5)
-        msg.data = max(0.0, self.current_depth)
+        # 加大水深的波動幅度，讓警報 (大於 3.0 米) 更容易被觸發
+        self.current_depth += random.uniform(-1.5, 1.5)
+        # 限制水深範圍在 0.0 ~ 4.0 米之間，避免無止盡下潛
+        self.current_depth = max(0.0, min(4.0, self.current_depth))
+        msg.data = self.current_depth
         
         self.publisher_.publish(msg)
         self.get_logger().info(f'發布當前深度數據: {msg.data:.2f} m')
@@ -266,7 +325,7 @@ def main(args=None):
 
 ---
 
-### 步驟二：撰寫 Node B (Safety Monitor - 訂閱者)
+### 步驟三：撰寫 Node B (Safety Monitor - 訂閱者)
 在 `auv_monitor/auv_monitor/safety_monitor.py` 寫入：
 ```python
 import rclpy
@@ -307,33 +366,52 @@ def main(args=None):
 
 ---
 
-### 步驟三：撰寫專案的 Dockerfile
+### 步驟四：註冊節點到 setup.py
 
-為了將我們的 ROS 2 程式包裝為可移植的映像檔，我們需要在工作空間根目錄下建立一個 `Dockerfile`：
+在 Python 套件中，我們必須在 `setup.py` 裡面註冊我們的節點，`ros2 run` 指令才找得到它。
+請開啟 `~/auv_ws/src/auv_monitor/setup.py`，找到 `entry_points` 欄位並修改如下：
+
+```python
+    entry_points={
+        'console_scripts': [
+            'sensor_mock = auv_monitor.sensor_mock:main',
+            'safety_monitor = auv_monitor.safety_monitor:main',
+        ],
+    },
+```
+
+---
+
+### 步驟五：撰寫專案的 Dockerfile
+
+為了將我們的 ROS 2 程式包裝為可移植的映像檔，我們需要在工作空間根目錄下建立一個 `Dockerfile`。
+為了避免映像檔過於肥大，我們採用業界標準的**「多階段建置 (Multi-stage Build)」**，並使用輕量級的 `jazzy-ros-base` 基礎映像檔：
 
 ```dockerfile
-# 1. 使用官方 ROS 2 Jazzy 基礎映像檔
-FROM osrf/ros:jazzy-desktop
-
-# 2. 設定容器內的工作目錄
+# ----- 第一階段：Builder (負責編譯) -----
+FROM ros:jazzy-ros-base AS builder
 WORKDIR /auv_ws
-
-# 3. 將本地的 src 原始碼目錄複製到容器中
+# 複製原始碼並編譯
 COPY ./src ./src
-
-# 4. 編譯 ROS 2 工作空間
 RUN . /opt/ros/jazzy/setup.sh && colcon build
 
-# 5. 設定 Entrypoint，啟動時自動加載環境變數
-ENTRYPOINT ["/bin/bash", "-c", "source /opt/ros/jazzy/setup.bash && source /auv_ws/install/setup.bash && exec \"$@\""]
+# ----- 第二階段：Runner (實際執行的極簡環境) -----
+FROM ros:jazzy-ros-base
+WORKDIR /auv_ws
+# 只從第一階段把「編譯好的成果 (install 資料夾)」拿過來，其餘原始碼與編譯垃圾通通丟掉！
+COPY --from=builder /auv_ws/install ./install
 
-# 6. 預設執行指令（可被 docker-compose.yml 的 command: 欄位覆寫）
+# 設定 Entrypoint，啟動時自動加載環境變數。
+# 注意結尾的 "bash" 是防呆設計，確保外部指令 (如 ros2 run) 能正確替換 "$@"
+ENTRYPOINT ["/bin/bash", "-c", "source /opt/ros/jazzy/setup.bash && source /auv_ws/install/setup.bash && exec \"$@\"", "bash"]
+
+# 預設執行指令（可被 docker-compose.yml 的 command: 欄位覆寫）
 CMD ["/bin/bash"]
 ```
 
 ---
 
-### 步驟四：撰寫 docker-compose.yml 啟動檔
+### 步驟六：撰寫 docker-compose.yml 啟動檔
 
 使用 Docker Compose 來一鍵啟動這兩個相互通訊的節點。在工作空間根目錄下建立一個名為 `docker-compose.yml` 的檔案：
 
@@ -345,6 +423,7 @@ services:
     build: .
     container_name: auv_sensor_mock
     network_mode: "host" # 使用 host 網路模式，確保 ROS 2 DDS 能與其他節點正常通訊
+    ipc: "host"          # 【重要】允許容器共用主機的記憶體空間，避免 Fast DDS 通訊失敗
     command: ros2 run auv_monitor sensor_mock
 
   # 服務二：安全監控接收節點
@@ -353,12 +432,13 @@ services:
     build: .
     container_name: auv_safety_monitor
     network_mode: "host"
+    ipc: "host"
     command: ros2 run auv_monitor safety_monitor
 ```
 
 ---
 
-### 步驟五：一鍵啟動與驗證
+### 步驟七：一鍵啟動與驗證
 
 1. 請在終端機中確認路徑在專案目錄下，執行以下指令建立並啟動服務：
    ```bash
