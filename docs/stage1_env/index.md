@@ -24,8 +24,8 @@ WSL2 是 Windows 內建的 Linux 子系統，適合不想重新分割硬碟且�
 wsl --install -d Ubuntu-24.04
 ```
 
-> [!NOTE]
-> 如果系統提示您需要重新啟動電腦，請重新啟動。重啟後 Windows 會自動開啟一個新的 Ubuntu 命令提示字元視窗，繼續安裝程序。
+!!! note "重新啟動提示"
+    如果系統提示您需要重新啟動電腦，請重新啟動。重啟後 Windows 會自動開啟一個新的 Ubuntu 命令提示字元視窗，繼續安裝程序。
 
 ##### 3. 初始設定
 安裝完成後，Ubuntu 視窗會要求您設定**使用者名稱與密碼**：
@@ -184,13 +184,12 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo usermod -aG docker $USER
 ```
 
-> [!IMPORTANT]
-> **免 sudo 立即生效設定** ⚠️
-> 上述 `usermod` 指令在一般情況下需要重新登入或重開機才會生效。請在同一個終端機視窗中執行以下指令，強迫更新群組權限，避免後續 Docker 指令因為權限不足 (Permission Denied) 而報錯：
->
-> ```bash
-> newgrp docker
-> ```
+!!! important "免 sudo 立即生效設定 ⚠️"
+    上述 `usermod` 指令在一般情況下需要重新登入或重開機才會生效。請在同一個終端機視窗中執行以下指令，強迫更新群組權限，避免後續 Docker 指令因為權限不足 (Permission Denied) 而報錯：
+
+    ```bash
+    newgrp docker
+    ```
 
 ---
 

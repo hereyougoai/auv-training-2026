@@ -70,23 +70,24 @@ python3 -m venv venv
 
 這是新手最常忘記的步驟。不啟動的話，你安裝的套件還是會跑到全域環境（大鍋子）裡。
 
-* **Windows (CMD):**
-```cmd
-venv\Scripts\activate.bat
-```
+=== "Windows (CMD)"
+    ```cmd
+    venv\Scripts\activate.bat
+    ```
 
-* **Windows (PowerShell):**
-```powershell
-venv\Scripts\Activate.ps1
-```
-*(若 PowerShell 提示執行原則限制，請先執行：`Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`)*
+=== "Windows (PowerShell)"
+    ```powershell
+    venv\Scripts\Activate.ps1
+    ```
+    *(若 PowerShell 提示執行原則限制，請先執行：`Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`)*
 
-* **Mac / Linux:**
-```bash
-source venv/bin/activate
-```
+=== "Mac / Linux"
+    ```bash
+    source venv/bin/activate
+    ```
 
-**💡 成功標誌：** 啟動後，你終端機輸入指令的地方，最前面會多出一個 `(venv)`，代表你已經成功進入隔離空間！
+!!! success "成功標誌"
+    啟動後，你終端機輸入指令的地方，最前面會多出一個 `(venv)`，代表你已經成功進入隔離空間！
 
 #### 2. 安裝需要的套件
 
@@ -173,7 +174,8 @@ else:
     print("你還是個小學生呢！")
 ```
 
-> **排版魔法：** 注意到了嗎？`if` 下方的程式碼有**縮排（留白）**。Python 是靠縮排來判斷這段動作是不是屬於這個條件的，按一下 `Tab` 鍵就能縮排。
+!!! tip "排版魔法"
+    注意到了嗎？`if` 下方的程式碼有**縮排（留白）**。Python 是靠縮排來判斷這段動作是不是屬於這個條件的，按一下 `Tab` 鍵就能縮排。
 
 ---
 
@@ -304,7 +306,8 @@ print(f"安全限制後的 PWM 訊號為: {safe_pwm} us") # 會印出 1900
 * **類別 `Class` (模具)**：這是一張藍圖或模具，它定義了東西「應該長怎樣」，但它只是概念，不能直接拿來用。
 * **物件 `Object` (實體)**：透過藍圖實際打造出來的東西。
 
-> 💡 **比喻：** `Class` 是「汽車設計圖」，`Object` 是馬路上真正在跑的「Toyota」和「Honda」。
+!!! info "比喻"
+    `Class` 是「汽車設計圖」，`Object` 是馬路上真正在跑的「Toyota」和「Honda」。
 
 ---
 
@@ -366,8 +369,8 @@ monster1.take_damage(20)
 # 輸出: 小火龍 受到了 20 點傷害，剩下 80 滴血。
 ```
 
-> **新手常見誤區釐清：**
-> 你會發現，我們在呼叫 `monster1.cry()` 的時候，括號裡面是空的，**不需要把 `self` 傳進去**。因為 Python 非常聰明，當你寫 `monster1.cry()` 時，它會自動把 `monster1` 當作 `self` 偷偷塞進去執行！
+!!! warning "新手常見誤區釐清"
+    你會發現，我們在呼叫 `monster1.cry()` 的時候，括號裡面是空的，**不需要把 `self` 傳進去**。因為 Python 非常聰明，當你寫 `monster1.cry()` 時，它會自動把 `monster1` 當作 `self` 偷偷塞進去執行！
 
 ---
 
@@ -388,7 +391,8 @@ monster1.take_damage(20)
 * **父類別 (Parent Class)**：提供基礎設計的模具（例如：`Monster` 普通怪獸）。
 * **子類別 (Child Class)**：繼承了基礎設計，並加上自己新功能的進階模具（例如：`Boss` 魔王怪獸）。
 
-> 💡 **語法秘訣：** 在定義子類別時，只要在名字後面加上括號，把父類別寫進去 `class Boss(Monster):`，電腦就會知道：「喔！這個 Boss 是 Monster 的進階版！」
+!!! tip "語法秘訣"
+    在定義子類別時，只要在名字後面加上括號，把父類別寫進去 `class Boss(Monster):`，電腦就會知道：「喔！這個 Boss 是 Monster 的進階版！」
 
 ---
 
@@ -500,7 +504,7 @@ dragon.take_damage(30)
 
 ### 步驟一：撰寫 Python 程式碼
 建立一個 `thruster_calc.py` 檔案：
-```python
+```python title="thruster_calc.py"
 import sys
 
 class ThrusterCalculator:
@@ -543,7 +547,7 @@ if __name__ == "__main__":
 
 ### 步驟二：撰寫 Dockerfile
 在與 `thruster_calc.py` 同一目錄下建立一個名為 `Dockerfile` 的檔案（注意：**無副檔名**）：
-```dockerfile
+```dockerfile title="Dockerfile"
 # 1. 使用輕量級的 Python 官方映像檔作為基礎環境
 FROM python:3.12-slim
 
@@ -598,9 +602,9 @@ docker run -it --rm -v ${PWD}:/app auv-thruster-calc:v1.0
 docker run -it --rm -v $(pwd):/app auv-thruster-calc:v1.0
 ```
 
-> **🔍 指令解析：**
-> * `-v ${PWD}:/app`：代表將本機的當前路徑映射到容器內的 `/app` 目錄。
-> * 現在，您可以嘗試在編輯器中修改本機 `thruster_calc.py` 的文字輸出（例如將 `--- AUV 推進器推力計算系統 ---` 改成別的字眼）並存檔，接著再次直接運行上面的指令，您會發現容器輸出的文字已經同步改變，完全不需要重新打包！這就是 Volume 映射的強大之處。
+!!! info "指令解析"
+    * `-v ${PWD}:/app`：代表將本機的當前路徑映射到容器內的 `/app` 目錄。
+    * 現在，您可以嘗試在編輯器中修改本機 `thruster_calc.py` 的文字輸出（例如將 `--- AUV 推進器推力計算系統 ---` 改成別的字眼）並存檔，接著再次直接運行上面的指令，您會發現容器輸出的文字已經同步改變，完全不需要重新打包！這就是 Volume 映射的強大之處。
 
 ---
 

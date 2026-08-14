@@ -65,7 +65,8 @@ source install/setup.bash
 3. 這些 **節點 (Node)** 內部的程式碼，會宣告自己是 **發布者 (Publisher)** 還是 **訂閱者 (Subscriber)**。
 4. 這些節點再透過 **主題 (Topic)** 這個資料管道進行資料收發。
 
-> 簡單來說：**Package（程式工具箱 / 專案資料夾）** 裝著 **Nodes（節點程式）**，而 **Nodes（節點程式）** 藉由宣告為 **Publisher/Subscriber（通訊角色）** 在 **Topic（頻道）** 上進行溝通！
+!!! summary "總結"
+    **Package（程式工具箱 / 專案資料夾）** 裝著 **Nodes（節點程式）**，而 **Nodes（節點程式）** 藉由宣告為 **Publisher/Subscriber（通訊角色）** 在 **Topic（頻道）** 上進行溝通！
 
 
 #### 🔌 什麼是 `rclpy`？
@@ -91,7 +92,7 @@ ros2 pkg create --build-type ament_python auv_monitor --dependencies rclpy std_m
 以下是新手必須掌握的 Publisher 與 Subscriber 最基本的程式碼結構範本：
 
 #### 📢 Publisher (發布者) 的極簡語法結構：
-```python
+```python title="simple_publisher.py"
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String # 載入字串訊息格式
@@ -131,7 +132,7 @@ if __name__ == '__main__':
 ```
 
 #### 👂 Subscriber (訂閱者) 的極簡語法結構：
-```python
+```python title="simple_subscriber.py"
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
@@ -208,7 +209,8 @@ Docker Compose 就是為了解決這個問題而誕生的工具。它允許我�
   ```bash
   docker compose up -d
   ```
-  > 💡 **提示**：`-d` 代表在背景執行（Detached mode），您的終端機不會被卡住，可以繼續輸入其他指令。
+  !!! tip "提示"
+      `-d` 代表在背景執行（Detached mode），您的終端機不會被卡住，可以繼續輸入其他指令。
 * **查看所有服務的運行狀態**：
   ```bash
   docker compose ps
@@ -288,7 +290,7 @@ ros2 pkg create --build-type ament_python auv_monitor --dependencies rclpy std_m
 
 ### 步驟二：撰寫 Node A (Sensor Mock - 發布者)
 在 `~/auv_ws/src/auv_monitor/auv_monitor/sensor_mock.py` 寫入：
-```python
+```python title="sensor_mock.py"
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32
@@ -327,7 +329,7 @@ def main(args=None):
 
 ### 步驟三：撰寫 Node B (Safety Monitor - 訂閱者)
 在 `auv_monitor/auv_monitor/safety_monitor.py` 寫入：
-```python
+```python title="safety_monitor.py"
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32
@@ -371,7 +373,7 @@ def main(args=None):
 在 Python 套件中，我們必須在 `setup.py` 裡面註冊我們的節點，`ros2 run` 指令才找得到它。
 請開啟 `~/auv_ws/src/auv_monitor/setup.py`，找到 `entry_points` 欄位並修改如下：
 
-```python
+```python title="setup.py" hl_lines="3 4"
     entry_points={
         'console_scripts': [
             'sensor_mock = auv_monitor.sensor_mock:main',
@@ -387,7 +389,7 @@ def main(args=None):
 為了將我們的 ROS 2 程式包裝為可移植的映像檔，我們需要在工作空間根目錄下建立一個 `Dockerfile`。
 為了避免映像檔過於肥大，我們採用業界標準的**「多階段建置 (Multi-stage Build)」**，並使用輕量級的 `jazzy-ros-base` 基礎映像檔：
 
-```dockerfile
+```dockerfile title="Dockerfile"
 # ----- 第一階段：Builder (負責編譯) -----
 FROM ros:jazzy-ros-base AS builder
 WORKDIR /auv_ws
@@ -415,7 +417,7 @@ CMD ["/bin/bash"]
 
 使用 Docker Compose 來一鍵啟動這兩個相互通訊的節點。在工作空間根目錄下建立一個名為 `docker-compose.yml` 的檔案：
 
-```yaml
+```yaml title="docker-compose.yml"
 services:
   # 服務一：模擬深度發布節點
   sensor_mock:

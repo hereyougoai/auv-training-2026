@@ -1,8 +1,8 @@
 # 2026 AUV 培訓手冊 🚀
 
-> [!NOTE]
-> 🔗 **線上閱讀網址**：[https://hereyougoai.github.io/auv-training-2026/](https://hereyougoai.github.io/auv-training-2026/)
-> 歡迎將本網址釘選至群組或加入瀏覽器書籤，方便隨時查閱。
+!!! note "線上閱讀網址"
+    🔗 **線上閱讀網址**：[https://hereyougoai.github.io/auv-training-2026/](https://hereyougoai.github.io/auv-training-2026/)
+    歡迎將本網址釘選至群組或加入瀏覽器書籤，方便隨時查閱。
 
 歡迎來到自主水下載具 (Autonomous Underwater Vehicle, AUV) 2026 年度培訓手冊！本手冊旨在引導新進成員與研發人員快速掌握 AUV 的軟硬體系統架構與開發流程。
 
@@ -19,6 +19,6 @@
 
 ---
 
-> [!TIP]
-> 💡 **小撇步**：點擊右上角的太陽/月亮圖標可以切換淺色與深色模式。
+!!! tip "小撇步"
+    💡 點擊右上角的太陽/月亮圖標可以切換淺色與深色模式。
 

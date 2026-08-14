@@ -29,7 +29,8 @@
 
 ### 2. 物件偵測模型與遷移學習
 * **YOLO (You Only Look Once)**：目前最主流、速度最快的實時物件偵測模型，非常適合資源受限的**邊緣運算裝置 (Edge Devices)**。
-  > ⚠️ **硬體現實防呆：** 若直接在純樹莓派 (Raspberry Pi) 的 CPU 上執行 YOLOv8n 推論，其 FPS 通常僅有低個位數，無法滿足 AUV 即時控制需求。實務上我們通常會選用具備 GPU 的 **NVIDIA Jetson** 系列，或者為樹莓派外接硬體加速器（如 Google Coral Edge TPU）。
+  !!! warning "硬體現實防呆"
+      若直接在純樹莓派 (Raspberry Pi) 的 CPU 上執行 YOLOv8n 推論，其 FPS 通常僅有低個位數，無法滿足 AUV 即時控制需求。實務上我們通常會選用具備 GPU 的 **NVIDIA Jetson** 系列，或者為樹莓派外接硬體加速器（如 Google Coral Edge TPU）。
 * **遷移學習 (Transfer Learning)**：我們不需要從頭訓練一個能辨識萬物的巨大模型。我們可以使用在大型公開資料集（如 COCO）上預訓練好的權重（Weight）作為起點，並透過**數百至數千張**特定水下場景的圖片進行微調 (Fine-tune)，即可快速獲得專屬 AUV 的辨識模型。
 
 ---
@@ -41,7 +42,8 @@
 * **評估指標**：
   * **mAP (Mean Average Precision)**：辨識精準度的綜合指標。
   * **FPS (Frames Per Second)**：每秒處理影格數。水下即時控制要求 FPS 至少要達到 `15 ~ 30` 以上，以免控制系統產生嚴重決策延遲。
-  > 💡 **效能優化：** 為了在邊緣運算裝置上實現高 FPS，我們通常會將模型進行**量化 (Quantization)**（例如將 FP32 轉為 FP16 或 INT8），並使用如 **NVIDIA TensorRT** 或 **Intel OpenVINO** 等專門的加速引擎進行部署。
+  !!! tip "效能優化"
+      為了在邊緣運算裝置上實現高 FPS，我們通常會將模型進行**量化 (Quantization)**（例如將 FP32 轉為 FP16 或 INT8），並使用如 **NVIDIA TensorRT** 或 **Intel OpenVINO** 等專門的加速引擎進行部署。
 
 ---
 

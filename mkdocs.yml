@@ -2,6 +2,9 @@ site_name: AUV 培訓手冊 (2026)
 site_url: https://hereyougoai.github.io/auv-training-2026/
 theme:
   name: material
+  font:
+    text: Noto Sans TC      # 網頁主要文字字體 (自動載入 Google Fonts)
+    code: JetBrains Mono    # 程式碼區塊專用等寬字體
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -13,7 +16,7 @@ theme:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: indigo
-      accent: indigo
+      accent: red
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
@@ -41,4 +44,27 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  
+  # 1. 提示與摺疊區塊 (強烈建議)
+  - admonition
+  - pymdownx.details
+  
+  # 2. 多環境標籤頁切換
+  - pymdownx.tabbed:
+      alternate_style: true
+      
+  # 3. 程式碼高亮強化
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  
+  # 4. 培訓專用任務清單
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      
+  # 5. 數學公式支援 (演算法必備)
+  - pymdownx.arithmatex:
+      generic: true
 
