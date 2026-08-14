@@ -1,58 +1,72 @@
-# 階段六：終極試煉（整合專案開發） 🏆⚓
+# SAUVC 系統指令速查表 (Cheat Sheet)
 
-本階段是整套培訓的總驗收。學員將把前面所學的 **Linux 指令、Git 協作、Python OOP、Docker 容器化、ROS 2 通訊 與 YOLO 視覺** 串聯在一起，模擬 AUV 水底尋標與自主跟蹤的決策控制鏈。
-
----
-
-## 🛠️ 整合專案：【AUV 尋標與攔截模擬系統】
-
-這個系統模擬 AUV 發現目標（如浮標）後，主動調整航向進行撞擊的過程。系統包含三個互相關聯的 ROS 2 節點：
-
-```mermaid
-graph LR
-    Camera[實體視訊鏡頭] -->|影格資料| NodeA[1. 視覺節點<br>Vision Node]
-    NodeA -->|發布目標中心座標<br>Topic: /target/position| NodeB[2. 決策節點<br>Decision Node]
-    NodeB -->|發布推進器控制指令<br>Topic: /cmd_vel| NodeC[3. 控制節點<br>Control Node]
-    NodeC -->|輸出 PWM 轉速| Motor[模擬推進器]
-```
-
-### 1. 視覺節點 (Vision Node)
-* **職責**：讀取視訊鏡頭畫面，調用在階段五微調的 YOLOv8 模型。
-* **行為**：
-  * 當辨識到目標（如紅色浮標）時，計算目標在影像中的 X 軸中心座標（正常範圍為 `0` ~ `640`，中間點為 `320`）。
-  * 發布該座標資料至 Topic：`/target/position` (自訂或標準 Message 類型)。
-
-### 2. 決策節點 (Decision Node)
-* **職責**：訂閱 Topic `/target/position`。
-* **行為**：
-  * 比對目標中心點與畫面正中央 (`320`) 的偏差量 (Error)。
-  * 利用簡單的比例控制 (P 控制) 計算轉向角度：
-    * 若目標偏左 (例如座標 `< 320`) -> 輸出向左轉指令。
-    * 若目標偏右 (例如座標 `> 320`) -> 輸出向右轉指令。
-  * 發布轉向與前進速度指令至 Topic：`/cmd_vel` (使用 ROS 2 標準的 `geometry_msgs/msg/Twist`)。
-
-### 3. 控制節點 (Control Node)
-* **職責**：訂閱 Topic `/cmd_vel`。
-* **行為**：
-  * 接收決策節點的速度與轉向指令。
-  * 調用階段三寫的「推進器推力計算類別」，將其轉換為左、右推進器對應的模擬 PWM 訊號。
-  * 在終端機上即時印出：
-    > `[OUTPUT] 左馬達 PWM: 1650 us | 右馬達 PWM: 1350 us (正在向右修正...)`
+這份文件為您整理了從**啟動底層環境**、**開啟模擬**、**解鎖與派發任務**，一直到**中止與重置任務**的所有關鍵指令。
+> [!NOTE]
+> 所有的 `make` 與 `docker compose` 指令，預設都需在專案的根目錄下執行（即 `SAUVC/` 目錄）。
 
 ---
 
-## 🤖 AI Agent 進階應用
+## 一、環境建置與容器啟動
 
-在此階段，我們強烈鼓勵學員多與 AI 助教互動以解決以下現實挑戰：
-1. **影像延遲問題**：若相機讀取與 YOLO 偵測導致畫面卡頓，詢問 AI：
-   > 「我的 ROS 2 視覺節點處理 YOLOv8 推論時會卡頓，請問該如何使用 Python 的多執行緒 (Threading) 或將推論移至獨立 Thread 來避免主迴圈被卡住？」
-2. **控制超調與抖動**：如果 AUV 模擬轉向時晃動過於劇烈，請教 AI：
-   > 「我的 P 控制器在目標接近中央時會發生左右劇烈抖動（超調），請問該如何加入微積分項（PID 控制器）來平滑轉向輸出？請提供 Python 代碼範例。」
+在完全乾淨的環境下，首次啟動所需執行的步驟：
+
+1. **建立 Autonomy 自駕容器映像檔**（當遠端下載失敗時的本機建置替代方案）：
+   ```bash
+   TERM=xterm ./SAUVC-JETSON/isaac_ros_common/scripts/orca_registry.sh build
+   ```
+   *(註：此步驟僅首次或更動底層相依套件時需要執行，編譯時間較長)*
+
+2. **啟動所有基礎容器與編譯 ROS 工作區**：
+   ```bash
+   make up && make build
+   ```
+   *(此指令會啟動 `control` 與 `autonomy` 等核心容器，並利用 colcon 編譯最新程式碼)*
 
 ---
 
-## 🎓 結業標準
+## 二、啟動 Gazebo 模擬環境
 
-* 學員必須以 **Git 協作方式** 分工完成此專案（有人負責視覺、有人負責控制與決策）。
-* 專案代碼必須整理好並在 **Docker 容器內成功編譯**。
-* 實際開啟筆電鏡頭，將目標物往左移動時，控制節點的終端機能夠顯示對應的馬達修正輸出。這即代表您的團隊已經擁有了開發一台真正 AUV 核心軟體系統的基礎實力！
+當容器都上線後，接著是開啟虛擬水池。
+
+- **啟動模擬（無頭模式）**：
+  ```bash
+  make sim ARENA=finals SEED=2 HEADLESS=true
+  ```
+  *(註：`ARENA` 代表場地，`SEED` 為隨機亂數種子。加上 `HEADLESS=true` 可避免 X11 視窗權限問題，對於純背景運算或依賴 Web GUI 的情況十分合適)*
+
+---
+
+## 三、解鎖載具與啟動自動任務
+
+模擬器就緒後，必須發送特定訊號讓載具進入自動導航模式。
+
+1. **解鎖推進器並切換至全自動模式 (Arming)**：
+   利用 ROS 2 的 Service 呼叫，依序啟動「定深模式 (Depth Hold)」與「全自動模式 (Autonomous)」：
+   ```bash
+   docker compose exec control bash -lc 'source /opt/ros/humble/setup.bash && source /root/rpi_ros2_ws/install/setup.bash && ros2 service call /orca_auv/system_manager/set_mode/depth_hold std_srvs/srv/Trigger && ros2 service call /orca_auv/system_manager/set_mode/autonomous std_srvs/srv/Trigger'
+   ```
+
+2. **發送「開始任務」訊號 (Start Mission)**：
+   向行為樹 (Behavior Tree) 發佈啟動旗標 (`data: true`)：
+   ```bash
+   docker compose exec autonomy bash -lc 'source /opt/ros/humble/setup.bash && source /workspaces/isaac_ros-dev/install/setup.bash && ros2 topic pub --once /orca/decision/start_mission std_msgs/msg/Bool "{data: true}"'
+   ```
+
+---
+
+## 四、中止任務與環境重置
+
+當需要暫停載具動作，或是整個模擬需要重來時：
+
+1. **中止進行中的自動任務**：
+   發佈停止旗標 (`data: false`) 給行為樹，載具將會停止正在進行的搜尋或導航動作：
+   ```bash
+   docker compose exec autonomy bash -lc 'source /opt/ros/humble/setup.bash && source /workspaces/isaac_ros-dev/install/setup.bash && ros2 topic pub --once /orca/decision/start_mission std_msgs/msg/Bool "{data: false}"'
+   ```
+
+2. **強制重置所有 ROS 節點與模擬環境**：
+   如果您希望潛艇回到最初始的原點並重新載入所有的感測器狀態：
+   ```bash
+   make stop
+   ```
+   執行完 `make stop` 後，只要重新依序執行 **步驟二** (啟動 Gazebo) 與 **步驟三** (解鎖與啟動)，即可開啟全新的一輪測試。
