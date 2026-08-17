@@ -60,6 +60,12 @@
    docker compose exec autonomy bash -lc 'source /opt/ros/humble/setup.bash && source /workspaces/isaac_ros-dev/install/setup.bash && ros2 topic pub --once /orca/decision/start_mission std_msgs/msg/Bool "{data: true}"'
    ```
 
+3. **監控任務執行狀況**：
+   開啟新終端機，監聽目前自動化決策節點的狀態與行為樹進度：
+   ```bash
+   cd /home/yoei/workspace/SAUVC && docker compose exec autonomy bash -lc "source /opt/ros/humble/setup.bash && source install/setup.bash && ros2 topic echo /orca/decision/status"
+   ```
+
 ---
 
 ## 四、中止任務與環境重置
