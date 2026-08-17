@@ -97,7 +97,7 @@ make up && make build
 ### 跑起來
 
 ```bash
-make sim ARENA=qualification SEED=2 PERCEPTION=false TREE=StudentSimpleQualMission
+make sim ARENA=qualification SEED=2 PERCEPTION=false TREE=StudentSimpleQualMission HEADLESS=true
 ```
 
 - `PERCEPTION=false` 只跑行為樹，不啟動 YOLO。方案 A 用不到視覺，

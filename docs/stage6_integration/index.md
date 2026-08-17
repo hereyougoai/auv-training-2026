@@ -32,9 +32,14 @@
 當容器都上線後，接著是開啟虛擬水池。
 
 - **啟動模擬（無頭模式）**：
-  ```bash
-  make sim ARENA=finals SEED=2 HEADLESS=true
-  ```
+  - **若要執行資格賽任務 (Qualification Mission)**：
+    ```bash
+    cd /home/yoei/workspace/SAUVC && make sim ARENA=qualification SEED=2 TREE=QualificationMission HEADLESS=true
+    ```
+  - **若要執行決賽任務 (Finals Mission)**：
+    ```bash
+    cd /home/yoei/workspace/SAUVC && make sim ARENA=finals SEED=2 HEADLESS=true
+    ```
   *(註：`ARENA` 代表場地，`SEED` 為隨機亂數種子。加上 `HEADLESS=true` 可避免 X11 視窗權限問題，對於純背景運算或依賴 Web GUI 的情況十分合適)*
 
 ---
