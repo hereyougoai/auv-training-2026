@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://hereyougoai.github.io/auv-training-2026/</loc>
+         <lastmod>2026-08-17</lastmod>
+    </url>
+    <url>
+         <loc>https://hereyougoai.github.io/auv-training-2026/stage1_env/</loc>
+         <lastmod>2026-08-17</lastmod>
+    </url>
+    <url>
+         <loc>https://hereyougoai.github.io/auv-training-2026/stage2_collab/</loc>
+         <lastmod>2026-08-17</lastmod>
+    </url>
+    <url>
+         <loc>https://hereyougoai.github.io/auv-training-2026/stage3_sandbox/</loc>
+         <lastmod>2026-08-17</lastmod>
+    </url>
+    <url>
+         <loc>https://hereyougoai.github.io/auv-training-2026/stage4_ros2/</loc>
+         <lastmod>2026-08-17</lastmod>
+    </url>
+    <url>
+         <loc>https://hereyougoai.github.io/auv-training-2026/stage5_vision/</loc>
+         <lastmod>2026-08-17</lastmod>
+    </url>
+    <url>
+         <loc>https://hereyougoai.github.io/auv-training-2026/stage6_integration/</loc>
+         <lastmod>2026-08-17</lastmod>
+    </url>
+    <url>
+         <loc>https://hereyougoai.github.io/auv-training-2026/stage6_integration/newbie_task/</loc>
+         <lastmod>2026-08-17</lastmod>
+    </url>
+</urlset>

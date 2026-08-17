@@ -1,0 +1,1590 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://hereyougoai.github.io/auv-training-2026/stage6_integration/newbie_task/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>資格賽實作任務 - AUV 培訓手冊 (2026)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans TC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AUV 培訓手冊 (2026)" class="md-header__button md-logo" aria-label="AUV 培訓手冊 (2026)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AUV 培訓手冊 (2026)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              資格賽實作任務
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="red"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../stage1_env/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段一：環境建置
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../stage2_collab/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段二：Linux & Git
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../stage3_sandbox/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段三：Python & Docker
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../stage4_ros2/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段四：ROS 2
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../stage5_vision/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  階段五：視覺辨識
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  階段六：整合專案
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AUV 培訓手冊 (2026)" class="md-nav__button md-logo" aria-label="AUV 培訓手冊 (2026)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AUV 培訓手冊 (2026)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stage1_env/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段一：環境建置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stage2_collab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段二：Linux & Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stage3_sandbox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段三：Python & Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stage4_ros2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段四：ROS 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stage5_vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段五：視覺辨識
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    階段六：整合專案
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    階段六：整合專案
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系統指令速查表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    資格賽實作任務
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    資格賽實作任務
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. 環境
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 先搞懂資料往哪裡流
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-a-xml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 方案 A：只改 XML
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 方案 A：只改 XML">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        要改的檔案
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可以用的積木
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        跑起來
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        讓船真的動起來
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        驗收
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-b-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 方案 B：寫自己的 C++ 節點
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 方案 B：寫自己的 C++ 節點">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        檔案地圖
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        順序很重要
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API 速查
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四個容易踩的坑
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        跑起來
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        驗收
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 卡關對照表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 做完之後
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附錄：註冊節點的樣板
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. 環境
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 先搞懂資料往哪裡流
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-a-xml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 方案 A：只改 XML
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 方案 A：只改 XML">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        要改的檔案
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可以用的積木
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        跑起來
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        讓船真的動起來
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        驗收
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-b-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 方案 B：寫自己的 C++ 節點
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 方案 B：寫自己的 C++ 節點">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        檔案地圖
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        順序很重要
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API 速查
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四個容易踩的坑
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        跑起來
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        驗收
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 卡關對照表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 做完之後
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附錄：註冊節點的樣板
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">新生實作：資格賽任務 —— 提示說明書</h1>
+<div class="admonition info">
+<p class="admonition-title">分支說明</p>
+<p>這份文件在 <strong><code>edu/newbie-2026</code> 教材分支</strong>上，不會合併回 <code>main</code>。
+你在這裡改壞任何東西都不會影響比賽用的程式碼，放心動手。</p>
+</div>
+<p>任務是資格賽的標準流程：<strong>下潛到指定深度 → 直行通過閘門 → 上浮</strong>。
+兩種難度任選，建議兩個都做過一遍：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>方案 A</th>
+<th>方案 B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>改什麼</td>
+<td>只改 <code>orca_decision/config/trees.xml</code></td>
+<td>寫一個 C++ 行為樹節點</td>
+</tr>
+<tr>
+<td>需要重新編譯</td>
+<td>不用</td>
+<td>每次都要</td>
+</tr>
+<tr>
+<td>學到什麼</td>
+<td>行為樹怎麼組、現有節點有哪些</td>
+<td>ROS 2 節點怎麼下指令、BT 節點的生命週期</td>
+</tr>
+<tr>
+<td>預估時間</td>
+<td>30 分鐘</td>
+<td>3～6 小時</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="0">0. 環境</h2>
+<div class="language-bash highlight"><span class="filename">啟動環境</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>--recurse-submodules<span class="w"> </span>-b<span class="w"> </span>edu/newbie-2026<span class="w"> </span>https://github.com/NCTU-AUV/SAUVC.git
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>SAUVC
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>git<span class="w"> </span>-C<span class="w"> </span>SAUVC-JETSON<span class="w"> </span>checkout<span class="w"> </span>edu/newbie-2026<span class="w">    </span><span class="c1"># 見下方說明，不要跳過</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>make<span class="w"> </span>up<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>build
+</span></code></pre></div>
+<p><strong>第三行不能省。</strong> submodule 被 clone 下來時停在 detached HEAD（不在任何分支上），
+這種狀態下你 commit 的東西不屬於任何分支，之後只要一個 <code>git checkout</code>
+就會整批消失而且沒有任何警告。你要改的檔案全都在這個 submodule 裡面。</p>
+<p><code>make build</code> 也不能省。install space 是 docker named volume，映像裡沒有預先建置過，
+沒 build 過的檔案根本不在容器裡。</p>
+<p>以下所有指令都在 super-repo 根目錄（<code>SAUVC/</code>）執行。決策程式碼在
+<code>SAUVC-JETSON/orca_decision/</code>。</p>
+<hr />
+<h2 id="1">1. 先搞懂資料往哪裡流</h2>
+<p>不理解這張圖就開始寫，會卡在「程式明明跑了但船不動」。</p>
+<div class="language-text highlight"><span class="filename">系統資料流架構</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>  Gazebo ──/orca_auv/sensors/imu──►  WorldModel ──getYaw()──┐
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>                                                            │
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>                                              你的 BT 節點 ─┤
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>                                                            │
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        ctx_-&gt;wrench_adapter-&gt;setCommand(cmd) ──────────────┘
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>                    │
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>                    ▼  50 Hz
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        /orca_auv/control/wrench_sources/decision ──► 控制堆疊 ──► 推進器
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>                    ▲
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        ctx_-&gt;desired_depth_pub
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>                    │
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        /orca_auv/control/targets/depth_m ──► 深度 PID ──► 推進器
+</span></code></pre></div>
+<p>三個必須記住的點：</p>
+<ol>
+<li>
+<p><strong>行為樹以 10 Hz 被 tick 一次</strong>（<code>decision_node.cpp</code> 的 <code>bt_timer_</code>）。
+   每次 <code>tick()</code> 都必須<strong>立刻</strong>回傳 <code>RUNNING</code> / <code>SUCCESS</code> / <code>FAILURE</code>。
+   在 <code>tick()</code> 裡 <code>sleep</code> 會把整個決策節點凍住 —— 這是最常見的第一個錯誤。</p>
+</li>
+<li>
+<p><strong>你不直接控制推進器。</strong> 你把「我想往前」寫進 <code>MotionCommand</code>，
+   丟給 <code>wrench_adapter</code>，它以 50 Hz 把濾波後的結果發出去。
+   你的節點沒在跑的時候，發出去的是零。</p>
+</li>
+<li>
+<p><strong>深度不歸你管。</strong> 深度是控制堆疊的 PID 在維持的，
+   你只要用 <code>desired_depth_pub</code> 說「我要 0.5 公尺」就好。
+   想用 <code>heave</code> 硬壓深度會跟 PID 打架。</p>
+</li>
+</ol>
+<hr />
+<h2 id="2-a-xml">2. 方案 A：只改 XML</h2>
+<h3 id="_2">要改的檔案</h3>
+<p>只有一個：<a href="../orca_decision/config/trees.xml"><code>orca_decision/config/trees.xml</code></a>，
+找到 <code>&lt;BehaviorTree ID="StudentSimpleQualMission"&gt;</code>，把裡面兩個 <code>TODO(A-*)</code> 填掉。</p>
+<h3 id="_3">可以用的積木</h3>
+<table>
+<thead>
+<tr>
+<th>標籤</th>
+<th>屬性</th>
+<th>行為</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;SetDepth/&gt;</code></td>
+<td><code>depth</code>（公尺）</td>
+<td>發一次目標深度就結束，<strong>立刻</strong>回 SUCCESS，不會等下潛完成</td>
+</tr>
+<tr>
+<td><code>&lt;BlindForward/&gt;</code></td>
+<td><code>duration</code>（秒）、<code>heading_lock</code>（true/false）</td>
+<td>固定推力前進，期間持續回 RUNNING，時間到回 SUCCESS</td>
+</tr>
+<tr>
+<td><code>&lt;TurnToYaw/&gt;</code></td>
+<td><code>degrees</code></td>
+<td>相對目前航向轉幾度</td>
+</tr>
+</tbody>
+</table>
+<p><code>&lt;Sequence&gt;</code> 由左到右執行，前一個 SUCCESS 才輪到下一個，任何一個 FAILURE 整串中止。</p>
+<div class="admonition important">
+<p class="admonition-title">重要提醒</p>
+<p><strong><code>SetDepth</code> 立刻回 SUCCESS 這件事很重要。</strong> 它不是「下潛到 0.5 公尺才繼續」，
+而是「講完就走」。所以下一個動作開始時，船其實還在往下沉。這是現有節點的
+設計，不是 bug —— 想想看你要不要在中間補點什麼。</p>
+</div>
+<h3 id="_4">跑起來</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>make<span class="w"> </span>sim<span class="w"> </span><span class="nv">ARENA</span><span class="o">=</span>qualification<span class="w"> </span><span class="nv">SEED</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">PERCEPTION</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="nv">TREE</span><span class="o">=</span>StudentSimpleQualMission<span class="w"> </span><span class="nv">HEADLESS</span><span class="o">=</span><span class="nb">true</span>
+</span></code></pre></div>
+<ul>
+<li><code>PERCEPTION=false</code> 只跑行為樹，不啟動 YOLO。方案 A 用不到視覺，
+  而且第一次啟動感知要等 TensorRT 建 CUDA engine，好幾分鐘。</li>
+<li><code>TREE=</code> 指定跑哪棵樹，不用改 YAML 也不用重新 build。</li>
+<li><code>SEED</code> 固定場地佈局。除錯時務必給，否則每次重啟道具位置都不一樣。</li>
+</ul>
+<p>改完 XML <strong>不需要重新 build</strong>（install space 是逐檔符號連結，指回原始檔），
+但要重啟決策節點才會重新載入：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>make<span class="w"> </span>launch_autonomy<span class="w"> </span><span class="nv">SIM</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="nv">PERCEPTION</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="nv">TREE</span><span class="o">=</span>StudentSimpleQualMission
+</span></code></pre></div>
+<h3 id="_5">讓船真的動起來</h3>
+<p>模擬起來之後船還是不會動 —— 開機預設是 <code>SAFE_DISABLED</code>，推進器沒有輸出。
+先解鎖，再發任務開始：</p>
+<div class="language-bash highlight"><span class="filename">解鎖與切換全自動模式</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>control<span class="w"> </span>bash<span class="w"> </span>-lc<span class="w"> </span><span class="s1">&#39;source /opt/ros/humble/setup.bash &amp;&amp; source /root/rpi_ros2_ws/install/setup.bash &amp;&amp; ros2 service call /orca_auv/system_manager/set_mode/depth_hold std_srvs/srv/Trigger &amp;&amp; ros2 service call /orca_auv/system_manager/set_mode/autonomous std_srvs/srv/Trigger&#39;</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><span class="filename">開始任務</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>autonomy<span class="w"> </span>bash<span class="w"> </span>-lc<span class="w"> </span><span class="s1">&#39;source /opt/ros/humble/setup.bash &amp;&amp; source /workspaces/isaac_ros-dev/install/setup.bash &amp;&amp; ros2 topic pub --once /orca/decision/start_mission std_msgs/msg/Bool &quot;{data: true}&quot;&#39;</span>
+</span></code></pre></div>
+<h3 id="_6">驗收</h3>
+<p>在 Gazebo 畫面上看得到三段動作：下沉 → 直線前進一段時間 → 浮回水面。
+同時開另一個終端機看行為樹走到哪：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>autonomy<span class="w"> </span>bash<span class="w"> </span>-lc<span class="w"> </span><span class="s1">&#39;source /opt/ros/humble/setup.bash &amp;&amp; source /workspaces/isaac_ros-dev/install/setup.bash &amp;&amp; ros2 topic echo /orca/decision/status&#39;</span>
+</span></code></pre></div>
+<p><code>current_action</code> 應該依序出現 <code>SetDepth</code> → <code>BlindForward</code> → <code>SetDepth</code>，
+最後 autonomy 的 log 印出 <code>Mission completed successfully.</code>。</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>能不能真的穿過閘門，取決於起始線位置和你給的秒數 —— 那是下一步的題目，
+不是方案 A 的驗收標準。方案 A 只要求三段動作照順序發生。</p>
+</div>
+<hr />
+<h2 id="3-b-c">3. 方案 B：寫自己的 C++ 節點</h2>
+<h3 id="_7">檔案地圖</h3>
+<table>
+<thead>
+<tr>
+<th>檔案</th>
+<th>你要做的事</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../orca_decision/include/orca_decision/student_qual_task.hpp"><code>include/orca_decision/student_qual_task.hpp</code></a></td>
+<td>已經寫好，先讀懂。要加成員變數就加在這</td>
+</tr>
+<tr>
+<td><a href="../orca_decision/src/behavior_tree_nodes/student_qual_task.cpp"><code>src/behavior_tree_nodes/student_qual_task.cpp</code></a></td>
+<td><strong>主戰場</strong>，TODO(1)～(4)</td>
+</tr>
+<tr>
+<td><a href="../orca_decision/src/main.cpp"><code>src/main.cpp</code></a></td>
+<td>TODO(5)，把節點註冊給行為樹引擎</td>
+</tr>
+<tr>
+<td><a href="../orca_decision/config/trees.xml"><code>config/trees.xml</code></a></td>
+<td>取消 <code>StudentMission</code> 那段的註解</td>
+</tr>
+</tbody>
+</table>
+<p>參考對象是 <a href="../orca_decision/src/behavior_tree_nodes/blind_forward.cpp"><code>blind_forward.cpp</code></a>。
+它做的事和你的作業高度重疊，卡住就去讀它 —— 但不要整個複製貼上，
+你的節點要同時處理深度和前進，它只處理前進。</p>
+<h3 id="_8">順序很重要</h3>
+<p><strong>先做 TODO(5) 註冊，最後才取消 XML 的註解。</strong> 反過來的話，BT.CPP 在載入
+XML 的當下就會逐一檢查節點名稱有沒有註冊過，遇到不認識的 <code>&lt;StudentQualTask&gt;</code>
+就讓<strong>整份 trees.xml 載入失敗</strong>，連比賽用的樹一起陪葬：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>[ERROR] [decision_node]: Failed to load BehaviorTree: Error at line 202: -&gt; Node not recognized: StudentQualTask
+</span></code></pre></div>
+<p>看到這行就是順序反了，或是註冊的字串跟 XML 標籤沒有一字不差。</p>
+<h3 id="api">API 速查</h3>
+<table>
+<thead>
+<tr>
+<th>你想做的事</th>
+<th>寫法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>讀 XML 傳來的參數</td>
+<td><code>getInput&lt;double&gt;("duration", duration)</code></td>
+</tr>
+<tr>
+<td>現在幾點</td>
+<td><code>ctx_-&gt;node-&gt;now()</code>（回傳 <code>rclcpp::Time</code>，相減得 <code>.seconds()</code>）</td>
+</tr>
+<tr>
+<td>目前航向</td>
+<td><code>ctx_-&gt;world_model-&gt;getYaw()</code>（弧度）</td>
+</tr>
+<tr>
+<td>送出運動指令</td>
+<td><code>ctx_-&gt;wrench_adapter-&gt;setCommand(cmd)</code></td>
+</tr>
+<tr>
+<td>設定目標深度</td>
+<td><code>ctx_-&gt;desired_depth_pub-&gt;publish(msg)</code>（<code>std_msgs::msg::Float64</code>）</td>
+</tr>
+<tr>
+<td>印訊息</td>
+<td><code>RCLCPP_INFO(ctx_-&gt;node-&gt;get_logger(), "...")</code></td>
+</tr>
+<tr>
+<td>讓狀態出現在 <code>/orca/decision/status</code></td>
+<td>寫 <code>ctx_-&gt;current_action</code> 和 <code>ctx_-&gt;debug_msg</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>MotionCommand</code> 有 <code>surge</code>（前進）、<code>sway</code>（橫移）、<code>heave</code>（升降）、<code>yaw</code>（轉向）
+四個 float。<strong>單位不是 m/s</strong>，是丟給控制堆疊的力／力矩。數量級直接參考
+<code>blind_forward.cpp</code> 的 <code>surge = 25.0f</code>；自己憑感覺填不是原地不動就是暴衝。</p>
+<h3 id="_9">四個容易踩的坑</h3>
+<ol>
+<li>
+<p><strong><code>providedPorts()</code> 沒宣告的屬性，XML 上寫了會直接載入失敗。</strong>
+   宣告和 XML 要對得起來。</p>
+</li>
+<li>
+<p><strong><code>started_</code> 一定要在結束時歸位。</strong> 動作做完回 SUCCESS 前、以及 <code>halt()</code>
+   裡都要設回 <code>false</code>。漏掉的話節點被重跑第二次（<code>RetryUntilSuccessful</code>、
+   任務重新開始）會沿用上一輪的 <code>start_time_</code>，一進去就判定「時間到了」而
+   立刻結束。</p>
+</li>
+<li>
+<p><strong><code>halt()</code> 要把速度歸零。</strong> 被上層中止時如果沒歸零，最後一筆指令會留在
+   <code>wrench_adapter</code> 裡，船會帶著它繼續衝。</p>
+</li>
+<li>
+<p><strong>參數讀不到要大聲失敗</strong>（<code>throw BT::RuntimeError</code>），不要默默套預設值。
+   靜默的預設值會讓「XML 改了卻沒生效」查上一整晚。</p>
+</li>
+</ol>
+<h3 id="_10">跑起來</h3>
+<p>C++ 改完<strong>一定要重新編譯</strong>：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>make<span class="w"> </span>build
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>make<span class="w"> </span>launch_autonomy<span class="w"> </span><span class="nv">SIM</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="nv">PERCEPTION</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="nv">TREE</span><span class="o">=</span>StudentMission
+</span></code></pre></div>
+<p>（模擬本身還在跑的話不用重開 Gazebo，重啟 autonomy 就好。）</p>
+<h3 id="_11">驗收</h3>
+<p>和方案 A 同樣的三段動作，但 <code>/orca/decision/status</code> 的 <code>current_action</code>
+應該顯示的是 <code>StudentQualTask</code> 而不是內建節點。
+沒填 TODO 之前節點會在 log 印一行警告然後直接回 SUCCESS，船不會動 ——
+看到那行就代表你跑的是骨架，不是你的實作。</p>
+<hr />
+<h2 id="4">4. 卡關對照表</h2>
+<table>
+<thead>
+<tr>
+<th>症狀</th>
+<th>原因</th>
+<th>怎麼辦</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Failed to load BehaviorTree: Node not recognized</code></td>
+<td>XML 用了沒註冊的節點</td>
+<td>先做 main.cpp 的 TODO(5)，檢查字串一字不差</td>
+</tr>
+<tr>
+<td><code>Failed to load BehaviorTree: ... must have at least 1 child</code></td>
+<td><code>&lt;Sequence&gt;</code> 被清空了</td>
+<td>至少留一個子節點</td>
+</tr>
+<tr>
+<td>一切正常但船完全不動</td>
+<td>沒 arm</td>
+<td>跑上面那條 <code>set_mode</code> 服務呼叫</td>
+</tr>
+<tr>
+<td>船不動，log 有「尚未實作」警告</td>
+<td>跑的是骨架</td>
+<td>TODO(1)～(4) 還沒填</td>
+</tr>
+<tr>
+<td>改了 <code>.cpp</code> 卻沒生效</td>
+<td>沒重新編譯</td>
+<td><code>make build</code></td>
+</tr>
+<tr>
+<td>改了 XML 卻沒生效</td>
+<td>節點沒重啟</td>
+<td><code>make launch_autonomy ...</code></td>
+</tr>
+<tr>
+<td>換了 <code>TREE=</code> 卻跑到別棵樹</td>
+<td>確認實際生效的值</td>
+<td><code>ros2 param get /decision_node main_tree_id</code></td>
+</tr>
+<tr>
+<td>船一直往一邊偏</td>
+<td>沒鎖航向</td>
+<td><code>heading_lock="true"</code>，或自己實作航向 P 控制</td>
+</tr>
+<tr>
+<td>Gazebo 開不起來</td>
+<td>X server 授權</td>
+<td><code>make sim HEADLESS=true</code></td>
+</tr>
+</tbody>
+</table>
+<p>看 log：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>make<span class="w"> </span>logs_autonomy<span class="w">      </span><span class="c1"># 決策節點</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>make<span class="w"> </span>logs_control<span class="w">       </span><span class="c1"># 控制堆疊</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>make<span class="w"> </span>logs_sim<span class="w">           </span><span class="c1"># Gazebo</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>make<span class="w"> </span>status<span class="w">             </span><span class="c1"># 容器 / 節點 / 模式一覽</span>
+</span></code></pre></div>
+<hr />
+<h2 id="5">5. 做完之後</h2>
+<ol>
+<li><strong>加入感測器回饋</strong>：讓節點訂閱深度或視覺資訊，看到閘門才前進、
+   到達深度才進下一步，而不是盲走固定秒數。
+   現成的參考是 <code>search_target.cpp</code> 和 <code>approach_target.cpp</code>。</li>
+<li><strong>理解 Reactive 節點</strong>：讀 <code>QualificationMission</code> 裡的 <code>ReactiveFallback</code>，
+   想清楚為什麼避障要放在那個位置才會每個 tick 都被檢查。</li>
+<li>把你的節點併進 <code>behavior_tree_nodes.hpp</code>，走正式的 PR 流程。</li>
+</ol>
+<hr />
+<h2 id="_12">附錄：註冊節點的樣板</h2>
+<p>這段是 repo 的固定寫法，不是這次作業的重點。真的卡住再看。</p>
+<p><code>main.cpp</code> 最上面加 include：</p>
+<div class="language-cpp highlight"><span class="filename">main.cpp</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;orca_decision/student_qual_task.hpp&quot;</span>
+</span></code></pre></div>
+<p>在 <code>RegisterBehaviorTreeNodes()</code> 的 TODO(5) 位置加：</p>
+<div class="language-cpp highlight"><span class="filename">main.cpp</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">factory</span><span class="p">.</span><span class="n">registerBuilder</span><span class="o">&lt;</span><span class="n">StudentQualTask</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;StudentQualTask&quot;</span><span class="p">,</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="p">[</span><span class="n">ctx</span><span class="p">](</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">BT</span><span class="o">::</span><span class="n">NodeConfiguration</span><span class="o">&amp;</span><span class="w"> </span><span class="n">config</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">StudentQualTask</span><span class="o">&gt;</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">);</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">        </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">setContext</span><span class="p">(</span><span class="n">ctx</span><span class="p">);</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">node</span><span class="p">;</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="p">});</span>
+</span></code></pre></div>
+<p><code>setContext(ctx)</code> 那行是關鍵。漏掉一樣編得過、一樣載入得了，
+但節點裡的 <code>ctx_</code> 會是空的 —— 你會拿不到世界模型也送不出指令。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
